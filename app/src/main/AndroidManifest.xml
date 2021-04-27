@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".Add_Diary_2Activity"></activity>
         <activity android:name=".Add_Diary_1Activity" />
 
