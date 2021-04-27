@@ -5,23 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="#e0adce"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        >
 
         <TextView
+            android:id="@+id/hello_text"
             android:layout_width="wrap_content"
             android:layout_height="500px"
             android:layout_gravity="bottom"
-            android:background="@drawable/add_diary_1_activity1"
+            android:background="@drawable/add_diary_1_activity_3_evening"
             android:gravity="center"
             android:text="Good evening!\nLet's start with your mood"
             android:textColor="@color/white"
-
-
             android:textSize="45px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -53,52 +54,57 @@
             <Button
                 android:id="@+id/add_diary_button_1"
                 android:layout_width="match_parent"
-                android:layout_height="283px"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:backgroundTint="#FF66FF"
+                android:drawableLeft="@drawable/icon_happy"
                 android:text="Happy"
-                android:backgroundTint="#00ffcc"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add_diary_button_2"
                 android:layout_width="match_parent"
-                android:layout_height="283px"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:backgroundTint="#CC66FF"
+                android:drawableLeft="@drawable/icon_good"
                 android:text="Good"
-                android:backgroundTint="#00ff00"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add_diary_button_3"
                 android:layout_width="match_parent"
-                android:layout_height="283px"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:backgroundTint="#9966FF"
+                android:drawableLeft="@drawable/icon_neutral"
                 android:text="Neutral"
-                android:backgroundTint="#ff33bb"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add_diary_button_4"
                 android:layout_width="match_parent"
-                android:layout_height="283px"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:backgroundTint="#6666FF"
+                android:drawableLeft="@drawable/icon_bad"
                 android:text="bad"
-                android:backgroundTint="#ff6600"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/add_diary_button_5"
                 android:layout_width="match_parent"
-                android:layout_height="283px"
-                android:textSize="20dp"
-                android:textStyle="bold"
+                android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:backgroundTint="#3366FF"
+                android:drawableLeft="@drawable/icon_awful"
                 android:text="awful"
-                android:backgroundTint="#ff0000"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
