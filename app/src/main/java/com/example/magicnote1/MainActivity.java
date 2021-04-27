@@ -29,6 +29,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        Button btnToDoList =(Button)findViewById(R.id.todolist_button);
+        btnToDoList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, todolist_mainMenu.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

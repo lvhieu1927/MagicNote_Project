@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Add_itemActivity"></activity>
+        <activity android:name=".todolist_mainMenu" />
         <activity android:name=".Add_Diary_1Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
