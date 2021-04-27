@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class todolist_mainMenu extends AppCompatActivity {
         list.setAdapter(adapter);
         items.add("item 1");
         items.add("item 2");
+
         if(items.isEmpty()){
 
         }
