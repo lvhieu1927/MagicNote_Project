@@ -1,65 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_margin="@dimen/margin_basex2">
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="370dp"
-        android:layout_height="34dp"
-        android:text="1. What do you feel today?"
-        android:textColor="@color/black"
-        android:textSize="50px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
+        android:id="@+id/tv_question1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:text="What are you feeling today?"
+        android:layout_margin="@dimen/margin_basex2"
+        android:textSize="@dimen/text_large"/>
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="359dp"
-        android:layout_height="29dp"
-        android:text="2. What are you doing today?"
-        android:textSize="50px"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="74dp"
-        android:layout_height="34dp"
-        android:layout_marginBottom="288dp"
+        android:layout_alignLeft="@+id/tv_question1"
+        android:layout_margin="@dimen/margin_basex2"
+        android:id="@+id/tv_positive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_question1"
         android:text="Positive"
-        android:textAlignment="center"
-        android:textSize="40px"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        android:textSize="@dimen/text_medium"
+        />
+
+    <ScrollView
+        android:id="@+id/scr_positive"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_positive"
+        android:layout_marginTop="6dp" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="74dp"
-        android:layout_height="34dp"
-        android:layout_marginTop="120dp"
-        android:text="Positive"
-        android:textAlignment="center"
-        android:textSize="40px"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:layout_constraintVertical_bias="0.041" />
+        android:id="@+id/tv_negative"
+        android:layout_margin="@dimen/margin_basex2"
+        android:text="Negative"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scr_positive"
+        android:textSize="@dimen/text_medium"
+        android:layout_alignLeft="@+id/tv_question1"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:id="@+id/scr_negative"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/tv_negative" />
+
+    <TextView
+        android:id="@+id/tv_activity"
+        android:layout_margin="@dimen/margin_basex2"
+        android:layout_alignLeft="@+id/tv_question1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scr_negative"
+        android:text="What activity make you feeling that?"
+        android:textSize="@dimen/text_large"/>
+
+    <ScrollView
+        android:id="@+id/scr_activity"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/tv_activity"
+        />
+
+</RelativeLayout>
