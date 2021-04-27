@@ -12,14 +12,14 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton button1;
+    Button button1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         button1 = (ImageButton) findViewById(R.id.add_diary);
+        button1 = (Button) findViewById(R.id.add_diary);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,5 +29,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 }
