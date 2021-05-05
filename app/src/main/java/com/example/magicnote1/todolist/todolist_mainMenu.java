@@ -1,7 +1,9 @@
 package com.example.magicnote1.todolist;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -18,7 +20,7 @@ import com.example.magicnote1.R;
 
 import java.util.ArrayList;
 
-public class todolist_mainMenu extends AppCompatActivity {
+public class todolist_mainMenu extends Activity {
     private static final String TAG = "todolist_mainMenu";
     private dbTask dbTask;
     private ListView listViewTask;
@@ -33,36 +35,42 @@ public class todolist_mainMenu extends AppCompatActivity {
         dbTask = new dbTask(this);
         listViewTask = (ListView) findViewById(R.id.list_todo);
         updateListView();
-
-
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        updateListView();
     }
     public void handleClickButton(View v) {
         switch (v.getId()) {
+//            case R.id.add_item:
+//            final EditText editText = new EditText(this);
+//            AlertDialog alertDialog = new AlertDialog.Builder(this)
+//                    .setTitle("New Task")
+//                    .setMessage("Add new task here")
+//                    .setView(editText)
+//                    .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            String task = String.valueOf(editText.getText());
+//                            SQLiteDatabase db = dbTask.getWritableDatabase();
+//                            ContentValues value = new ContentValues();
+//                            value.put(TaskWork.taskForm.TASK_TITLE, task);
+//                            db.insertWithOnConflict(TaskWork.taskForm.TABLE, null, value, SQLiteDatabase.CONFLICT_REPLACE);
+//                            db.close();
+//                            updateListView();
+//                        }
+//                    })
+//                    .setNegativeButton("Cancel", null)
+//                    .create();
+//            alertDialog.show();
             case R.id.add_item:
-            final EditText editText = new EditText(this);
-            AlertDialog alertDialog = new AlertDialog.Builder(this)
-                    .setTitle("New Task")
-                    .setMessage("Add new task here")
-                    .setView(editText)
-                    .setPositiveButton("Add", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String task = String.valueOf(editText.getText());
-                            SQLiteDatabase db = dbTask.getWritableDatabase();
-                            ContentValues value = new ContentValues();
-                            value.put(TaskWork.taskForm.TASK_TITLE, task);
-                            db.insertWithOnConflict(TaskWork.taskForm.TABLE, null, value, SQLiteDatabase.CONFLICT_REPLACE);
-                            db.close();
-                            updateListView();
-                        }
-                    })
-                    .setNegativeButton("Cancel", null)
-                    .create();
-            alertDialog.show();
+                Intent intent = new Intent(this,Add_itemActivity.class);
+                startActivity(intent);
         }
     }
 
-    private void updateListView(){
+    public void updateListView(){
         ArrayList<String> list = new ArrayList<>();
         SQLiteDatabase db = dbTask.getReadableDatabase();
         Cursor cursor = db.query(TaskWork.taskForm.TABLE, new String[] {TaskWork.taskForm._ID, TaskWork.taskForm.TASK_TITLE}, null,null,null,null,null);
