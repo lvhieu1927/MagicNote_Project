@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.magicnote1">
-
+    <supports-screens android:largestWidthLimitDp="480" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label=">"
+        android:label="Magic Note"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".Add_Diary_2Activity"></activity>
-        <activity android:name=".Add_itemActivity"></activity>
-        <activity android:name=".todolist_mainMenu" />
+        <activity android:name=".todolist.Add_itemActivity"></activity>
+        <activity android:name=".todolist.todolist_mainMenu" />
         <activity android:name=".Add_Diary_1Activity" />
 
         <activity android:name=".MainActivity">

@@ -2,12 +2,13 @@ package com.example.magicnote1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
-import android.widget.ImageButton;
+
+import com.example.magicnote1.todolist.todolist_mainMenu;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         button1 = (Button) findViewById(R.id.add_diary);
 
         button1.setOnClickListener(new View.OnClickListener() {
