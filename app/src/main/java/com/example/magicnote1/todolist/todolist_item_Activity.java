@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.magicnote1.R;
 
@@ -75,6 +76,7 @@ public class todolist_item_Activity extends Activity {
         textId.setText(String.valueOf(taskNew.getIdTask()));
         //Kiiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
+            Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_LONG).show();
             deleteTask();
         }
         //
