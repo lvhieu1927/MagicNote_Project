@@ -52,7 +52,7 @@
                     android:hint="Insert something"
                     android:textSize="20dp"
                     android:padding="10dp"
-                    android:inputType="text"/>
+                    android:inputType="date"/>
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"

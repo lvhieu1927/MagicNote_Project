@@ -4,25 +4,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.magicnote1.R;
-
-import org.w3c.dom.Text;
-
+//Activity thao tác với task
 public class todolist_item_Activity extends Activity {
     private ToDoList toDoList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item);
+        setContentView(R.layout.activity_todolist_item);
         toDoList = new ToDoList(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
         if(id != 0){
+            Button button_add = (Button)findViewById(R.id.button_add_task);
+            button_add.setVisibility(View.GONE);
             loadTaskData(id);
         }
     }

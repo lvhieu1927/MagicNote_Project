@@ -6,17 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.magicnote1.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//Activity quản lý task
 public class todolist_MainMenu_Activity extends Activity {
     private ListView listViewTask;
     private List<Task> listTask;
     private ToDoList toDoList;
+    private ImageView emptyView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,7 @@ public class todolist_MainMenu_Activity extends Activity {
         }
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, taskResult);
         listViewTask.setAdapter(arrayAdapter);
+        checkEmpty(taskResult);
     }
     //Đẩy id của task và mở activity todolist_item_Activity
     protected void goToTaskById(int id){
@@ -65,5 +68,12 @@ public class todolist_MainMenu_Activity extends Activity {
                 startActivity(intent);
                 break;
         }
+    }
+    public void checkEmpty(List list){
+        emptyView = (ImageView) findViewById(R.id.empty_view);
+        if(list.size()>0){
+            emptyView.setVisibility(View.GONE);
+        }
+        else emptyView.setVisibility(View.VISIBLE);
     }
 }
