@@ -5,29 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#e0adce"
-    android:orientation="vertical">
+
+
+    android:orientation="vertical"
+    >
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="800px"
+        android:background="@drawable/add_diary_1_activity_3_evening"
         android:orientation="vertical"
         >
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp">
+
+            <TextClock
+                android:id="@+id/myTextClock"
+                android:layout_width="174dp"
+                android:layout_height="36dp"
+                android:background="@drawable/background_1"
+                android:format12Hour="hh:mm:ss a"
+                android:format24Hour="@null"
+                android:textAlignment="center"
+                android:padding="2dp"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <TextView
             android:id="@+id/hello_text"
-            android:layout_width="wrap_content"
-            android:layout_height="500px"
+            android:layout_width="match_parent"
+            android:layout_height="600px"
             android:layout_gravity="bottom"
-            android:background="@drawable/add_diary_1_activity_3_evening"
             android:gravity="center"
             android:text="Good evening!\nLet's start with your mood"
+            android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="45px"
+            android:textSize="30dp"
+            android:paddingBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
 
     </LinearLayout>
 
@@ -43,32 +72,41 @@
         android:rotationX="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_scrollUp">
+        app:layout_constraintTop_toBottomOf="@+id/button_scrollUp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:layout_marginTop="5dp"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/add_diary_button_1"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:layout_marginTop="5dp"
                 android:layout_weight="1"
+                android:background="@drawable/background_1"
+                android:padding="5dp"
                 android:backgroundTint="#FF66FF"
                 android:drawableLeft="@drawable/icon_happy"
                 android:text="Happy"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="onClick"
+                 />
 
             <Button
                 android:id="@+id/add_diary_button_2"
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:backgroundTint="#CC66FF"
                 android:drawableLeft="@drawable/icon_good"
+                android:background="@drawable/background_1"
+                android:padding="5dp"
                 android:text="Good"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -78,8 +116,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:layout_marginTop="12dp"
                 android:backgroundTint="#9966FF"
                 android:drawableLeft="@drawable/icon_neutral"
+                android:background="@drawable/background_1"
+                android:padding="5dp"
                 android:text="Neutral"
                 android:textSize="20dp"
                 android:textStyle="bold" />
@@ -89,7 +130,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:layout_marginTop="12dp"
                 android:backgroundTint="#6666FF"
+                android:background="@drawable/background_1"
+                android:padding="5dp"
                 android:drawableLeft="@drawable/icon_bad"
                 android:text="bad"
                 android:textSize="20dp"
@@ -100,7 +144,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
+                android:layout_marginTop="12dp"
                 android:backgroundTint="#3366FF"
+                android:background="@drawable/background_1"
+                android:padding="5dp"
                 android:drawableLeft="@drawable/icon_awful"
                 android:text="awful"
                 android:textSize="20dp"

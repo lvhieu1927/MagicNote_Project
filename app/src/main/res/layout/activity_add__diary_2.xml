@@ -9,63 +9,139 @@
     android:layout_margin="@dimen/margin_basex2">
 
     <TextView
-        android:id="@+id/tv_question1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="What are you feeling today?"
-        android:layout_margin="@dimen/margin_basex2"
-        android:textSize="@dimen/text_large"/>
-
-    <TextView
-        android:layout_alignLeft="@+id/tv_question1"
-        android:layout_margin="@dimen/margin_basex2"
-        android:id="@+id/tv_positive"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_question1"
-        android:text="Positive"
-        android:textSize="@dimen/text_medium"
-        />
-
-    <ScrollView
-        android:id="@+id/scr_positive"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tv_positive"
-        android:layout_marginTop="6dp" />
-
-    <TextView
-        android:id="@+id/tv_negative"
-        android:layout_margin="@dimen/margin_basex2"
-        android:text="Negative"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/scr_positive"
-        android:textSize="@dimen/text_medium"
-        android:layout_alignLeft="@+id/tv_question1"/>
-
-    <ScrollView
-        android:id="@+id/scr_negative"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@+id/tv_negative" />
-
-    <TextView
         android:id="@+id/tv_activity"
         android:layout_margin="@dimen/margin_basex2"
-        android:layout_alignLeft="@+id/tv_question1"
+        android:text="What activity you doing today?"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/scr_negative"
-        android:text="What activity make you feeling that?"
-        android:textSize="@dimen/text_large"/>
-
-    <ScrollView
-        android:id="@+id/scr_activity"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_below="@+id/tv_activity"
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/text_large"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         />
+
+    <TextView
+        android:id="@+id/tv_Social"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="social"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/tv_activity"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_Social"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Social"
+        >
+        <LinearLayout
+            android:id="@+id/layout_Social"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </HorizontalScrollView>
+    <TextView
+        android:id="@+id/tv_Entertainment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Entertainment"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/scr_Social"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_Entertainment"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Entertainment" />
+    <TextView
+        android:id="@+id/tv_Sleep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Sleep"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/scr_Entertainment"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_Sleep"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Sleep" />
+    <TextView
+        android:id="@+id/tv_Food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Food"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/scr_Sleep"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_Food"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Food" />
+    <TextView
+        android:id="@+id/tv_Calm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Calm"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/scr_Food"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_calm"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Calm" />
+    <TextView
+        android:id="@+id/tv_Excercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Exercise"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/scr_calm"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_Excercise"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Excercise" />
+    <TextView
+        android:id="@+id/tv_Chores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text="Chores"
+        android:textSize="@dimen/text_medium"
+        android:layout_below="@+id/scr_Excercise"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+    <HorizontalScrollView
+        android:id="@+id/scr_Chores"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/tv_Chores" />
+
+
+
 
 </RelativeLayout>

@@ -2,10 +2,14 @@ package com.example.magicnote1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextClock;
 import android.widget.TextView;
+
+import com.example.magicnote1.model.Buttonnew;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -15,6 +19,7 @@ public class Add_Diary_1Activity extends AppCompatActivity {
 
     TextView hello_text;
     Button button1, button2, button3, button4, button5;
+    private TextClock textClock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,21 +30,34 @@ public class Add_Diary_1Activity extends AppCompatActivity {
     }
 
     // Hàm để khai báo các thành phần được sử dụng trong activity
-    public void addControl()
-    {
-        hello_text = (TextView)findViewById(R.id.hello_text);
+    public void addControl() {
+        hello_text = (TextView) findViewById(R.id.hello_text);
         button1 = findViewById(R.id.add_diary_button_1);
         button2 = findViewById(R.id.add_diary_button_2);
         button3 = findViewById(R.id.add_diary_button_3);
         button4 = findViewById(R.id.add_diary_button_4);
         button5 = findViewById(R.id.add_diary_button_5);
+        this.textClock = (TextClock) this.findViewById(R.id.myTextClock);
     }
 
     // Hàm để thêm các event cho activity
-    public void addEvents()
-    {
-
+    public void addEvents() {
+        //set textClock định dạng
+        this.textClock.setFormat24Hour(null);
+        //
     }
+
+    //nút bấm chuyển tới Add_Diary_2Activity kèm theo mood
+    public void onClick(View view) {
+        Button button = (Button)view;
+        String buttonString = button.getText().toString();
+        Intent intent = new Intent(this,Add_Diary_2Activity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("content",buttonString);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
 
     // Hàm để thay đổi hình theme tự động theo thời gian
     private void changeTheme()
