@@ -53,7 +53,7 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         String buttonString = button.getText().toString();
         Intent intent = new Intent(this,Add_Diary_2Activity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("content",buttonString);
+        bundle.putString("mood",buttonString);
         intent.putExtras(bundle);
         startActivity(intent);
     }

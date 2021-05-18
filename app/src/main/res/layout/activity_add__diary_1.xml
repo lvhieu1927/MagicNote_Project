@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="800px"
+        android:layout_height="600px"
         android:background="@drawable/add_diary_1_activity_3_evening"
         android:orientation="vertical"
         >
@@ -51,6 +51,8 @@
             android:textColor="@color/white"
             android:textSize="30dp"
             android:paddingBottom="50dp"
+            android:fontFamily="@font/font_1_dancingscript_regular"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -87,15 +89,15 @@
                 android:layout_height="fill_parent"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/background_1"
+                android:background="@drawable/bg_happy"
                 android:padding="5dp"
-                android:backgroundTint="#FF66FF"
-                android:drawableLeft="@drawable/icon_happy"
-                android:text="Happy"
+                android:drawableLeft="@drawable/ic_happy"
+                android:text="@string/happy"
                 android:textSize="20dp"
+                android:textColor="#cf59cb"
                 android:textStyle="bold"
                 android:onClick="onClick"
-                 />
+                tools:ignore="OnClick" />
 
             <Button
                 android:id="@+id/add_diary_button_2"
@@ -103,13 +105,15 @@
                 android:layout_height="fill_parent"
                 android:layout_marginTop="12dp"
                 android:layout_weight="1"
-                android:backgroundTint="#CC66FF"
-                android:drawableLeft="@drawable/icon_good"
-                android:background="@drawable/background_1"
+                android:drawableLeft="@drawable/ic_good"
+                android:background="@drawable/bg_good"
                 android:padding="5dp"
-                android:text="Good"
+                android:text="@string/good"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textColor="#7f38ab"
+                android:textStyle="bold"
+                android:onClick="onClick"
+                tools:ignore="OnClick"/>
 
             <Button
                 android:id="@+id/add_diary_button_3"
@@ -117,27 +121,15 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:layout_marginTop="12dp"
-                android:backgroundTint="#9966FF"
-                android:drawableLeft="@drawable/icon_neutral"
-                android:background="@drawable/background_1"
+                android:drawableLeft="@drawable/ic_neutral"
+                android:background="@drawable/bg_neutral"
                 android:padding="5dp"
-                android:text="Neutral"
+                android:text="@string/neutral"
+                android:textColor="#3e41c9"
                 android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/add_diary_button_4"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="12dp"
-                android:backgroundTint="#6666FF"
-                android:background="@drawable/background_1"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/icon_bad"
-                android:text="bad"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:onClick="onClick"
+                tools:ignore="OnClick"/>
 
             <Button
                 android:id="@+id/add_diary_button_5"
@@ -145,13 +137,31 @@
                 android:layout_height="fill_parent"
                 android:layout_weight="1"
                 android:layout_marginTop="12dp"
-                android:backgroundTint="#3366FF"
-                android:background="@drawable/background_1"
+                android:background="@drawable/bg_awful"
                 android:padding="5dp"
-                android:drawableLeft="@drawable/icon_awful"
-                android:text="awful"
+                android:drawableLeft="@drawable/ic_awful"
+                android:text="@string/awful"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textColor="#FFFD3A84"
+                android:textStyle="bold"
+                android:onClick="onClick"
+                tools:ignore="OnClick"/>
+
+            <Button
+                android:id="@+id/add_diary_button_4"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_bad"
+                android:drawableLeft="@drawable/ic_bad"
+                android:padding="5dp"
+                android:text="@string/bad"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#f2131f"
+                android:onClick="onClick"
+                tools:ignore="OnClick"/>
 
         </LinearLayout>
     </ScrollView>

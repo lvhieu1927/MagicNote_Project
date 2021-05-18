@@ -47,6 +47,11 @@ public class Buttonnew extends androidx.appcompat.widget.AppCompatButton {
         });
     }
 
+    @Override
+    public CharSequence getText() {
+        return super.getText();
+    }
+
     public void setValue(int value) {
         this.value = value;
     }
