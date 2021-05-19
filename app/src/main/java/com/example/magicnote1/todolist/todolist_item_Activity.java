@@ -1,18 +1,26 @@
 package com.example.magicnote1.todolist;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.magicnote1.R;
+
+import java.util.ArrayList;
+
 //Activity thao tác với task
 public class todolist_item_Activity extends Activity {
     private ToDoList toDoList;
@@ -23,10 +31,28 @@ public class todolist_item_Activity extends Activity {
         toDoList = new ToDoList(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
+        ImageButton buttonAdd = (ImageButton)findViewById(R.id.button_add_task);
+        Button buttonEdit = (Button)findViewById(R.id.button_update_task);
+        Button buttonDelete = (Button)findViewById(R.id.button_delete_task);
         if(id != 0){
-            Button button_add = (Button)findViewById(R.id.button_add_task);
-            button_add.setVisibility(View.GONE);
+            buttonAdd.setVisibility(View.GONE);
             loadTaskData(id);
+        }
+        else{
+            buttonAdd.setVisibility(View.VISIBLE);
+            buttonEdit.setVisibility(View.GONE);
+            buttonDelete.setVisibility(View.GONE);
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestcode,int resultcode,Intent data){
+        super.onActivityResult(requestcode,requestcode,data);
+        EditText des = (EditText)findViewById(R.id.task_description);
+        if(requestcode == 1){
+            if(resultcode == RESULT_OK && data != null){
+                ArrayList<String> stt = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                des.setText(stt.get(0));
+            }
         }
     }
     public void clickButton (View v){
@@ -46,6 +72,18 @@ public class todolist_item_Activity extends Activity {
             case R.id.button_menu:
                 finish();
                 break;
+            case R.id.button_speak:
+                EditText des = (EditText)findViewById(R.id.task_description);
+                Intent intentStt = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intentStt.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,"en-US");
+                try {
+                    startActivityForResult(intentStt,1);
+                    des.setText("");
+                }
+                catch (ActivityNotFoundException a){
+                    Toast.makeText(getApplicationContext(),"Oops",Toast.LENGTH_SHORT).show();
+                }
+
         }
     }
     //Load data của task
@@ -77,13 +115,17 @@ public class todolist_item_Activity extends Activity {
 
         Task taskNew = toDoList.createTask(task);
         textId.setText(String.valueOf(taskNew.getIdTask()));
-        //Kiiểm tra có nội dung hay không, nếu không có thì xoá
+        //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_LONG).show();
             deleteTask();
         }
         //
-        finish();
+        Intent putIdTask = new Intent(this,todolist_MainMenu_Activity.class);
+        putIdTask.putExtra("todolist_item_Activity",taskNew.getIdTask());
+        Log.d("putid",""+ taskNew.getIdTask());
+        startActivity(putIdTask);
+//        finish();
     }
     //Cập nhật task
     private void updateTask(){
@@ -100,6 +142,7 @@ public class todolist_item_Activity extends Activity {
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
             toDoList.updateTask(task);
+            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_LONG).show();
             finish();
         }
     }
@@ -110,6 +153,7 @@ public class todolist_item_Activity extends Activity {
             int id = Integer.valueOf(textId.getText().toString());
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
+            Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_LONG).show();
             finish();
         }
     }

@@ -1,13 +1,20 @@
 package com.example.magicnote1.todolist;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 
 import com.example.magicnote1.R;
 
@@ -43,6 +50,7 @@ public class todolist_MainMenu_Activity extends Activity {
             goToTaskById(taskID);
         }
     };
+
     //Cập nhật Listview
     private void updateListViewTask(){
         List<String> taskResult = new ArrayList<String>(0);
@@ -50,9 +58,16 @@ public class todolist_MainMenu_Activity extends Activity {
         for (int i = 0; i < listTask.size();i++){
             taskResult.add(listTask.get(i).result());
         }
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, taskResult);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.item_layout, R.id.item_view, taskResult);
         listViewTask.setAdapter(arrayAdapter);
         checkEmpty(taskResult);
+        Intent getIdTask = getIntent();
+        int id = getIdTask.getIntExtra("todolist_item_Activity",0);
+//        if(id != 0){
+//            Task task = toDoList.getTask(id);
+//            Switch switchDone = (Switch)findViewById(R.id.switch_done);
+//            switchDone.setChecked(task.getCompleted());
+//        }
     }
     //Đẩy id của task và mở activity todolist_item_Activity
     protected void goToTaskById(int id){
