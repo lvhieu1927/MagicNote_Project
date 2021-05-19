@@ -74,6 +74,7 @@ public class todolist_MainMenu_Activity extends Activity {
         Intent intent = new Intent(this, todolist_item_Activity.class);
         intent.putExtra("id",id);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     public void clickButton (View v){
@@ -81,6 +82,9 @@ public class todolist_MainMenu_Activity extends Activity {
             case R.id.button_add_task_form:
                 Intent intent = new Intent(this, todolist_item_Activity.class);
                 startActivity(intent);
+                //Transition animation
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                //
                 break;
         }
     }

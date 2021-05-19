@@ -32,8 +32,8 @@ public class todolist_item_Activity extends Activity {
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
         ImageButton buttonAdd = (ImageButton)findViewById(R.id.button_add_task);
-        Button buttonEdit = (Button)findViewById(R.id.button_update_task);
-        Button buttonDelete = (Button)findViewById(R.id.button_delete_task);
+        ImageButton buttonEdit = (ImageButton)findViewById(R.id.button_update_task);
+        ImageButton buttonDelete = (ImageButton)findViewById(R.id.button_delete_task);
         if(id != 0){
             buttonAdd.setVisibility(View.GONE);
             loadTaskData(id);
@@ -60,17 +60,21 @@ public class todolist_item_Activity extends Activity {
             case R.id.button_add_task:
                 addTask();
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_update_task:
                 updateTask();
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_delete_task:
                 deleteTask();
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
-            case R.id.button_menu:
+            case R.id.button_back:
                 finish();
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_speak:
                 EditText des = (EditText)findViewById(R.id.task_description);
@@ -83,7 +87,6 @@ public class todolist_item_Activity extends Activity {
                 catch (ActivityNotFoundException a){
                     Toast.makeText(getApplicationContext(),"Oops",Toast.LENGTH_SHORT).show();
                 }
-
         }
     }
     //Load data của task
@@ -112,20 +115,18 @@ public class todolist_item_Activity extends Activity {
         task.setDate(dueDate.getText().toString());
         task.setTaskDetails(description.getText().toString());
         task.setCompleted(checkCompleted.isChecked());
-
         Task taskNew = toDoList.createTask(task);
         textId.setText(String.valueOf(taskNew.getIdTask()));
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
-            Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
             deleteTask();
         }
         //
-        Intent putIdTask = new Intent(this,todolist_MainMenu_Activity.class);
-        putIdTask.putExtra("todolist_item_Activity",taskNew.getIdTask());
-        Log.d("putid",""+ taskNew.getIdTask());
-        startActivity(putIdTask);
-//        finish();
+//        Intent putIdTask = new Intent(this,todolist_MainMenu_Activity.class);
+//        putIdTask.putExtra("todolist_item_Activity",taskNew.getIdTask());
+//        Log.d("putid",""+ taskNew.getIdTask());
+//        startActivity(putIdTask);
     }
     //Cập nhật task
     private void updateTask(){
@@ -142,8 +143,7 @@ public class todolist_item_Activity extends Activity {
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
             toDoList.updateTask(task);
-            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_LONG).show();
-            finish();
+            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
         }
     }
     //Xoá task
@@ -153,8 +153,7 @@ public class todolist_item_Activity extends Activity {
             int id = Integer.valueOf(textId.getText().toString());
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
-            Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_LONG).show();
-            finish();
+            Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
         }
     }
 }

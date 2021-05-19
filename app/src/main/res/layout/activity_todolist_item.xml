@@ -118,28 +118,33 @@
                     android:src="@drawable/add"
                     android:onClick="clickButton"
                     android:background="@drawable/round_button"
-                    android:layout_marginRight="20dp"/>
-                <Button
-                    android:id="@+id/button_update_task"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Update Task"
-                    android:onClick="clickButton"/>
-                <Button
-                    android:id="@+id/button_delete_task"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Delete Task"
-                    android:onClick="clickButton"/>
+                    android:layout_marginRight="10dp"/>
                 <ImageButton
-                    android:id="@+id/button_menu"
+                    android:id="@+id/button_update_task"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/update"
+                    android:background="@drawable/round_button"
+                    android:onClick="clickButton"
+                    android:layout_marginRight="10dp"/>
+                <ImageButton
+                    android:id="@+id/button_delete_task"
+                    android:layout_height="100dp"
+                    android:layout_width="100dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/delete"
+                    android:background="@drawable/round_button"
+                    android:onClick="clickButton"
+                    android:layout_marginRight="10dp"/>
+                <ImageButton
+                    android:id="@+id/button_back"
                     android:layout_height="100dp"
                     android:layout_width="100dp"
                     android:scaleType="centerInside"
                     android:src="@drawable/back"
                     android:onClick="clickButton"
-                    android:background="@drawable/round_button"
-                    android:layout_marginLeft="20dp"/>
+                    android:background="@drawable/round_button" />
             </LinearLayout>
         </FrameLayout>
     </TableRow>

@@ -16,12 +16,7 @@ import java.util.List;
 public class TaskWorkDBA {
     private SQLiteDatabase database;
     private dbTask dbHelper;
-    private String[] column = {
-            dbTask.ID,
-            dbTask.PRIORITY,
-            dbTask.DATE,
-            dbTask.TASK_DES,
-            dbTask.COMPLETED};
+    private String[] column = { dbTask.ID, dbTask.PRIORITY, dbTask.DATE, dbTask.TASK_DES, dbTask.COMPLETED};
     public TaskWorkDBA(Context context){
         dbHelper = new dbTask(context);
     }
@@ -33,7 +28,6 @@ public class TaskWorkDBA {
     }
     public Task createTask(Task task){
         ContentValues values = new ContentValues();
-
         int priority = 0;
         if(task.getPriority()){
             priority = 1;
@@ -46,15 +40,12 @@ public class TaskWorkDBA {
         values.put(dbTask.DATE, task.getDate());
         values.put(dbTask.TASK_DES,task.getTaskDetails());
         values.put(dbTask.COMPLETED, done);
-
         long insertId = database.insert(dbTask.TABLE, null, values);
-
         Cursor cursor = database.query(dbTask.TABLE, column, dbTask.ID + " = " + insertId, null,null,null,null);
         cursor.moveToLast();
         Task newTask = cursorToTask(cursor);
         cursor.close();
         return newTask;
-
     }
     public void deleteTask(Task task){
         int id = task.getIdTask();
@@ -63,7 +54,6 @@ public class TaskWorkDBA {
     public void updateTask(Task task){
         ContentValues values = new ContentValues();
         int id = task.getIdTask();
-
         int priority = 0;
         if(task.getPriority()){
             priority = 1;
@@ -72,21 +62,16 @@ public class TaskWorkDBA {
         if(task.getCompleted()){
             done = 1;
         }
-
         values.put(dbTask.PRIORITY,priority);
         values.put(dbTask.COMPLETED,done);
         values.put(dbTask.TASK_DES,task.getTaskDetails());
         values.put(dbTask.DATE,task.getDate());
-
         database.update(dbTask.TABLE, values, dbTask.ID + " = " + id,null);
     }
     public List<Task> getAllTask(){
         List <Task> taskList = new ArrayList<Task>(0);
-
         Cursor cursor = database.query(dbTask.TABLE,column, null,null,null,null,null);
-
         cursor.moveToFirst();
-
         while (!cursor.isAfterLast()){
             Task task = cursorToTask(cursor);
             taskList.add((task));
@@ -101,7 +86,6 @@ public class TaskWorkDBA {
         String taskString = cursor.getString(3);
         int complete = cursor.getInt(4);
         Task task = new Task();
-
         task.setIdTask(id);
         task.setPriority(priority == 1);
         task.setDate(date);
