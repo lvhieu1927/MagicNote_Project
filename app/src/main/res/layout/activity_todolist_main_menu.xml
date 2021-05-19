@@ -22,7 +22,8 @@
             android:id="@+id/empty_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bamen_icon_16"
+            android:src="@drawable/notfound"
+            android:scaleType="fitCenter"
             android:layout_gravity="center_horizontal|center_vertical">
         </ImageView>
         <Button
