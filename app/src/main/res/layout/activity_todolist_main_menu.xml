@@ -9,23 +9,23 @@
     android:id="@+id/layout_main">
 
     <FrameLayout
-        android:layout_height="0dp"
-        android:layout_width="match_parent"
-        android:layout_weight="7">
-
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
         <ListView
             android:id="@+id/lisk_view_task"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:divider="#0000"
+            android:dividerHeight="10dp"
+            android:layout_marginTop="10dp"/>
         <ImageView
             android:id="@+id/empty_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/notfound"
-            android:scaleType="fitCenter"
-            android:layout_gravity="center_horizontal|center_vertical">
-        </ImageView>
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal|center_vertical"/>
         <Button
             android:id="@+id/button_add_task_form"
             android:layout_height="50dp"
@@ -35,5 +35,13 @@
             android:layout_marginBottom="30dp"
             android:layout_gravity="bottom|right"
             android:onClick="clickButton"/>
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/loading"
+            android:background="@color/white"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal|center_vertical"/>
     </FrameLayout>
 </LinearLayout>

@@ -69,6 +69,7 @@ public class todolist_item_Activity extends Activity {
                 break;
             case R.id.button_delete_task:
                 deleteTask();
+                Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
@@ -121,7 +122,9 @@ public class todolist_item_Activity extends Activity {
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
             deleteTask();
+            Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
         }
+        else Toast.makeText(getApplicationContext(),"Thêm thành công",Toast.LENGTH_SHORT).show();
         //
 //        Intent putIdTask = new Intent(this,todolist_MainMenu_Activity.class);
 //        putIdTask.putExtra("todolist_item_Activity",taskNew.getIdTask());
@@ -143,7 +146,15 @@ public class todolist_item_Activity extends Activity {
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
             toDoList.updateTask(task);
-            Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
+
+            textId.setText(String.valueOf(task.getIdTask()));
+            //Kiểm tra có nội dung hay không, nếu không có thì xoá
+            if(task.getTaskDetails().length() == 0){
+                Toast.makeText(getApplicationContext(),"Bạn cần có nội dung task",Toast.LENGTH_SHORT).show();
+                deleteTask();
+                Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
+            }
+            else Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
         }
     }
     //Xoá task
@@ -153,7 +164,6 @@ public class todolist_item_Activity extends Activity {
             int id = Integer.valueOf(textId.getText().toString());
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
-            Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
         }
     }
 }
