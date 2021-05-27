@@ -55,6 +55,12 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         createButtonOnCalm();
         createButtonOnExercise();
         createButtonOnChores();
+        bt_Next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextData();
+            }
+        });
     }
 
     private void nextData()
@@ -72,6 +78,7 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         bundle.putString("mood",str_Mood);
         bundle.putStringArrayList("activity",arrayList);
         intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 
@@ -82,19 +89,19 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         str_Mood = string;
         switch(string){
             case "happy":
-                img_Mood.setImageResource(R.drawable.ic_happy);
+                img_Mood.setImageResource(R.drawable.ic_happy_white);
                 break;
             case "good":
-                img_Mood.setImageResource(R.drawable.ic_good);
+                img_Mood.setImageResource(R.drawable.ic_good_white);
                 break;
             case "neutral":
-                img_Mood.setImageResource(R.drawable.ic_neutral);
+                img_Mood.setImageResource(R.drawable.ic_neutral_white);
                 break;
             case "awful":
-                img_Mood.setImageResource(R.drawable.ic_awful);
+                img_Mood.setImageResource(R.drawable.ic_awful_white);
                 break;
             case "bad":
-                img_Mood.setImageResource(R.drawable.ic_bad);
+                img_Mood.setImageResource(R.drawable.ic_bad_white);
                 break;
         }
 

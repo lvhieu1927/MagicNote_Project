@@ -7,10 +7,9 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="@drawable/bg_add_diary2"
+    android:background="@drawable/bg_gradient"
     >
     <ImageView
-        android:background="@drawable/bg_add_diary_2"
         android:id="@+id/img_mood"
         android:src="@drawable/ic_bad"
         android:padding="5dp"

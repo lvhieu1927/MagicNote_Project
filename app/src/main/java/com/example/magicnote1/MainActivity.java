@@ -4,10 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.magicnote1.dataconnect.AssetDatabaseOpenHelper;
+import com.example.magicnote1.dataconnect.MyDBHelperDiary;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +36,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        AssetDatabaseOpenHelper assetDatabaseOpenHelper = new AssetDatabaseOpenHelper(this);
+
+        SQLiteDatabase sqLiteDatabase =  assetDatabaseOpenHelper.openDatabase();
+        sqLiteDatabase.close();
+
+        MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
+        ArrayList<String> arrayList = myDBHelperDiary.getAllActivity();
+        for (int i =0; i< arrayList.size(); i++)
+        {
+            Log.d("Magic!!!",arrayList.get(i));
+        }
+
         Button btnToDoList =(Button)findViewById(R.id.todolist_button);
         btnToDoList.setOnClickListener(new View.OnClickListener() {
             @Override

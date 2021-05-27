@@ -19,7 +19,7 @@ public class Buttonnew extends androidx.appcompat.widget.AppCompatButton {
         value = 0;
         setText("Button số ");
         setBackground(this.getResources().getDrawable(R.drawable.bt_custom1));
-       setTextColor(Color.parseColor("#00d4ff"));
+       setTextColor(Color.parseColor("#ffffff"));
         setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
@@ -35,13 +35,13 @@ public class Buttonnew extends androidx.appcompat.widget.AppCompatButton {
                 {
                     setValue(1);
                     setBackground(context.getDrawable(R.drawable.bt_custom1_choose));
-                    setTextColor(Color.parseColor("#fafaff"));
+                    setTextColor(Color.parseColor("#e67335"));
                 }
                 else
                 {
                     setValue(0);
                     v.setBackground(context.getDrawable(R.drawable.bt_custom1));
-                    setTextColor(Color.parseColor("#00d4ff"));
+                    setTextColor(Color.parseColor("#ffffff"));
                 }
             }
         });

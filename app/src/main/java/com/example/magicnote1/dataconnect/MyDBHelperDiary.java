@@ -76,17 +76,42 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         return activity_id;
     }
 
+    public int getMoodIdByName(String name)
+    {
+        db = helper.openDatabase();
+        int mood_Id;
+        Cursor cursor = db.rawQuery("select mood_id from mood where mood_name =?",new String[]{name});
+        cursor.moveToNext();
+        mood_Id = cursor.getInt(0);
+        db.close();
+        return mood_Id;
+    }
+
     //hàm đưa dữ liệu vào database bảng diary
     public void insertDiaryNote(DiaryNote diaryNote)
     {
         db = helper.openDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("mood_id",diaryNote.getMoodID());
+        contentValues.put("headline",diaryNote.getHeadline());
+        contentValues.put("date",diaryNote.getDate());
         contentValues.put("photo",diaryNote.getPhoto());
         contentValues.put("note",diaryNote.getNote());
         contentValues.put("voice", (byte[]) null);
         db.insert("diary",null,contentValues);
         db.close();
+    }
+
+    public int getLastDiaryNoteID()
+    {
+        db = helper.openDatabase();
+        String sql = "select diary_id from diary order by diary_id desc limit 1 ";
+        Cursor cursor = db.rawQuery(sql,null);
+        while (cursor.moveToNext())
+        {
+            return cursor.getInt(0);
+        }
+        return 0;
     }
 
     //hàm lấy 20 dòng dữ liệu gần nhất của nhật ký
@@ -101,8 +126,10 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
             DiaryNote diaryNote = new DiaryNote();
             diaryNote.setDiaryID(cursor.getInt(0));
             diaryNote.setMoodID(cursor.getInt(1));
-            diaryNote.setNote(cursor.getString(2));
-            diaryNote.setPhoto(cursor.getBlob(3));
+            diaryNote.setHeadline(cursor.getString(2));
+            diaryNote.setDate(cursor.getLong(3));
+            diaryNote.setNote(cursor.getString(4));
+            diaryNote.setPhoto(cursor.getBlob(5));
             arrayList.add(diaryNote);
         }
         return arrayList;
