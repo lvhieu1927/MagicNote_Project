@@ -1,20 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/fCardView"
-        android:layout_width="300dp"
-        android:layout_height="140dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="30dp"
-        app:cardCornerRadius="10dp">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/background_1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+    >
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:alpha="1"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:padding="10dp"
+            android:paddingBottom="10dp"
+            >
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="20/10/2020"
+                android:textSize="11dp"
+                android:layout_marginBottom="100dp"
+
+                />
+
+
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:id="@+id/img_mood"
+                android:layout_marginTop="17dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <ImageButton
+                android:id="@+id/img_photo"
+                android:layout_width="80dp"
+                android:layout_marginTop="17dp"
+                android:layout_height="56.25dp"
+                android:layout_alignParentRight="true"
+                android:scaleType="centerCrop"
+                android:background="@drawable/bg_happy"
+                app:srcCompat="@drawable/ic_launcher_background" />
+
+            <TextView
+                android:id="@+id/tv_Mood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HAPPY"
+                android:textStyle="bold"
+                android:layout_marginTop="13dp"
+                android:textSize="28dp"
+                android:layout_centerHorizontal="true"
+                />
+            <TextView
+                android:id="@+id/tv_Activity"
+                android:layout_width="150dp"
+                android:textSize="9dp"
+                android:layout_marginTop="10dp"
+                android:textColor="#379450"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_Mood"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:id="@+id/tv_Note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_Activity"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:textAlignment="center"
+                android:textSize="11dp" />
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
-</RelativeLayout>

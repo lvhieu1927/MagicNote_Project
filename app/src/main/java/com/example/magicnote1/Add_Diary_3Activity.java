@@ -84,6 +84,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         setDate();
         bt_save.setOnClickListener(v -> {
             insertDataToDiary();
+            insertDiary_Activity();
             MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
             ArrayList<DiaryNote> arrayList;
             arrayList = myDBHelperDiary.getTop20DiaryNote();
@@ -179,7 +180,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 e.printStackTrace();
             }
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize=8;
+            options.inSampleSize=16;
             bitmap = BitmapFactory.decodeStream(in,null,options);
             imageView.setImageBitmap(bitmap);
         }
@@ -196,6 +197,17 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         diaryNote.setNote(edt_Note.getText().toString());
         diaryNote.setPhoto(getBitmapAsByteArray(bitmap));
         helperDiary.insertDiaryNote(diaryNote);
+    }
+
+    public void insertDiary_Activity()
+    {
+        MyDBHelperDiary helperDiary = new MyDBHelperDiary(this,null,null,1);
+        int diary_id = helperDiary.getLastDiaryNoteID();
+        for (int i = 0; i < activity.size(); i++)
+        {
+            int activity_id = helperDiary.getActivityIdByActivityName(activity.get(i));
+            helperDiary.insertDiary_Activity(diary_id, activity_id);
+        }
     }
 
 
@@ -226,9 +238,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
 
     private void buttonSelectTime() {
             // Get Current Time
-        final Calendar c = Calendar.getInstance();
-        this.lastSelectedHour = c.get(Calendar.HOUR_OF_DAY);
-        this.lastSelectedMinute = c.get(Calendar.MINUTE);
+
 
         // Time Set Listener.
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {

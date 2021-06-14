@@ -52,6 +52,35 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         return arrayList;
     }
 
+    public void insertDiary_Activity(int diary_id, int activity_id)
+    {
+        db = helper.openDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("activity_id",activity_id);
+        contentValues.put("diary_id",diary_id);
+        db.insert("diary_activity",null,contentValues);
+        db.close();
+    }
+
+    public ArrayList<String> getActivityListbyDiaryId(int diary_id)
+    {
+        db = helper.openDatabase();
+        ArrayList<Integer> list = new ArrayList<>();
+        Cursor cursor = db.rawQuery("select activity_id from diary_activity where diary_id =?",new String[]{diary_id+""});
+        while (cursor.moveToNext())
+        {
+            list.add(cursor.getInt(0));
+        }
+        ArrayList<String> stringArrayList = new ArrayList<>();
+        int n = list.size();
+        for (int i =0; i<n; i++)
+        {
+            stringArrayList.add(this.getActivityNameById(list.get(i)));
+        }
+        return stringArrayList;
+    }
+
+
     //hàm trả về tên activity theo định danh id
     public String getActivityNameById(int activity_id)
     {
@@ -119,7 +148,7 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
     {
         ArrayList<DiaryNote> arrayList = new ArrayList<DiaryNote>();
         db = helper.openDatabase();
-        String sql = "select * from diary LIMIT 20";
+        String sql = "select * from diary ORDER by date desc LIMIT 20 ";
         Cursor cursor = db.rawQuery(sql,null);
         while (cursor.moveToNext())
         {
@@ -130,6 +159,7 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
             diaryNote.setDate(cursor.getLong(3));
             diaryNote.setNote(cursor.getString(4));
             diaryNote.setPhoto(cursor.getBlob(5));
+            diaryNote.setActivityList(this.getActivityListbyDiaryId(diaryNote.getDiaryID()));
             arrayList.add(diaryNote);
         }
         return arrayList;

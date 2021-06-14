@@ -1,5 +1,11 @@
 package com.example.magicnote1.model;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class DiaryNote {
 
     //Class cấu hình để lưu trữ nhật ký thường ngày
@@ -10,8 +16,14 @@ public class DiaryNote {
     private byte[] Photo;
     private long date;
 
+    private ArrayList<String> ActivityList;
+
     public void setHeadline(String headline) {
         this.headline = headline;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public String getHeadline() {
@@ -22,9 +34,15 @@ public class DiaryNote {
         return date;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+
+    public ArrayList<String> getActivityList() {
+        return ActivityList;
     }
+
+    public void setActivityList(ArrayList<String> activityList) {
+        ActivityList = activityList;
+    }
+
 
     public DiaryNote() {
         this.date = date;
@@ -42,6 +60,24 @@ public class DiaryNote {
         this.Photo = null;
     }
 
+    public String getMoodName()
+    {
+        String moodName = null;
+        int i = this.moodID;
+        switch (i){
+            case 1: return "HAPPY";
+            case 2: return "GOOD";
+            case 3: return "NEUTRAL";
+            case 4: return "AWFUL";
+        }
+        return "BAD";
+    }
+
+    public Bitmap getBitmap()
+    {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(this.getPhoto(), 0, this.getPhoto().length);
+        return bitmap;
+    }
 
 
     public void setDiaryID(Integer diaryID) {
