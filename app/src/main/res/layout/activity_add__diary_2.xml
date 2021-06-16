@@ -56,7 +56,7 @@
             <HorizontalScrollView
                 android:id="@+id/scr_Social"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Social"
                 android:scrollbars="none"
                 >
@@ -81,7 +81,7 @@
             <HorizontalScrollView
                 android:id="@+id/scr_Entertainment"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Entertainment"
                 android:scrollbars="none">
                 <LinearLayout
@@ -105,7 +105,7 @@
             <HorizontalScrollView
                 android:id="@+id/scr_Sleep"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Sleep"
                 android:scrollbars="none">
 
@@ -130,7 +130,7 @@
             <HorizontalScrollView
                 android:id="@+id/scr_Food"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Food"
                 android:scrollbars="none">
                 <LinearLayout
@@ -154,7 +154,7 @@
             <HorizontalScrollView
                 android:id="@+id/scr_calm"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Calm"
                 android:scrollbars="none">
                 <LinearLayout
@@ -178,7 +178,7 @@
             <HorizontalScrollView
                 android:id="@+id/scr_Excercise"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Excercise"
                 android:scrollbars="none">
                 <LinearLayout
@@ -204,14 +204,16 @@
             <HorizontalScrollView
                 android:id="@+id/scr_Chores"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/tv_Chores"
+                android:layout_marginTop="12dp"
                 android:scrollbars="none">
+
                 <LinearLayout
-                    android:orientation="horizontal"
                     android:id="@+id/layout_Chores"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
             </HorizontalScrollView>
 
         </RelativeLayout>
@@ -220,27 +222,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/text_small"
         >
 
         <Button
             android:id="@+id/bt_save"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_1"
+            android:textSize="@dimen/text_small"
+            android:text="Save and Exit"
+            android:layout_marginLeft="30dp"
+            android:textColor="@android:color/white"
+
+            />
+        <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_basex2"
             android:layout_weight="1"
-            android:background="@drawable/background_1"
-            android:text="Save and Exit"
-            android:textColor="@android:color/white" />
-
+            />
         <Button
             android:id="@+id/bt_next"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_marginRight="30dp"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:text="Next"
+            android:textSize="@dimen/text_small"
             android:background="@drawable/background_1"
-            android:layout_margin="@dimen/margin_basex2"
             />
 
     </LinearLayout>

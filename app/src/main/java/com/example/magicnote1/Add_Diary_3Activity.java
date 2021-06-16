@@ -82,21 +82,13 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private void addEvent() {
         setMood();
         setDate();
+        Intent intent = new Intent(this,MoodDiaryMainMenu.class);
+
         bt_save.setOnClickListener(v -> {
             insertDataToDiary();
             insertDiary_Activity();
-            MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
-            ArrayList<DiaryNote> arrayList;
-            arrayList = myDBHelperDiary.getTop20DiaryNote();
-            for (int i= 0; i<arrayList.size(); i++)
-            {
-                Log.d("Magic!!!xx",arrayList.get(i).getDiaryID()+"");
-                Log.d("Magic!!!xx",arrayList.get(i).getMoodID()+"");
-                Log.d("Magic!!!xx",arrayList.get(i).getHeadline()+"");
-                Log.d("Magic!!!xx",arrayList.get(i).getNote()+"");
-                Log.d("Magic!!!xx",arrayList.get(i).getDate()+"");
-            }
-            Log.d("Magic!!!999999",myDBHelperDiary.getLastDiaryNoteID()+" is last id");
+
+            startActivity(intent);
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
             @Override

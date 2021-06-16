@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -18,7 +19,7 @@ import java.util.GregorianCalendar;
 public class Add_Diary_1Activity extends AppCompatActivity {
 
     TextView hello_text;
-    Button button1, button2, button3, button4, button5;
+    ImageButton button1, button2, button3, button4, button5;
     private TextClock textClock;
 
     @Override
@@ -45,17 +46,46 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         //set textClock định dạng
         this.textClock.setFormat24Hour(null);
         //
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton("happy");
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton("good");
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton("neutral");
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton("awful");
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickButton("bad");
+            }
+        });
     }
 
     //nút bấm chuyển tới Add_Diary_2Activity kèm theo mood
-    public void onClick(View view) {
-        Button button = (Button)view;
-        String buttonString = button.getText().toString();
+    public void onClickButton(String buttonString) {
         Intent intent = new Intent(this,Add_Diary_2Activity.class);
         Bundle bundle = new Bundle();
         bundle.putString("mood",buttonString);
         intent.putExtras(bundle);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
 
@@ -64,10 +94,6 @@ public class Add_Diary_1Activity extends AppCompatActivity {
     {
         int i = getTimeFromAndroid();
         hello_text.setText(set_hello_text(i)+"\nLet's start with your mood");
-        if (i == 1 ) hello_text.setBackgroundResource(R.drawable.add_diary_1_activity_1_morning);
-        if (i == 2 ) hello_text.setBackgroundResource(R.drawable.add_diary_1_activity_2_afternoon);
-        if (i == 3 ) hello_text.setBackgroundResource(R.drawable.add_diary_1_activity_3_evening);
-        if (i == 4 ) hello_text.setBackgroundResource(R.drawable.add_diary_1_activity_4_night);
     }
 
     //Hàm lấy thời gian thực của máy

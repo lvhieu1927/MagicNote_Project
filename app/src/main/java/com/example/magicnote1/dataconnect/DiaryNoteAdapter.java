@@ -4,9 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -29,8 +31,10 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_Mood,tv_Activity,tv_Note,tv_Date;
         public ImageView img_Mood;
-        public ImageButton img_Photo;
+        public ImageView img_Photo;
+        public RelativeLayout container;
         private View itemview;
+        public TextView tv_Header;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             itemview = itemView;
@@ -40,6 +44,8 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
             tv_Date = (TextView) itemView.findViewById(R.id.tv_date);
             img_Mood = (ImageView) itemView.findViewById(R.id.img_mood);
             img_Photo = itemView.findViewById(R.id.img_photo);
+            container = itemView.findViewById(R.id.container);
+            tv_Header = itemView.findViewById(R.id.tv_Header);
         }
     }
 
@@ -65,35 +71,50 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         DiaryNote diaryNote = mDiaryList.get(position);
+        holder.img_Mood.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
+        holder.tv_Mood.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
+        holder.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale_animation));
         holder.tv_Note.setText(diaryNote.getNote());
         holder.tv_Mood.setText(diaryNote.getMoodName());
         if (diaryNote.getActivityList().size() > 0) {
-            String string = " "+diaryNote.getActivityList().get(0);
+            String string = "["+diaryNote.getActivityList().get(0);
             for (int i = 1; i < diaryNote.getActivityList().size(); i++) {
-                string += ", " + diaryNote.getActivityList().get(i);
+                string += "], [" + diaryNote.getActivityList().get(i);
             }
+            string+="]";
             holder.tv_Activity.setText(string);
         }
 
         holder.img_Photo.setImageBitmap(diaryNote.getBitmap());
         switch(diaryNote.getMoodID())
         {
-            case 1: holder.img_Mood.setImageResource(R.drawable.ic_happy);
+            case 1: holder.img_Mood.setImageResource(R.drawable.ic_happy2);
             holder.tv_Mood.setTextColor(mContext.getResources().getColor(R.color.happy));
+            holder.tv_Activity.setTextColor(mContext.getResources().getColor(R.color.mauchu));
+            holder.tv_Header.setTextColor(mContext.getResources().getColor(R.color.mauchu));
             break;
-            case 2:holder.img_Mood.setImageResource(R.drawable.ic_good);
+            case 2:holder.img_Mood.setImageResource(R.drawable.ic_good2);
                 holder.tv_Mood.setTextColor(mContext.getResources().getColor(R.color.good));
+                holder.tv_Activity.setTextColor(mContext.getResources().getColor(R.color.mauchu));
+                holder.tv_Header.setTextColor(mContext.getResources().getColor(R.color.mauchu));
                 break;
-            case 3: holder.img_Mood.setImageResource(R.drawable.ic_neutral);
+            case 3: holder.img_Mood.setImageResource(R.drawable.ic_neutral2);
                 holder.tv_Mood.setTextColor(mContext.getResources().getColor(R.color.neutral));
+                holder.tv_Activity.setTextColor(mContext.getResources().getColor(R.color.mauchu));
+                holder.tv_Header.setTextColor(mContext.getResources().getColor(R.color.mauchu));
                 break;
-            case 4: holder.img_Mood.setImageResource(R.drawable.ic_awful);
+            case 4: holder.img_Mood.setImageResource(R.drawable.ic_sad2);
                 holder.tv_Mood.setTextColor(mContext.getResources().getColor(R.color.awful));
+                holder.tv_Activity.setTextColor(mContext.getResources().getColor(R.color.mauchu));
+                holder.tv_Header.setTextColor(mContext.getResources().getColor(R.color.mauchu));
                 break;
-            case 5: holder.img_Mood.setImageResource(R.drawable.ic_bad);
+            case 5: holder.img_Mood.setImageResource(R.drawable.ic_bad2);
                 holder.tv_Mood.setTextColor(mContext.getResources().getColor(R.color.bad));
+                holder.tv_Activity.setTextColor(mContext.getResources().getColor(R.color.mauchu));
+                holder.tv_Header.setTextColor(mContext.getResources().getColor(R.color.mauchu));
                 break;
         }
+        holder.tv_Header.setText("Headline: "+diaryNote.getHeadline());
         holder.tv_Date.setText(this.getDate(diaryNote.getDate(),"dd/MM/yyyy"));
     }
 

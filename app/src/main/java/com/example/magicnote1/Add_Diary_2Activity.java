@@ -79,6 +79,7 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         bundle.putStringArrayList("activity",arrayList);
         intent.putExtras(bundle);
         startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
 

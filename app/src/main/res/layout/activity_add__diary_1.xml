@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-
-
     android:orientation="vertical"
-    >
+    android:background="@drawable/bg_gradient"    >
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="600px"
-        android:background="@drawable/add_diary_1_activity_3_evening"
+        android:id="@+id/ln1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
@@ -31,7 +29,7 @@
                 android:format24Hour="@null"
                 android:textAlignment="center"
                 android:padding="2dp"
-                android:textColor="@color/white"
+                android:textColor="@color/mauchu"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,15 +41,15 @@
         <TextView
             android:id="@+id/hello_text"
             android:layout_width="match_parent"
-            android:layout_height="600px"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom"
-            android:gravity="center"
-            android:text="Good evening!\nLet's start with your mood"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="30dp"
-            android:paddingBottom="50dp"
             android:fontFamily="@font/font_1_dancingscript_regular"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:text="Good evening!\nLet's start with your mood\nHow are you today?\nLet's me save your emotion"
+            android:textAlignment="center"
+            android:textColor="@color/mauchu"
+            android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -62,109 +60,76 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="20px"
-        android:layout_marginLeft="0px"
-        android:layout_marginTop="10px"
-        android:layout_marginEnd="20px"
-        android:layout_marginRight="0px"
-        android:rotationX="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_scrollUp"
-        >
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ln2"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/mauchu"
+        android:fontFamily="@font/font_1_dancingscript_regular"
+        android:textSize="20dp"
+        android:text="Choose your emotion on today to start our journey!"/>
 
         <LinearLayout
+            android:id="@+id/ln2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            >
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_1"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_happy"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/ic_happy"
-                android:text="@string/happy"
+                android:src="@drawable/ic_happy_white2"
+                android:background="#00000000"
                 android:textSize="20dp"
-                android:textColor="#cf59cb"
-                android:textStyle="bold"
-                android:onClick="onClick"
-                tools:ignore="OnClick" />
+             />
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_2"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_good"
-                android:background="@drawable/bg_good"
-                android:padding="5dp"
-                android:text="@string/good"
-                android:textSize="20dp"
-                android:textColor="#7f38ab"
-                android:textStyle="bold"
-                android:onClick="onClick"
-                tools:ignore="OnClick"/>
+                android:src="@drawable/ic_good_white2"
+                android:background="#00000000"
+            />
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_3"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginTop="12dp"
-                android:drawableLeft="@drawable/ic_neutral"
-                android:background="@drawable/bg_neutral"
-                android:padding="5dp"
-                android:text="@string/neutral"
-                android:textColor="#3e41c9"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:onClick="onClick"
-                tools:ignore="OnClick"/>
+                android:background="#00000000"
+                android:src="@drawable/ic_neutral_white2"
+                />
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_5"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_awful"
-                android:padding="5dp"
-                android:drawableLeft="@drawable/ic_awful"
-                android:text="@string/awful"
-                android:textSize="20dp"
-                android:textColor="#FFFD3A84"
-                android:textStyle="bold"
-                android:onClick="onClick"
-                tools:ignore="OnClick"/>
+                android:background="#00000000"
+                android:src="@drawable/ic_awful_white2"
+                />
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_4"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_marginTop="12dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/bg_bad"
-                android:drawableLeft="@drawable/ic_bad"
-                android:padding="5dp"
-                android:text="@string/bad"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="#f2131f"
-                android:onClick="onClick"
-                tools:ignore="OnClick"/>
+                android:background="#00000000"
+                android:src="@drawable/ic_bad_white2"
+                />
 
         </LinearLayout>
-    </ScrollView>
 
 
-</LinearLayout>
+
+</RelativeLayout>

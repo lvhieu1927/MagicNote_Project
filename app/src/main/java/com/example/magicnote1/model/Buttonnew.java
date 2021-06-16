@@ -20,14 +20,14 @@ public class Buttonnew extends androidx.appcompat.widget.AppCompatButton {
         setText("Button số ");
         setBackground(this.getResources().getDrawable(R.drawable.bt_custom1));
        setTextColor(Color.parseColor("#ffffff"));
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 9);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         lp.leftMargin = 10;
 
         setLayoutParams(lp);
-        setPadding(20,15,20,15);
+        setPadding(10,7,10,7);
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
