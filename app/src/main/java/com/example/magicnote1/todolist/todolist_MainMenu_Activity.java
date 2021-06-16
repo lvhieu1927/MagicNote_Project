@@ -80,7 +80,7 @@ public class todolist_MainMenu_Activity extends Activity {
                 View rowItem = getLayoutInflater().inflate(R.layout.item_layout,null);
                 Switch switchDone = (Switch) rowItem.findViewById(R.id.switch_done);
                 TextView itemView = (TextView)rowItem.findViewById(R.id.item_view);
-                itemView.setText(listTask.get(position).getTaskDetails());
+                itemView.setText(listTask.get(position).result());
                 if(listTask.get(position).getCompleted())
                 {
                     switchDone.setChecked(true);
@@ -105,13 +105,6 @@ public class todolist_MainMenu_Activity extends Activity {
         };
         listViewTask.setAdapter(arrayAdapter);
         checkEmpty(taskResult);
-//        Intent getIdTask = getIntent();
-//        int id = getIdTask.getIntExtra("todolist_item_Activity",0);
-//        if(id != 0){
-//            Task task = toDoList.getTask(id);
-//            Switch switchDone = (Switch)findViewById(R.id.switch_done);
-//            switchDone.setChecked(task.getCompleted());
-//        }
     }
     //Đẩy id của task và mở activity todolist_item_Activity
     protected void goToTaskById(int id){

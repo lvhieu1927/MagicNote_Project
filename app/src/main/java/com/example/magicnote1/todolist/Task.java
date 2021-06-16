@@ -55,7 +55,7 @@ public class Task {
         if(priority){
             result += "Important: ";
         }
-        result += task + " " + date;
+        result += task + " - time: " + date;
         return result;
     }
 }

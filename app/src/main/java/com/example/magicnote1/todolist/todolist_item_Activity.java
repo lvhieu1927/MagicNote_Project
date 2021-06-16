@@ -1,6 +1,8 @@
 package com.example.magicnote1.todolist;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,6 +26,9 @@ import java.util.ArrayList;
 //Activity thao tác với task
 public class todolist_item_Activity extends Activity {
     private ToDoList toDoList;
+    private AlarmManager mAlarm;
+    private Intent notificationReceiver,mLoggerReceiverIntent;
+    private PendingIntent notificationReceiverPending,mLoggerReceiverPendingIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,12 @@ public class todolist_item_Activity extends Activity {
             buttonEdit.setVisibility(View.GONE);
             buttonDelete.setVisibility(View.GONE);
         }
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, 0, notificationReceiver, 0);
+
     }
     @Override
     protected void onActivityResult(int requestcode,int resultcode,Intent data){
@@ -59,19 +70,12 @@ public class todolist_item_Activity extends Activity {
         switch (v.getId()) {
             case R.id.button_add_task:
                 addTask();
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_update_task:
                 updateTask();
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_delete_task:
                 deleteTask();
-                Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_back:
                 finish();
@@ -118,6 +122,11 @@ public class todolist_item_Activity extends Activity {
         task.setCompleted(checkCompleted.isChecked());
         Task taskNew = toDoList.createTask(task);
         textId.setText(String.valueOf(taskNew.getIdTask()));
+        //Kiểm tra important
+        if (checkPriority.isChecked()) {
+            setReminder(Integer.valueOf(dueDate.getText().toString()));
+        }
+
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
@@ -125,11 +134,8 @@ public class todolist_item_Activity extends Activity {
             Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
         }
         else Toast.makeText(getApplicationContext(),"Thêm thành công",Toast.LENGTH_SHORT).show();
-        //
-//        Intent putIdTask = new Intent(this,todolist_MainMenu_Activity.class);
-//        putIdTask.putExtra("todolist_item_Activity",taskNew.getIdTask());
-//        Log.d("putid",""+ taskNew.getIdTask());
-//        startActivity(putIdTask);
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     //Cập nhật task
     private void updateTask(){
@@ -145,9 +151,15 @@ public class todolist_item_Activity extends Activity {
             task.setDate(dueDate.getText().toString());
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
+            if(dueDate.getText().toString().length()<=0) {
+                if(checkPriority.isChecked()) {
+                    dueDate.setError("Nếu quan trong, không được để trống ô này");
+                    return;
+                }
+            } else setReminder(Integer.valueOf(dueDate.getText().toString()));
             toDoList.updateTask(task);
-
             textId.setText(String.valueOf(task.getIdTask()));
+
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
                 Toast.makeText(getApplicationContext(),"Bạn cần có nội dung task",Toast.LENGTH_SHORT).show();
@@ -155,6 +167,8 @@ public class todolist_item_Activity extends Activity {
                 Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
             }
             else Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
     }
     //Xoá task
@@ -165,5 +179,15 @@ public class todolist_item_Activity extends Activity {
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
         }
+        Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
+        finish();
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+    private void setReminder(int time){
+        mAlarm.set(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + time,
+                notificationReceiverPending);
+        Toast.makeText(getApplicationContext(), "Single Alarm Set",
+                Toast.LENGTH_LONG).show();
     }
 }
