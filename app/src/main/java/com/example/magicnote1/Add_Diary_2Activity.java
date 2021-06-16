@@ -2,6 +2,7 @@ package com.example.magicnote1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class Add_Diary_2Activity extends AppCompatActivity {
     private ImageView img_Mood;
     private LinearLayout ml_Social,ml_Entertainment,ml_Sleep,ml_Food,ml_Calm,ml_Excercise,ml_Chores;
     private ArrayList<Buttonnew> arrButton;
+    private ArrayList<String>    arrActivity;
     private Button bt_Save, bt_Next;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,6 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         ml_Excercise = findViewById(R.id.layout_Excercise);
         ml_Chores = findViewById(R.id.layout_Chores);
         img_Mood = findViewById(R.id.img_mood);
-        bt_Save = findViewById(R.id.bt_save);
         bt_Next = findViewById(R.id.bt_next);
         arrButton = new ArrayList<Buttonnew>();
     }
@@ -61,6 +62,18 @@ public class Add_Diary_2Activity extends AppCompatActivity {
                 nextData();
             }
         });
+        if (check() == 1) {
+            bt_Next.setText("Save");
+            img_Mood.setImageBitmap(null);
+        }
+    }
+
+    private int check()
+    {
+        Intent intent = getIntent();
+        int flag = intent.getIntExtra("flag",0);
+        arrActivity = intent.getStringArrayListExtra("activity");
+        return flag;
     }
 
     private void nextData()
@@ -73,39 +86,52 @@ public class Add_Diary_2Activity extends AppCompatActivity {
                 arrayList.add(arrButton.get(i).getText().toString());
             }
         }
-        Intent  intent = new Intent(this,Add_Diary_3Activity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("mood",str_Mood);
-        bundle.putStringArrayList("activity",arrayList);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        if (check() == 0){
+            Intent  intent = new Intent(this,Add_Diary_3Activity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("mood",str_Mood);
+            bundle.putStringArrayList("activity",arrayList);
+            intent.putExtras(bundle);
+            startActivity(intent);
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        }
+        else
+        {
+            Intent  intent = new Intent();
+            Bundle bundle = new Bundle();
+            bundle.putStringArrayList("activity",arrayList);
+            intent.putExtras(bundle);
+            setResult(Activity.RESULT_OK,intent);
+            finish();
+            overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
+        }
     }
 
 
     //khởi tạo biểu cảm ở đầu layout theo intent được truyền
     private void setMood() {
-        Intent intent = getIntent();
-        String string = intent.getStringExtra("mood");
-        str_Mood = string;
-        switch(string){
-            case "happy":
-                img_Mood.setImageResource(R.drawable.ic_happy_white);
-                break;
-            case "good":
-                img_Mood.setImageResource(R.drawable.ic_good_white);
-                break;
-            case "neutral":
-                img_Mood.setImageResource(R.drawable.ic_neutral_white);
-                break;
-            case "awful":
-                img_Mood.setImageResource(R.drawable.ic_awful_white);
-                break;
-            case "bad":
-                img_Mood.setImageResource(R.drawable.ic_bad_white);
-                break;
+        if (check() == 0) {
+            Intent intent = getIntent();
+            String string = intent.getStringExtra("mood");
+            str_Mood = string;
+            switch (string) {
+                case "happy":
+                    img_Mood.setImageResource(R.drawable.ic_happy_white);
+                    break;
+                case "good":
+                    img_Mood.setImageResource(R.drawable.ic_good_white);
+                    break;
+                case "neutral":
+                    img_Mood.setImageResource(R.drawable.ic_neutral_white);
+                    break;
+                case "awful":
+                    img_Mood.setImageResource(R.drawable.ic_awful_white);
+                    break;
+                case "bad":
+                    img_Mood.setImageResource(R.drawable.ic_bad_white);
+                    break;
+            }
         }
-
     }
 
     //tạo mảng các thành viên cho mục Social
@@ -119,6 +145,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                {
+                    buttonnew.setValue(1,this);
+                }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Social.addView(buttonnew);
@@ -136,6 +170,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                    {
+                        buttonnew.setValue(1,this);
+                    }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Entertainment.addView(buttonnew);
@@ -151,6 +193,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                    {
+                        buttonnew.setValue(1,this);
+                    }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Sleep.addView(buttonnew);
@@ -169,6 +219,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                    {
+                        buttonnew.setValue(1,this);
+                    }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Food.addView(buttonnew);
@@ -183,6 +241,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                    {
+                        buttonnew.setValue(1,this);
+                    }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Calm.addView(buttonnew);
@@ -202,6 +268,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                    {
+                        buttonnew.setValue(1,this);
+                    }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Excercise.addView(buttonnew);
@@ -221,6 +295,14 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         for (int i=0; i<arrString.size() ; i++)
         {
             Buttonnew buttonnew = new Buttonnew(this);
+            if (arrActivity != null)
+            {
+                for (int j = 0; j <arrActivity.size(); j++)
+                    if (arrActivity.get(j).equals(arrString.get(i)))
+                    {
+                        buttonnew.setValue(1,this);
+                    }
+            }
             buttonnew.setText(arrString.get(i));
             arrButton.add(buttonnew);
             ml_Chores.addView(buttonnew);

@@ -33,13 +33,13 @@ public class Buttonnew extends androidx.appcompat.widget.AppCompatButton {
             public void onClick(View v) {
                 if (getValue()==0)
                 {
-                    setValue(1);
+                    setValue(1,context);
                     setBackground(context.getDrawable(R.drawable.bt_custom1_choose));
                     setTextColor(Color.parseColor("#e67335"));
                 }
                 else
                 {
-                    setValue(0);
+                    setValue(0,context);
                     v.setBackground(context.getDrawable(R.drawable.bt_custom1));
                     setTextColor(Color.parseColor("#ffffff"));
                 }
@@ -52,8 +52,20 @@ public class Buttonnew extends androidx.appcompat.widget.AppCompatButton {
         return super.getText();
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setValue(int value, Context context) {
+
+        if (value==1)
+        {
+            this.value =1;
+            setBackground(context.getDrawable(R.drawable.bt_custom1_choose));
+            setTextColor(Color.parseColor("#e67335"));
+        }
+        else
+        {
+            this.value = 0;
+            setBackground(context.getDrawable(R.drawable.bt_custom1));
+            setTextColor(Color.parseColor("#ffffff"));
+        }
     }
 
     public int getValue() {

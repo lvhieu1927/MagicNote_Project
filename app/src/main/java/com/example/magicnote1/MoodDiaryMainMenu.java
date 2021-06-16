@@ -41,6 +41,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     private void addControl() {

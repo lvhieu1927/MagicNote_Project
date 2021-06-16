@@ -75,8 +75,11 @@ public class DiaryNote {
 
     public Bitmap getBitmap()
     {
-        Bitmap bitmap = BitmapFactory.decodeByteArray(this.getPhoto(), 0, this.getPhoto().length);
-        return bitmap;
+        if (this.getPhoto() != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(this.getPhoto(), 0, this.getPhoto().length);
+            return bitmap;
+        }
+        return null;
     }
 
 

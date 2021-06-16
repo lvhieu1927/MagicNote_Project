@@ -218,39 +218,24 @@
 
         </RelativeLayout>
     </ScrollView>
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/text_small"
         >
-
-        <Button
-            android:id="@+id/bt_save"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/background_1"
-            android:textSize="@dimen/text_small"
-            android:text="Save and Exit"
-            android:layout_marginLeft="30dp"
-            android:textColor="@android:color/white"
-
-            />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            />
         <Button
             android:id="@+id/bt_next"
             android:layout_marginRight="30dp"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/white"
+            android:layout_marginBottom="20dp"
             android:text="Next"
             android:textSize="@dimen/text_small"
             android:background="@drawable/background_1"
             />
+    </RelativeLayout>
 
-    </LinearLayout>
+
 </LinearLayout>

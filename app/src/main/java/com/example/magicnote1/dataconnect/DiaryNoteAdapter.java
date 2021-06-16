@@ -1,6 +1,9 @@
 package com.example.magicnote1.dataconnect;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,29 +14,42 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chauthai.swipereveallayout.ViewBinderHelper;
+import com.example.magicnote1.Add_Diary_3Activity;
 import com.example.magicnote1.R;
 import com.example.magicnote1.model.DiaryNote;
 
+import java.net.DatagramSocket;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.ViewHolder>{
+public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.ViewHolder> {
 
     private ArrayList<DiaryNote> mDiaryList;
     private Context mContext;
+    private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+
+    public interface ItemClickListener {
+        void onClick(View view, int position,boolean isLongClick);
+    }
+
+
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,View.OnLongClickListener{
         public TextView tv_Mood,tv_Activity,tv_Note,tv_Date;
         public ImageView img_Mood;
         public ImageView img_Photo;
         public RelativeLayout container;
         private View itemview;
+        private ItemClickListener itemClickListener;
         public TextView tv_Header;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -46,6 +62,23 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
             img_Photo = itemView.findViewById(R.id.img_photo);
             container = itemView.findViewById(R.id.container);
             tv_Header = itemView.findViewById(R.id.tv_Header);
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            itemClickListener.onClick(v,getAdapterPosition(),false);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            itemClickListener.onClick(v,getAdapterPosition(),true);
+            return true;
+        }
+        public void setItemClickListener(ItemClickListener itemClickListener)
+        {
+            this.itemClickListener = itemClickListener;
         }
     }
 
@@ -74,6 +107,7 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
         holder.img_Mood.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
         holder.tv_Mood.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_transition_animation));
         holder.container.setAnimation(AnimationUtils.loadAnimation(mContext,R.anim.fade_scale_animation));
+
         holder.tv_Note.setText(diaryNote.getNote());
         holder.tv_Mood.setText(diaryNote.getMoodName());
         if (diaryNote.getActivityList().size() > 0) {
@@ -116,6 +150,22 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
         }
         holder.tv_Header.setText("Headline: "+diaryNote.getHeadline());
         holder.tv_Date.setText(this.getDate(diaryNote.getDate(),"dd/MM/yyyy"));
+
+        //set button cho gọi tới màn hình sửa
+        Intent intent = new Intent(mContext, Add_Diary_3Activity.class);
+
+        holder.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onClick(View view, int position, boolean isLongClick) {
+                if(isLongClick){}
+                else
+                {
+                    intent.putExtra("flag",1);
+                    intent.putExtra("note", (Parcelable) diaryNote);
+                    mContext.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

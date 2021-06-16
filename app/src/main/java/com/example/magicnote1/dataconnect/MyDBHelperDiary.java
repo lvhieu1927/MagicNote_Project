@@ -131,6 +131,7 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         db.close();
     }
 
+    //lấy ra bản ghi cuối cùng của diary
     public int getLastDiaryNoteID()
     {
         db = helper.openDatabase();
@@ -141,6 +142,20 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
             return cursor.getInt(0);
         }
         return 0;
+    }
+
+    //cập nhật giá trị diary trong cơ sở dữ liệu
+    public void updateDiary(DiaryNote diaryNote)
+    {
+        db = helper.openDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("mood_id",diaryNote.getMoodID());
+        cv.put("headline",diaryNote.getHeadline());
+        cv.put("date",diaryNote.getDate());
+        cv.put("note",diaryNote.getNote());
+        cv.put("photo",diaryNote.getPhoto());
+        db.update("diary", cv, "diary_id = ?", new String[]{diaryNote.getDiaryID()+""});
+        db.close();
     }
 
     //hàm lấy 20 dòng dữ liệu gần nhất của nhật ký

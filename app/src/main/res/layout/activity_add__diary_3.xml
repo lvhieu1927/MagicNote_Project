@@ -26,20 +26,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/img_mood"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_bad_white" />
+                    >
+
+                    <ImageView
+                        android:id="@+id/img_mood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginLeft="10dp"
+                        android:padding="5dp"
+                        android:src="@drawable/ic_bad_white" />
+
+                    <Button
+                        android:id="@+id/bt_ChangeMood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Your mood"
+                        android:textSize="14dp"
+                        android:fontFamily="@font/font_1_dancingscript_regular"
+                        android:textColor="@color/mauchu"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/bg_gradient_tag"
+                        android:layout_below="@+id/img_mood"
+                        android:textAllCaps="false"
+                        />
+                </RelativeLayout>
+
 
                 <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         >
                         <RelativeLayout
+                            android:id="@+id/layouttime"
                             android:layout_centerHorizontal="true"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -71,22 +93,25 @@
                                 android:src="@drawable/ic_oclock" />
                         </RelativeLayout>
 
-                    </RelativeLayout>
+                    <TextView
+                        android:layout_marginTop="30dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layouttime"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/font_1_dancingscript_regular"
+                        android:text="Today,\n what you want to remember?"
+                        android:textSize="18dp"
+                        android:textStyle="italic" />
+
+                </RelativeLayout>
 
 
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Today, what you want to remember again?"
-                android:fontFamily="@font/font_1_dancingscript_regular"
-                android:textSize="21dp"
-                android:textStyle="italic" />
-
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -95,15 +120,16 @@
                     android:layout_height="70dp"
                     android:layout_weight="1"
                     android:textAlignment="textStart"
+                    android:layout_marginLeft="10dp"
                     app:hintAnimationEnabled="true"
                     app:hintTextAppearance="@style/TextAppearance.AppCompat.Medium" >
+
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/text_headline"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Add Headline . . . "
-                        android:textSize="15dp"
-                        />
+                        android:textSize="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatImageButton
@@ -114,6 +140,45 @@
                     android:layout_weight="3"
                     android:src="@drawable/ic_voice_to_text" />
             </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <HorizontalScrollView
+                    android:id="@+id/scr_activtity"
+                    android:layout_width="250dp"
+
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/tv_Entertainment"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="10dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/layout_activity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal" />
+                </HorizontalScrollView>
+
+                <Button
+                    android:id="@+id/bt_Change_Activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Activity "
+                    android:textSize="20dp"
+                    android:fontFamily="@font/font_1_dancingscript_regular"
+                    android:layout_centerVertical="true"
+                    android:textAllCaps="false"
+                    android:textColor="@color/mauchu"
+                    android:background="@drawable/bg_gradient_tag"
+                    android:layout_toRightOf="@+id/scr_activtity"
+                    />
+            </RelativeLayout>
+
 
             <EditText
                 android:id="@+id/edt_note"
@@ -121,7 +186,7 @@
                 android:layout_height="150dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:alpha="0.2"
                 android:textColor="@color/black"
                 android:text=""
@@ -139,14 +204,32 @@
                 android:layout_height="200dp"
                 android:layout_marginTop="40dp"
                 android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/bt_Photo"
-                    android:layout_marginLeft="20dp"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:src="@drawable/ic_add_photo" />
+                    >
+
+                    <ImageButton
+                        android:id="@+id/bt_Photo"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:src="@drawable/ic_add_photo"
+                        android:layout_centerHorizontal="true"/>
+
+                    <ImageButton
+                        android:id="@+id/bt_clearPhoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_clear"
+                        android:layout_marginTop="30dp"
+                        android:layout_below="@id/bt_Photo"
+                        android:layout_centerHorizontal="true"
+                        android:background="#00000000"
+                        />
+
+                </RelativeLayout>
 
                 <ImageView
                     android:id="@+id/img_photo"

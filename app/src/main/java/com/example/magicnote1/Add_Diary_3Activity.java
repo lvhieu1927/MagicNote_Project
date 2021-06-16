@@ -19,12 +19,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
+import com.example.magicnote1.model.Buttonnew;
+import com.example.magicnote1.model.DialogChooseMood;
 import com.example.magicnote1.model.DiaryNote;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -43,9 +48,13 @@ public class Add_Diary_3Activity extends AppCompatActivity {
 
     private static final int RESULT_LOAD_IMAGE = 1;
     private static final int PERMISSION_CODE = 1000;
+    private static final int REQUEST_ACTIVITY = 121;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
-    private ImageButton bt_Photo,bt_Time;
-    private Button bt_Date,bt_save;
+    private ImageButton bt_Photo;
+    private ImageButton bt_Time,bt_clearPhoto;
+    private Button bt_Change_Activity;
+    private LinearLayout layout_Activity;
+    private Button bt_Date,bt_save,bt_changeMood;
     private Bitmap bitmap;
     private ImageView imageView,img_Mood;
     private TextInputEditText text_HeadLine;
@@ -75,13 +84,24 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         img_Mood = findViewById(R.id.img_mood);
         text_HeadLine = findViewById(R.id.text_headline);
         edt_Note = findViewById(R.id.edt_note);
+        bt_changeMood = findViewById(R.id.bt_ChangeMood);
+        bt_Change_Activity = (Button)findViewById(R.id.bt_Change_Activity);
+        bt_clearPhoto = findViewById(R.id.bt_clearPhoto);
+        layout_Activity = findViewById(R.id.layout_activity);
+
     }
 
 
 
     private void addEvent() {
-        setMood();
-        setDate();
+        if (check() == 0){
+            setMood();
+            setDate();
+        }
+        else {
+
+        }
+
         Intent intent = new Intent(this,MoodDiaryMainMenu.class);
 
         bt_save.setOnClickListener(v -> {
@@ -109,7 +129,88 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 onDatePickerButton();
             }
         });
+        bt_clearPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageView.setImageBitmap(null);
+                bitmap = null;
+            }
+        });
+        scrollActivitySet();
+
+        bt_changeMood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonChangeMood();
+            }
+        });
+
+        bt_Change_Activity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonChangeActivity();
+            }
+        });
     }
+
+
+    private void buttonChangeActivity()
+    {
+        Intent intent = new Intent(this, Add_Diary_2Activity.class);
+        Bundle bundle = new Bundle();
+        bundle.putInt("flag",1);
+        bundle.putStringArrayList("activity",activity);
+        intent.putExtras(bundle);
+        startActivityForResult(intent,REQUEST_ACTIVITY);
+    }
+
+    private void buttonChangeMood()
+    {
+        DialogChooseMood.MoodListener listener = new DialogChooseMood.MoodListener() {
+            @Override
+            public void moodChosen(String mood) {
+                str_Mood = mood;
+                switch(mood){
+                    case "happy":
+                        img_Mood.setImageResource(R.drawable.ic_happy_white);
+                        break;
+                    case "good":
+                        img_Mood.setImageResource(R.drawable.ic_good_white);
+                        break;
+                    case "neutral":
+                        img_Mood.setImageResource(R.drawable.ic_neutral_white);
+                        break;
+                    case "awful":
+                        img_Mood.setImageResource(R.drawable.ic_awful_white);
+                        break;
+                    case "bad":
+                        img_Mood.setImageResource(R.drawable.ic_bad_white);
+                        break;
+                }
+            }
+        };
+        final DialogChooseMood dialogChooseMood = new DialogChooseMood(this,listener);
+        dialogChooseMood.show();
+    }
+
+    private void scrollActivitySet()
+    {
+        if (activity != null)
+            for (int i=0; i<activity.size(); i++)
+            {
+                Buttonnew buttonnew = new Buttonnew(this);
+                buttonnew.setText(activity.get(i));
+                layout_Activity.addView(buttonnew);
+            }
+    }
+
+    private int check()
+    {
+        Intent intent = getIntent();
+        int flag = intent.getIntExtra("flag",0);
+        return flag;
+    }
+
 
     private void setMood() {
         Intent intent = getIntent();
@@ -176,6 +277,19 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             bitmap = BitmapFactory.decodeStream(in,null,options);
             imageView.setImageBitmap(bitmap);
         }
+        if(requestCode == REQUEST_ACTIVITY && resultCode == RESULT_OK)
+        {
+            activity.clear();
+            activity = data.getStringArrayListExtra("activity");
+            layout_Activity.removeAllViews();
+            if (activity != null)
+                for (int i=0; i<activity.size(); i++)
+                {
+                    Buttonnew buttonnew = new Buttonnew(this);
+                    buttonnew.setText(activity.get(i));
+                    layout_Activity.addView(buttonnew);
+                }
+        }
     }
 
 
@@ -204,6 +318,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
 
 
     public byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        if (bitmap == null) return  null;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
