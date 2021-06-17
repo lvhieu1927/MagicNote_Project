@@ -37,10 +37,11 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         bt_AddDiary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Bundle bundle = new Bundle();
                 startActivity(intent);
             }
         });
+
 
     }
 

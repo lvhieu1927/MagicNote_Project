@@ -160,8 +160,10 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
                 if(isLongClick){}
                 else
                 {
-                    intent.putExtra("flag",1);
-                    intent.putExtra("note", (Parcelable) diaryNote);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("flag",1);
+                    bundle.putInt("diary_id",mDiaryList.get(position).getDiaryID());
+                    intent.putExtras(bundle);
                     mContext.startActivity(intent);
                 }
             }

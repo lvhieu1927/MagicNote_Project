@@ -177,6 +177,27 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
             diaryNote.setActivityList(this.getActivityListbyDiaryId(diaryNote.getDiaryID()));
             arrayList.add(diaryNote);
         }
+        db.close() ;
         return arrayList;
+    }
+
+    public DiaryNote getDiaryNoteFromID(int diary_id)
+    {
+        db = helper.openDatabase();
+        String sql = "select * from diary where diary_id ="+diary_id;
+        Cursor cursor = db.rawQuery(sql,null);
+        DiaryNote diaryNote = new DiaryNote();
+        while (cursor.moveToNext())
+        {
+            diaryNote.setDiaryID(cursor.getInt(0));
+            diaryNote.setMoodID(cursor.getInt(1));
+            diaryNote.setHeadline(cursor.getString(2));
+            diaryNote.setDate(cursor.getLong(3));
+            diaryNote.setNote(cursor.getString(4));
+            diaryNote.setPhoto(cursor.getBlob(5));
+            diaryNote.setActivityList(this.getActivityListbyDiaryId(diaryNote.getDiaryID()));
+        }
+        db.close() ;
+        return  diaryNote;
     }
 }

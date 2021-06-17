@@ -65,12 +65,12 @@ public class DiaryNote {
         String moodName = null;
         int i = this.moodID;
         switch (i){
-            case 1: return "HAPPY";
-            case 2: return "GOOD";
-            case 3: return "NEUTRAL";
-            case 4: return "AWFUL";
+            case 1: return "happy";
+            case 2: return "good";
+            case 3: return "neutral";
+            case 4: return "awful";
         }
-        return "BAD";
+        return "bad";
     }
 
     public Bitmap getBitmap()

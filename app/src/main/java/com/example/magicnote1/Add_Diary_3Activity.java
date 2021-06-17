@@ -51,11 +51,11 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private static final int REQUEST_ACTIVITY = 121;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
     private ImageButton bt_Photo;
-    private ImageButton bt_Time,bt_clearPhoto;
+    private ImageButton bt_Time,bt_clearPhoto,bt_Exit;
     private Button bt_Change_Activity;
     private LinearLayout layout_Activity;
     private Button bt_Date,bt_save,bt_changeMood;
-    private Bitmap bitmap;
+    private Bitmap bitmap = null;
     private ImageView imageView,img_Mood;
     private TextInputEditText text_HeadLine;
     private EditText edt_Note;
@@ -66,6 +66,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     int selectedDayOfMonth = 10;
     private String str_Mood;
     private ArrayList<String> activity;
+    int diary_ID_Receiver = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         addEvent();
     }
 
+    //hàm khai báo các định danh cho biến
     private void addControl() {
         bt_save = findViewById(R.id.bt_save);
         bt_Photo = findViewById(R.id.bt_Photo);
@@ -88,26 +90,28 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         bt_Change_Activity = (Button)findViewById(R.id.bt_Change_Activity);
         bt_clearPhoto = findViewById(R.id.bt_clearPhoto);
         layout_Activity = findViewById(R.id.layout_activity);
+        bt_Exit = findViewById(R.id.bt_Exit);
 
     }
 
 
-
+    //hàm dùng bắt sự kiện
     private void addEvent() {
         if (check() == 0){
             setMood();
             setDate();
+            scrollActivitySet();
+            setButtonExit();
         }
         else {
-
+            setUpUpdate(diary_ID_Receiver);
         }
 
         Intent intent = new Intent(this,MoodDiaryMainMenu.class);
 
         bt_save.setOnClickListener(v -> {
-            insertDataToDiary();
+            insertOrUpdateDataToDiary();
             insertDiary_Activity();
-
             startActivity(intent);
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +140,6 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 bitmap = null;
             }
         });
-        scrollActivitySet();
 
         bt_changeMood.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,7 +156,70 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         });
     }
 
+    //cài đặt ban đầu cho màn hình update
+    private void setUpUpdate(int diary_id)
+    {
+        bt_Exit.setImageResource(R.drawable.ic_baseline_delete_forever_24);
+        MyDBHelperDiary dbHelperDiary = new MyDBHelperDiary(this,null,null,1);
+        DiaryNote diaryNote = dbHelperDiary.getDiaryNoteFromID(diary_id);
+        str_Mood = diaryNote.getMoodName();
+        switch(str_Mood){
+            case "happy":
+                img_Mood.setImageResource(R.drawable.ic_happy_white);
+                break;
+            case "good":
+                img_Mood.setImageResource(R.drawable.ic_good_white);
+                break;
+            case "neutral":
+                img_Mood.setImageResource(R.drawable.ic_neutral_white);
+                break;
+            case "awful":
+                img_Mood.setImageResource(R.drawable.ic_awful_white);
+                break;
+            case "bad":
+                img_Mood.setImageResource(R.drawable.ic_bad_white);
+                break;
+        }
+        text_HeadLine.setText(diaryNote.getHeadline());
+        activity  = diaryNote.getActivityList();
+        edt_Note.setText(diaryNote.getNote());
+        imageView.setImageBitmap(diaryNote.getBitmap());
+        scrollActivitySet();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(diaryNote.getDate());
+        String dateString = formatter.format(calendar.getTime());
+
+        selectedYear = Integer.parseInt(dateString.substring(6,10));
+        selectedMonth = Integer.parseInt(dateString.substring(3,5));
+        selectedDayOfMonth = Integer.parseInt(dateString.substring(0,2));
+        lastSelectedHour= Integer.parseInt(dateString.substring(11,13));
+        lastSelectedMinute = Integer.parseInt(dateString.substring(14,16));
+        Log.d("magic!!!","time:" +lastSelectedHour+":"+lastSelectedMinute );
+        bt_Date.setText(selectedDayOfMonth+"/"+selectedMonth+"/" + selectedYear);
+        bt_Exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // gọi phương thức xóa note diary tại đây
+            }
+        });
+    }
+
+    //nút thoát khỏi tiến trình hiện tại
+    private void setButtonExit()
+    {
+        bt_Exit.setImageResource(R.drawable.ic_clear2);
+        Intent intent = new Intent(this,MoodDiaryMainMenu.class);
+        bt_Exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
+    }
+
+    //nút gọi đén add2 cho phép chọn lại activity
     private void buttonChangeActivity()
     {
         Intent intent = new Intent(this, Add_Diary_2Activity.class);
@@ -164,6 +230,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         startActivityForResult(intent,REQUEST_ACTIVITY);
     }
 
+    //nút cho phép chọn lại mood
     private void buttonChangeMood()
     {
         DialogChooseMood.MoodListener listener = new DialogChooseMood.MoodListener() {
@@ -193,6 +260,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         dialogChooseMood.show();
     }
 
+    //thêm các activity bằng nút vào scrollbar activity
     private void scrollActivitySet()
     {
         if (activity != null)
@@ -204,27 +272,23 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             }
     }
 
+    //kiểm tra xem đây là lệnh update hay lệnh insert
     private int check()
     {
         Intent intent = getIntent();
         int flag = intent.getIntExtra("flag",0);
+        diary_ID_Receiver = intent.getIntExtra("diary_id",0);
         return flag;
     }
 
-
+    //set biểu cảm lấy từ intent add2
     private void setMood() {
         Intent intent = getIntent();
         String string = intent.getStringExtra("mood");
         str_Mood = string;
-        bitmap = null;
         ArrayList<String> arrayList = intent.getStringArrayListExtra("activity");
         activity = arrayList;
-        Log.d("magic!!!Mood",str_Mood);
 
-        for (int i=0; i< activity.size(); i++)
-        {
-            Log.d("magic!!!Activity",activity.get(i));
-        }
         
         switch(string){
             case "happy":
@@ -245,7 +309,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
 
     }
-    
+    // cài đặt đầu tiên cho màn hình khi được gọi để insert
     private void setDate()
     {
         final Calendar c = Calendar.getInstance();
@@ -256,10 +320,11 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         selectedMonth = Integer.parseInt(currentDate.substring(3,5));
         selectedDayOfMonth = Integer.parseInt(currentDate.substring(0,2));
         Log.d("magic!!!",currentDate.substring(0,2)+" "+currentDate.substring(3,5)+" "+currentDate.substring(6,10));
+        Log.d("magic!!!",currentDate.substring(0,2)+" "+currentDate.substring(3,5)+" "+currentDate.substring(6,10));
         bt_Date.setText(currentDate);
     }
 
-
+    //xử lý kết quả trả về từ startActivityForResult
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -292,8 +357,8 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
     }
 
-
-    public void insertDataToDiary()
+    //Insert diary note mới hoặc update diarynote đã có theo yêu cầu của intent
+    public void insertOrUpdateDataToDiary()
     {
         MyDBHelperDiary helperDiary = new MyDBHelperDiary(this,null,null,1);
         DiaryNote diaryNote = new DiaryNote();
@@ -302,9 +367,17 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         diaryNote.setHeadline(text_HeadLine.getText().toString());
         diaryNote.setNote(edt_Note.getText().toString());
         diaryNote.setPhoto(getBitmapAsByteArray(bitmap));
-        helperDiary.insertDiaryNote(diaryNote);
+        if (check() ==0)
+            helperDiary.insertDiaryNote(diaryNote);
+        else
+            {
+                diaryNote.setDiaryID(diary_ID_Receiver);
+                helperDiary.updateDiary(diaryNote);
+            }
+
     }
 
+    // gọi hàm thêm diary note activity
     public void insertDiary_Activity()
     {
         MyDBHelperDiary helperDiary = new MyDBHelperDiary(this,null,null,1);
@@ -316,7 +389,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
     }
 
-
+    //chuyển bitmap thành mảng byte để lưu trữ
     public byte[] getBitmapAsByteArray(Bitmap bitmap) {
         if (bitmap == null) return  null;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -326,7 +399,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
 
 
 
-
+    ///yêu cầu cấp quyền hạn
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -343,9 +416,9 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
     }
 
+    //sự kiện chọn thời gian bằng dialog
     private void buttonSelectTime() {
-            // Get Current Time
-
+        // Get Current Time
 
         // Time Set Listener.
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -362,8 +435,9 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
                 timeSetListener, lastSelectedHour, lastSelectedMinute, true);
         timePickerDialog.show();
-    }
 
+    }
+    //sự kiện chọn ngày bằng dialog
     private void onDatePickerButton()
     {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -381,12 +455,13 @@ public class Add_Diary_3Activity extends AppCompatActivity {
 
 // Create DatePickerDialog (Spinner Mode):
         DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                dateSetListener, selectedYear, selectedMonth, selectedDayOfMonth);
+                dateSetListener, selectedYear, selectedMonth-1, selectedDayOfMonth);
 
 // Show
         datePickerDialog.show();
+        bt_Date.setText(selectedDayOfMonth+"/"+selectedMonth+"/" + selectedYear);
     }
-
+    // chuyển đổi ngày sang millis giây
     private long getTime()
     {
         if (lastSelectedMinute == -1){
@@ -396,7 +471,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
         String date ="1-1-2000 0:0:0";
         date = selectedDayOfMonth + "-" + selectedMonth + "-" + selectedYear + " " + lastSelectedHour + ":" + lastSelectedMinute +":00";
-
+        Log.d("magic!!!","string date: "+date);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
         Date datex = null;
         try {
