@@ -11,14 +11,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Not thing to show"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:padding="10dp"/>
     <Switch
         android:id="@+id/switch_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:focusable="false"
-        />
+        android:paddingRight="5dp"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 </LinearLayout>

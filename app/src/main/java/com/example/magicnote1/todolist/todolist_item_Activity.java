@@ -2,8 +2,11 @@ package com.example.magicnote1.todolist;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
+import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -12,16 +15,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.magicnote1.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 //Activity thao tác với task
 public class todolist_item_Activity extends Activity {
@@ -29,10 +37,17 @@ public class todolist_item_Activity extends Activity {
     private AlarmManager mAlarm;
     private Intent notificationReceiver,mLoggerReceiverIntent;
     private PendingIntent notificationReceiverPending,mLoggerReceiverPendingIntent;
+    TimePickerDialog timePicker;
+    DatePickerDialog datePicker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist_item);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, 0, notificationReceiver, 0);
         toDoList = new ToDoList(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
@@ -48,11 +63,40 @@ public class todolist_item_Activity extends Activity {
             buttonEdit.setVisibility(View.GONE);
             buttonDelete.setVisibility(View.GONE);
         }
-        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        notificationReceiver = new Intent(todolist_item_Activity.this,
-                reminderReceiver.class);
-        notificationReceiverPending = PendingIntent.getBroadcast(
-                todolist_item_Activity.this, 0, notificationReceiver, 0);
+        TextView saveDate = (TextView) findViewById(R.id.due_date);
+        TextView showDate = (TextView) findViewById(R.id.showDate);
+        ImageButton pickTime = (ImageButton)findViewById(R.id.timepicker);
+        pickTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                int second = calendar.get(Calendar.SECOND);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                int month = calendar.get(Calendar.MONTH);
+                Date date = calendar.getTime();
+                long m = date.getMinutes();
+//                datePicker = new DatePickerDialog(todolist_item_Activity.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+//                        setDate.setText(dayOfMonth + " " + month);
+//                    }
+//                },date.getYear(),day,month);
+//                datePicker.show();
+//            }
+                timePicker = new TimePickerDialog(todolist_item_Activity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        //long time = toMillis(hourOfDay,minute,0) - toMillis(hour,minutes,second);
+                        long time = toMillis(hourOfDay,minute,0);
+                        saveDate.setText(String.valueOf(time));
+                        showDate.setText(timeFormat(time));
+                    }
+                },hour,minutes, true);
+                timePicker.show();
+            }
+        });
 
     }
     @Override
@@ -98,21 +142,28 @@ public class todolist_item_Activity extends Activity {
     private void loadTaskData(int id){
         TextView textId = (TextView)findViewById(R.id.id_view);
         CheckBox checkPriority = (CheckBox)findViewById(R.id.CBpriority);
-        EditText dueDate = (EditText) findViewById(R.id.due_date);
+        TextView dueDate = (TextView) findViewById(R.id.due_date);
+        TextView showDate = (TextView)findViewById(R.id.showDate);
         EditText description = (EditText)findViewById(R.id.task_description);
         CheckBox checkCompleted = (CheckBox)findViewById(R.id.CBcompleted);
         Task task = toDoList.getTask(id);
         textId.setText(String.valueOf(task.getIdTask()));
         checkPriority.setChecked(task.getPriority());
         dueDate.setText(task.getDate());
+        showDate.setText(timeFormat(Long.valueOf(task.getDate())));
         description.setText(task.getTaskDetails());
         checkCompleted.setChecked(task.getCompleted());
     }
     //Thêm task
     private void addTask(){
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
         TextView textId = (TextView)findViewById(R.id.id_view);
         CheckBox checkPriority = (CheckBox)findViewById(R.id.CBpriority);
-        EditText dueDate = (EditText) findViewById(R.id.due_date);
+        TextView dueDate = (TextView) findViewById(R.id.due_date);
         EditText description = (EditText)findViewById(R.id.task_description);
         CheckBox checkCompleted = (CheckBox)findViewById(R.id.CBcompleted);
         Task task = new Task();
@@ -120,13 +171,20 @@ public class todolist_item_Activity extends Activity {
         task.setDate(dueDate.getText().toString());
         task.setTaskDetails(description.getText().toString());
         task.setCompleted(checkCompleted.isChecked());
+        //Kiểm tra important
+        if(dueDate.getText().toString().length()<=0) {
+            if(checkPriority.isChecked()) {
+                dueDate.setError("Nếu quan trong, không được để trống ô này");
+                return;
+            }
+        } else{
+            long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second);
+            if(wTime > 0){
+                setReminder(wTime);
+            } else setReminder(86460000 + wTime);
+        }
         Task taskNew = toDoList.createTask(task);
         textId.setText(String.valueOf(taskNew.getIdTask()));
-        //Kiểm tra important
-        if (checkPriority.isChecked()) {
-            setReminder(Integer.valueOf(dueDate.getText().toString()));
-        }
-
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
@@ -139,9 +197,14 @@ public class todolist_item_Activity extends Activity {
     }
     //Cập nhật task
     private void updateTask(){
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
+        int second = calendar.get(Calendar.SECOND);
+
         TextView textId = (TextView)findViewById(R.id.id_view);
         CheckBox checkPriority = (CheckBox)findViewById(R.id.CBpriority);
-        EditText dueDate = (EditText) findViewById(R.id.due_date);
+        TextView dueDate = (TextView) findViewById(R.id.due_date);
         EditText description = (EditText)findViewById(R.id.task_description);
         CheckBox checkCompleted = (CheckBox)findViewById(R.id.CBcompleted);
         if(textId.getText().toString().length()>0){
@@ -151,12 +214,18 @@ public class todolist_item_Activity extends Activity {
             task.setDate(dueDate.getText().toString());
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
-            if(dueDate.getText().toString().length()<=0) {
-                if(checkPriority.isChecked()) {
-                    dueDate.setError("Nếu quan trong, không được để trống ô này");
-                    return;
-                }
-            } else setReminder(Integer.valueOf(dueDate.getText().toString()));
+//            if(dueDate.getText().toString().length()<=0) {
+//                if(checkPriority.isChecked()) {
+//                    dueDate.setError("Nếu quan trong, không được để trống ô này");
+//                    return;
+//                }
+//            } else{
+//                setReminder(Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second));
+//            }
+            long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second);
+            if(wTime > 0){
+                setReminder(wTime);
+            } else setReminder(86460000 + wTime);
             toDoList.updateTask(task);
             textId.setText(String.valueOf(task.getIdTask()));
 
@@ -183,11 +252,21 @@ public class todolist_item_Activity extends Activity {
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
-    private void setReminder(int time){
+    private void setReminder(long time){
         mAlarm.set(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
-        Toast.makeText(getApplicationContext(), "Single Alarm Set",
+        Toast.makeText(getApplicationContext(), "Single Alarm Wake up after " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
+    }
+    public long toMillis(int h, int m, int s){
+        return Long.valueOf((h*3600 + m *60 + s)*1000);
+    }
+    public String dateToString(int h, int m){
+        return (h + ": " + m);
+    }
+    public String timeFormat(long millis){
+        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
     }
 }

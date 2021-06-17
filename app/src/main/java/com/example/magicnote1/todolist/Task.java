@@ -1,4 +1,7 @@
 package com.example.magicnote1.todolist;
+
+import java.util.concurrent.TimeUnit;
+
 //Class định nghĩa Task
 public class Task {
     private int idTask;
@@ -55,7 +58,11 @@ public class Task {
         if(priority){
             result += "Important: ";
         }
-        result += task + " - time: " + date;
+        result += task + " at: " + timeFormat(Long.valueOf(date));
         return result;
+    }
+    public String timeFormat(long millis){
+        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
     }
 }

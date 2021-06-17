@@ -71,12 +71,6 @@ public class todolist_MainMenu_Activity extends Activity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,R.layout.item_layout, R.id.item_view, taskResult){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-//                View rowItem = super.getView(position, convertView, parent);
-//                if(listTask.get(position).getCompleted())
-//                {
-//
-//                    rowItem.setBackgroundResource(R.drawable.round_item_completed);
-//                }
                 View rowItem = getLayoutInflater().inflate(R.layout.item_layout,null);
                 Switch switchDone = (Switch) rowItem.findViewById(R.id.switch_done);
                 TextView itemView = (TextView)rowItem.findViewById(R.id.item_view);
