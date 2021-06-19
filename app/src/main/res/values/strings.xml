@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Magic note</string>
-
+    <string name="happy">happy</string>
+    <string name="good">good</string>
+    <string name="neutral">neutral</string>
+    <string name="awful">awful</string>
+    <string name="bad">bad</string>
 </resources>

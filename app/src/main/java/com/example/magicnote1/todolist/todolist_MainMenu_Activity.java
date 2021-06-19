@@ -1,7 +1,9 @@
 package com.example.magicnote1.todolist;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Application;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,13 +23,17 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.magicnote1.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 //Activity quản lý task
 public class todolist_MainMenu_Activity extends Activity {
     private ListView listViewTask;
@@ -35,6 +41,9 @@ public class todolist_MainMenu_Activity extends Activity {
     private ToDoList toDoList;
     private ImageView emptyView;
     private Handler handler;
+    private AlarmManager mAlarm;
+    private Intent notificationReceiver;
+    private PendingIntent notificationReceiverPending;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,13 +92,23 @@ public class todolist_MainMenu_Activity extends Activity {
                 switchDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        Calendar calendar = Calendar.getInstance();
+                        notificationReceiver = new Intent(todolist_MainMenu_Activity.this,
+                                reminderReceiver.class);
+                        notificationReceiverPending = PendingIntent.getBroadcast(
+                                todolist_MainMenu_Activity.this, 0, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+                        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
                         if(buttonView.isChecked()) {
                             listTask.get(position).setCompleted(true);
                             rowItem.setBackgroundResource(R.drawable.round_item_completed);
-
+                            //mAlarm.cancel(notificationReceiverPending);
                         } else {
                             listTask.get(position).setCompleted(false);
                             rowItem.setBackgroundResource(R.drawable.round_item);
+//                            long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+//                            if (wTime > 0) {
+//                                setReminder(wTime);
+//                            } else setReminder(86460000 + wTime);
                         }
                         toDoList.updateTask(listTask.get(position));
                     }
@@ -142,5 +161,19 @@ public class todolist_MainMenu_Activity extends Activity {
                 },100);
             }
         },700);
+    }
+    private void setReminder(long time){
+        mAlarm.set(AlarmManager.RTC_WAKEUP,
+                System.currentTimeMillis() + time,
+                notificationReceiverPending);
+        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60- Calendar.getInstance().get(Calendar.SECOND)),
+                Toast.LENGTH_LONG).show();
+    }
+    public long toMillis(int h, int m, int s){
+        return Long.valueOf((h*3600 + m *60 + s)*1000);
+    }
+    public String timeFormat(long millis){
+        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
+                TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
     }
 }

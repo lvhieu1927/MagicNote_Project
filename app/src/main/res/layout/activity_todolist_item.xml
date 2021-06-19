@@ -6,6 +6,7 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     tools:context=".todolist.todolist_item_Activity"
+    android:background="@drawable/background"
     android:padding="15dp">
     <TableRow
         android:layout_width="match_parent"
@@ -28,8 +29,8 @@
                 <CheckBox
                     android:id="@+id/CBpriority"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -48,18 +49,21 @@
                     android:padding="10dp"/>
                 <ImageButton
                     android:id="@+id/timepicker"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/outline_schedule_black_48dp"
-                    android:scaleType="centerInside"
-                    android:background="@drawable/round_button"/>
+                    android:scaleType="fitCenter"
+                    android:backgroundTint="@color/white"
+                    android:background="@drawable/round_button"
+                    android:layout_gravity="center_vertical"/>
+
                 <TextView
                     android:id="@+id/due_date"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
+                    android:inputType="text"
                     android:padding="10dp"
-                    android:inputType="text"/>
+                    android:textSize="20dp" />
                 <TextView
                     android:id="@+id/showDate"
                     android:layout_width="match_parent"
@@ -99,7 +103,8 @@
                 <CheckBox
                     android:id="@+id/CBcompleted"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

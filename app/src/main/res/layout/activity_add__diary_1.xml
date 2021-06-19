@@ -1,113 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#e0adce"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bg_gradient"    >
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/ln1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="12dp">
+            
+            <TextClock
+                android:id="@+id/myTextClock"
+                android:layout_width="174dp"
+                android:layout_height="36dp"
+                android:background="@drawable/background_1"
+                android:format12Hour="hh:mm:ss a"
+                android:format24Hour="@null"
+                android:textAlignment="center"
+                android:padding="2dp"
+                android:textColor="@color/mauchu"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         <TextView
             android:id="@+id/hello_text"
-            android:layout_width="wrap_content"
-            android:layout_height="500px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom"
-            android:background="@drawable/add_diary_1_activity_3_evening"
+            android:fontFamily="@font/font_1_dancingscript_regular"
             android:gravity="center"
-            android:text="Good evening!\nLet's start with your mood"
-            android:textColor="@color/white"
-            android:textSize="45px"
+            android:layout_marginTop="50dp"
+            android:text="Good evening!\nLet's start with your mood\nHow are you today?\nLet's me save your emotion"
+            android:textAlignment="center"
+            android:textColor="@color/mauchu"
+            android:textSize="20dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
 
     </LinearLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView"
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="20px"
-        android:layout_marginLeft="0px"
-        android:layout_marginTop="10px"
-        android:layout_marginEnd="20px"
-        android:layout_marginRight="0px"
-        android:rotationX="0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_scrollUp">
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ln2"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textColor="@color/mauchu"
+        android:fontFamily="@font/font_1_dancingscript_regular"
+        android:textSize="20dp"
+        android:text="Choose your emotion on today to start our journey!"/>
 
         <LinearLayout
+            android:id="@+id/ln2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            >
 
-            android:orientation="vertical">
-
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_1"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FF66FF"
-                android:drawableLeft="@drawable/icon_happy"
-                android:text="Happy"
+                android:src="@drawable/ic_happy_white2"
+                android:background="#00000000"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+             />
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_2"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#CC66FF"
-                android:drawableLeft="@drawable/icon_good"
-                android:text="Good"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:src="@drawable/ic_good_white2"
+                android:background="#00000000"
+            />
 
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_3"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#9966FF"
-                android:drawableLeft="@drawable/icon_neutral"
-                android:text="Neutral"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:background="#00000000"
+                android:src="@drawable/ic_neutral_white2"
+                />
 
-            <Button
-                android:id="@+id/add_diary_button_4"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:layout_weight="1"
-                android:backgroundTint="#6666FF"
-                android:drawableLeft="@drawable/icon_bad"
-                android:text="bad"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-            <Button
+            <ImageButton
                 android:id="@+id/add_diary_button_5"
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#3366FF"
-                android:drawableLeft="@drawable/icon_awful"
-                android:text="awful"
-                android:textSize="20dp"
-                android:textStyle="bold" />
+                android:background="#00000000"
+                android:src="@drawable/ic_awful_white2"
+                />
+
+            <ImageButton
+                android:id="@+id/add_diary_button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:src="@drawable/ic_bad_white2"
+                />
 
         </LinearLayout>
-    </ScrollView>
 
 
-</LinearLayout>
+
+</RelativeLayout>

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/background"
     tools:context=".todolist.todolist_MainMenu_Activity"
     android:id="@+id/layout_main">
 
@@ -26,14 +27,18 @@
             android:src="@drawable/notfound"
             android:scaleType="centerInside"
             android:layout_gravity="center_horizontal|center_vertical"/>
-        <Button
+        <ImageButton
             android:id="@+id/button_add_task_form"
-            android:layout_height="50dp"
-            android:layout_width="50dp"
-            android:background="@drawable/ic_note_add_black_24dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="bottom|right"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:minHeight="50dp"
+            android:minWidth="50dp"
+            android:src="@drawable/ic_note_add_black_24dp"
+            android:scaleType="centerInside"
+            android:background="@drawable/round_button"
+            android:backgroundTint="@color/purple_200"
+            android:layout_marginBottom="20dp" 
+            android:layout_gravity="bottom|center"
             android:onClick="clickButton"/>
         <ImageView
             android:id="@+id/logo"

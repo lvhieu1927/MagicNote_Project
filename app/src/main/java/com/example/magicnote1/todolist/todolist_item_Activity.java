@@ -35,8 +35,8 @@ import java.util.concurrent.TimeUnit;
 public class todolist_item_Activity extends Activity {
     private ToDoList toDoList;
     private AlarmManager mAlarm;
-    private Intent notificationReceiver,mLoggerReceiverIntent;
-    private PendingIntent notificationReceiverPending,mLoggerReceiverPendingIntent;
+    private Intent notificationReceiver;
+    private PendingIntent notificationReceiverPending;
     TimePickerDialog timePicker;
     DatePickerDialog datePicker;
     @Override
@@ -171,20 +171,22 @@ public class todolist_item_Activity extends Activity {
         task.setDate(dueDate.getText().toString());
         task.setTaskDetails(description.getText().toString());
         task.setCompleted(checkCompleted.isChecked());
+        Task taskNew = toDoList.createTask(task);
+        textId.setText(String.valueOf(taskNew.getIdTask()));
         //Kiểm tra important
-        if(dueDate.getText().toString().length()<=0) {
-            if(checkPriority.isChecked()) {
-                dueDate.setError("Nếu quan trong, không được để trống ô này");
-                return;
-            }
-        } else{
-            long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second);
-            if(wTime > 0){
+//        if(dueDate.getText().toString().length()<=0) {
+//            if(checkPriority.isChecked()) {
+//                dueDate.setError("Nếu quan trong, không được để trống ô này");
+//                return;
+//            }
+//        } else{
+        if(!checkCompleted.isChecked()) {
+            long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+            if (wTime > 0) {
                 setReminder(wTime);
             } else setReminder(86460000 + wTime);
         }
-        Task taskNew = toDoList.createTask(task);
-        textId.setText(String.valueOf(taskNew.getIdTask()));
+
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
@@ -214,6 +216,8 @@ public class todolist_item_Activity extends Activity {
             task.setDate(dueDate.getText().toString());
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
+            toDoList.updateTask(task);
+            textId.setText(String.valueOf(task.getIdTask()));
 //            if(dueDate.getText().toString().length()<=0) {
 //                if(checkPriority.isChecked()) {
 //                    dueDate.setError("Nếu quan trong, không được để trống ô này");
@@ -222,12 +226,13 @@ public class todolist_item_Activity extends Activity {
 //            } else{
 //                setReminder(Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second));
 //            }
-            long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second);
-            if(wTime > 0){
-                setReminder(wTime);
-            } else setReminder(86460000 + wTime);
-            toDoList.updateTask(task);
-            textId.setText(String.valueOf(task.getIdTask()));
+            if(!checkCompleted.isChecked()) {
+                long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+                if (wTime > 0) {
+                    setReminder(wTime);
+                } else setReminder(86460000 + wTime);
+            }
+
 
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
@@ -256,14 +261,11 @@ public class todolist_item_Activity extends Activity {
         mAlarm.set(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
-        Toast.makeText(getApplicationContext(), "Single Alarm Wake up after " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
+        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
-    }
-    public String dateToString(int h, int m){
-        return (h + ": " + m);
     }
     public String timeFormat(long millis){
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),

@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,7 +34,9 @@ public class reminderReceiver extends BroadcastReceiver {
 
             String CHANNEL_ID = "MESSAGE";
             String CHANNEL_NAME = "MESSAGE";
-
+            Intent notiIntent = new Intent(context, todolist_MainMenu_Activity.class);
+            PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notiIntent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
             NotificationManagerCompat manager = NotificationManagerCompat.from(context);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -43,9 +46,11 @@ public class reminderReceiver extends BroadcastReceiver {
             }
 
             Notification notification = new NotificationCompat.Builder(context,CHANNEL_ID)
+                    .setContentIntent(contentIntent)
                     .setSmallIcon(R.drawable.bamen_icon_16)
-                    .setContentTitle("test")
-                    .setContentText("test")
+                    .setContentTitle("Nhắc nhở công việc")
+                    .setContentText("Bạn có công tiệc cần làm bây giờ. Check ngay !")
+                    .setAutoCancel(true)
                     .build();
             manager.notify(getRandomNumber(), notification);
 
