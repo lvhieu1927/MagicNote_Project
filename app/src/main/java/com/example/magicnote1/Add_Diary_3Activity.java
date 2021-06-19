@@ -2,12 +2,15 @@ package com.example.magicnote1;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -190,7 +193,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(diaryNote.getDate());
         String dateString = formatter.format(calendar.getTime());
-
+        Context context = this;
         selectedYear = Integer.parseInt(dateString.substring(6,10));
         selectedMonth = Integer.parseInt(dateString.substring(3,5));
         selectedDayOfMonth = Integer.parseInt(dateString.substring(0,2));
@@ -201,7 +204,8 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         bt_Exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // gọi phương thức xóa note diary tại đây
+                // gọi phương thức xóa note diary tại đây\
+                dialog_Yes_No(context);
             }
         });
     }
@@ -270,6 +274,32 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 buttonnew.setText(activity.get(i));
                 layout_Activity.addView(buttonnew);
             }
+    }
+
+    public void dialog_Yes_No(Context context)
+    {
+        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case DialogInterface.BUTTON_POSITIVE:
+                        MyDBHelperDiary dbHelperDiary = new MyDBHelperDiary(context,null,null,1);
+                        dbHelperDiary.deleteActivity(diary_ID_Receiver);
+                        dbHelperDiary.deleteDiaryNote(diary_ID_Receiver);
+                        Intent intent = new Intent(context,MoodDiaryMainMenu.class);
+                        startActivity(intent);
+                        break;
+                    case DialogInterface.BUTTON_NEGATIVE:
+                        //No button clicked
+                        dialog.dismiss();
+                        break;
+                }
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure about delete this diary note?").setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 
     //kiểm tra xem đây là lệnh update hay lệnh insert
@@ -372,9 +402,22 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         else
             {
                 diaryNote.setDiaryID(diary_ID_Receiver);
+                helperDiary.deleteActivity(diary_ID_Receiver);
                 helperDiary.updateDiary(diaryNote);
+                insertDiary_Activity2();
             }
 
+    }
+
+    //gọi hàm thêm diary note activity với note hiện tại được chọn để update
+    public void insertDiary_Activity2()
+    {
+        MyDBHelperDiary helperDiary = new MyDBHelperDiary(this,null,null,1);
+        for (int i = 0; i < activity.size(); i++)
+        {
+            int activity_id = helperDiary.getActivityIdByActivityName(activity.get(i));
+            helperDiary.insertDiary_Activity(diary_ID_Receiver, activity_id);
+        }
     }
 
     // gọi hàm thêm diary note activity

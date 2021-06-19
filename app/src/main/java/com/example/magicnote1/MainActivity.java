@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         btnToDoList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, todolist_mainMenu.class);
+                Intent intent = new Intent(MainActivity.this,todolist_MainMenu_Activity.class );
                 startActivity(intent);
             }
         });

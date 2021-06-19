@@ -37,6 +37,22 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         //
     }
 
+    //xóa note có diary id =
+    public void deleteDiaryNote(int diary_ID)
+    {
+        db = helper.openDatabase();
+        db.delete("diary", "diary_id =?", new String[]{diary_ID+""});
+        db.close();
+    }
+
+    //xóa các activity có diary_id =
+    public void deleteActivity(int diary_ID)
+    {
+        db = helper.openDatabase();
+        db.delete("diary_activity", "diary_id =?", new String[]{diary_ID+""});
+        db.close();
+    }
+
     //hàm lấy tất cả activity
     public ArrayList<String> getAllActivity()
     {
