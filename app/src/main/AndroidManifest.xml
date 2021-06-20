@@ -13,29 +13,29 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label=">"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".MainActivity2"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/NoActionBar"></activity>
+        android:theme="@style/Theme.MagicNote">
         <activity android:name=".MoodDiaryMainMenu"></activity>
         <activity android:name=".Add_Diary_3Activity" />
         <activity android:name=".Add_Diary_2Activity" />
         <activity android:name=".Add_itemActivity" />
         <activity android:name=".Add_Diary_1Activity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".todolist_MainMenu_Activity" />
+        <activity android:name=".model.todolist_item_Activity" />
+        <activity android:name=".splash.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".todolist_MainMenu_Activity" />
-        <activity android:name=".model.todolist_item_Activity" />
-
+        <activity android:name=".WishListMainActivity"/>
+        <activity android:name=".AddActivityWishList"/>
+        <activity android:name=".UpdateActivityWishList"/>
+        <activity android:name=".splash.SplashScreenWishlist"/>
+        <activity android:name=".activity_home_screen"/>
         <receiver android:name=".model.reminderReceiver" />
     </application>
 

@@ -9,8 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.magicnote1.dataconnect.AssetDatabaseOpenHelper;
-import com.example.magicnote1.dataconnect.DiaryNoteAdapter;
+import com.example.magicnote1.adapter.DiaryNoteAdapter;
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 import com.example.magicnote1.model.DiaryNote;
 
