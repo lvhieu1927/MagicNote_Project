@@ -37,6 +37,17 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         //
     }
 
+    public int countMood(String mood)
+    {
+        db = helper.openDatabase();
+        Cursor cursor = db.rawQuery("select count(diary_id) from diary, Mood where (Diary.Mood_id = Mood.Mood_id)AND (Mood_name = ?)", new String[]{mood});
+        cursor.moveToNext();
+        int count = cursor.getInt(0);
+        db.close();
+        return  count;
+    }
+
+
     //xóa note có diary id =
     public void deleteDiaryNote(int diary_ID)
     {

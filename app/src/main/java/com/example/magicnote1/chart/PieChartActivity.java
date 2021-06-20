@@ -1,15 +1,12 @@
 package com.example.magicnote1.chart;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.example.magicnote1.R;
+import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -19,48 +16,80 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PieChartActivity extends Fragment {
+public class PieChartActivity extends Activity {
+
+    TextView textView1,textView2,textView3,textView4,textView5;
+    MyDBHelperDiary dbHelperDiary;
+    PieChart pieChart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.chart_pie_layout);
+        addControl();
+        addEvent();
     }
 
+    private void addEvent() {
+        setChart();
+        setTextView();
+    }
 
+    private void addControl() {
+        dbHelperDiary = new MyDBHelperDiary(this, null,null,1);
+        pieChart = findViewById(R.id.piechart);
+        textView1 = findViewById(R.id.textview1);
+        textView2 = findViewById(R.id.textview2);
+        textView3 = findViewById(R.id.textview3);
+        textView4 = findViewById(R.id.textview4);
+        textView5 = findViewById(R.id.textview5);
+    }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.chart_pie_layout,container,false);
-        PieChart pieChart = view.findViewById(R.id.piechart);
+    void setTextView()
+    {
+        textView1.setText(dbHelperDiary.countMood("happy")+"");
+        textView2.setText(dbHelperDiary.countMood("good")+"");
+        textView3.setText(dbHelperDiary.countMood("neutral")+"");
+        textView4.setText(dbHelperDiary.countMood("awful")+"");
+        textView5.setText(dbHelperDiary.countMood("bad")+"");
+    }
 
+    void setChart()
+    {
         List<PieEntry> NoOfEmp = new ArrayList();
+        NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("happy")*1f, 0));
+        NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("good")*1f, 1));
+        NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("neutral")*1f, 2));
+        NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("awful")*1f, 3));
+        NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("bad")*1f, 4));
 
-        NoOfEmp.add(new PieEntry(452, 0));
-        NoOfEmp.add(new PieEntry(240, 1));
-        NoOfEmp.add(new PieEntry(133, 2));
-        NoOfEmp.add(new PieEntry(340, 3));
-        NoOfEmp.add(new PieEntry(369, 4));
+        Log.d("Magic count",dbHelperDiary.countMood("happy")+"");
+        Log.d("Magic count",dbHelperDiary.countMood("good")+"");
+        Log.d("Magic count",dbHelperDiary.countMood("neutral")+"");
+        Log.d("Magic count",dbHelperDiary.countMood("awful")+"");
+        Log.d("Magic count",dbHelperDiary.countMood("bad")+"");
 
-        NoOfEmp.get(0).setIcon(getResources().getDrawable(R.drawable.ic_happy2));
-        NoOfEmp.get(1).setIcon(getResources().getDrawable(R.drawable.ic_good2));
-        NoOfEmp.get(2).setIcon(getResources().getDrawable(R.drawable.ic_neutral2));
-        NoOfEmp.get(3).setIcon(getResources().getDrawable(R.drawable.ic_sad2));
-        NoOfEmp.get(4).setIcon(getResources().getDrawable(R.drawable.ic_bad2));
-        PieDataSet dataSet = new PieDataSet(NoOfEmp, "Number Of Mood");
-
-        ArrayList year = new ArrayList();
+        NoOfEmp.get(0).setLabel("HAPPY");
+        NoOfEmp.get(1).setLabel("GOOD");
+        NoOfEmp.get(2).setLabel("NEUTRAL");
+        NoOfEmp.get(3).setLabel("AWFUL");
+        NoOfEmp.get(4).setLabel("BAD");
 
 
+        PieDataSet dataSet = new PieDataSet(NoOfEmp, "");
         PieData data = new PieData(dataSet);
+        dataSet.setColors(getResources().getIntArray(R.array.manymood));
+
         pieChart.setData(data);
-        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        pieChart.setBackground(getResources().getDrawable(R.drawable.bg_gradient));
+        pieChart.setCenterTextSize(15);
+        pieChart.setEntryLabelTextSize(13);
+        pieChart.setCenterTextSizePixels(13);
+        pieChart.setScrollBarSize(20);
+
         pieChart.setCenterText("Mood Diary");
         pieChart.setCenterTextColor(R.color.mauchu);
-        pieChart.setCenterTextSize(20);
-        pieChart.animateXY(5000, 5000);
-        return view;
+
+        pieChart.animateXY(4000, 4000);
     }
 }

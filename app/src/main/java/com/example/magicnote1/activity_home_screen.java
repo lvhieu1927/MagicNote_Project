@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.magicnote1.chart.PieChartActivity;
 import com.example.magicnote1.splash.SplashScreenWishlist;
 
 public class activity_home_screen extends AppCompatActivity {
@@ -47,6 +48,13 @@ public class activity_home_screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_home_screen.this, SplashScreenWishlist.class);
+                startActivity(intent);
+            }
+        });
+        cardView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_home_screen.this, PieChartActivity.class);
                 startActivity(intent);
             }
         });
