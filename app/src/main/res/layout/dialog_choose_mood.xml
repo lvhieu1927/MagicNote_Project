@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/ln2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:padding="10dp"
+    android:background="@drawable/bg_gradient"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageButton
+        android:id="@+id/add_diary_button_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_happy_white2"
+        android:background="#00000000"
+        android:textSize="20dp"
+        />
+
+    <ImageButton
+        android:id="@+id/add_diary_button_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@drawable/ic_good_white2"
+        android:background="#00000000"
+        />
+
+    <ImageButton
+        android:id="@+id/add_diary_button_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:src="@drawable/ic_neutral_white2"
+        />
+
+    <ImageButton
+        android:id="@+id/add_diary_button_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:src="@drawable/ic_awful_white2"
+        />
+
+    <ImageButton
+        android:id="@+id/add_diary_button_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#00000000"
+        android:src="@drawable/ic_bad_white2"
+        />
+
+</LinearLayout>
