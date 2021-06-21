@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -297,7 +298,12 @@ public class todolist_item_Activity extends Activity {
         notificationReceiverPending = PendingIntent.getBroadcast(
                 todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        mAlarm.set(AlarmManager.RTC_WAKEUP,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + time,
+                    notificationReceiverPending);
+        }
+        else mAlarm.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),

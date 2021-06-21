@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -209,7 +210,12 @@ public class todolist_MainMenu_Activity extends Activity {
         },700);
     }
     private void setReminder(long time){
-        mAlarm.set(AlarmManager.RTC_WAKEUP,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + time,
+                    notificationReceiverPending);
+        }
+        else mAlarm.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60- Calendar.getInstance().get(Calendar.SECOND)),
