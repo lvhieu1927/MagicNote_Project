@@ -14,7 +14,7 @@
         android:layout_height="0dp"
         android:layout_weight="6">
         <LinearLayout
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:orientation="vertical">
             <TextView
@@ -151,6 +151,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="7"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
@@ -164,15 +165,15 @@
                     android:id="@+id/task_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="text"
+                    android:inputType="text|textMultiLine|textCapSentences"
                     android:padding="10dp"
-                    android:text=""
                     android:textSize="20dp"
                     android:gravity="left|top"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="3"
                 android:orientation="horizontal">
                 <CheckBox
                     android:id="@+id/CBcompleted"
