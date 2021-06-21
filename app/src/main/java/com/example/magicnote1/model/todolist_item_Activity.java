@@ -83,8 +83,6 @@ public class todolist_item_Activity extends Activity {
                 int second = calendar.get(Calendar.SECOND);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
-                Date date = calendar.getTime();
-                long m = date.getMinutes();
                 timePicker = new TimePickerDialog(todolist_item_Activity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

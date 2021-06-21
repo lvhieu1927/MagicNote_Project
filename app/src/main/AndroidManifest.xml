@@ -7,6 +7,7 @@
         android:targetSdkVersion="30" />
     <supports-screens android:largestWidthLimitDp="480" />
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -31,11 +32,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".todolist_MainMenu_Activity" />
-        <activity android:name=".model.todolist_item_Activity" />
+        <activity android:name=".todolist_MainMenu_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".model.todolist_item_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </activity>
 
-        <receiver android:name=".model.reminderReceiver"
-        android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+        <receiver android:name=".model.reminderReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
