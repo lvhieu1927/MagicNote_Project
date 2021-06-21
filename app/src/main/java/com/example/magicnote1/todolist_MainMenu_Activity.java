@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,24 +56,39 @@ public class todolist_MainMenu_Activity extends Activity {
     private Intent notificationReceiver;
     private PendingIntent notificationReceiverPending;
     private int themeId = 0;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist_main_menu);
         loadingLogo();
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         listTask = new ArrayList<Task>(0);
         toDoList = new ToDoList(this);
         listViewTask = (ListView)findViewById(R.id.lisk_view_task);
         updateListViewTask();
         listViewTask.setOnItemClickListener(listViewListener);
-        changeTheme();
+        int loadThemeId = sharedPreferences.getInt("themeid",0);
+        Log.d("id at Create"," "+loadThemeId);
+        changeTheme(loadThemeId);
     }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putInt("themeid",themeId);
+//        editor.apply();
+//    }
+
 
     @Override
     protected void onResume(){
         super.onResume();
         updateListViewTask();
-        changeTheme();
+        int loadThemeId = sharedPreferences.getInt("themeid",0);
+        Log.d("id at Resume"," "+loadThemeId);
+        changeTheme(loadThemeId);
     }
     //Xử lý khi nhấn vào task
     private AdapterView.OnItemClickListener listViewListener = new AdapterView.OnItemClickListener() {
@@ -152,8 +170,18 @@ public class todolist_MainMenu_Activity extends Activity {
                 //
                 break;
             case R.id.change_theme_button:
-                changeTheme();
-
+                int loadThemeId = sharedPreferences.getInt("themeid",0);
+                Log.d("id at click"," "+loadThemeId);
+                loadThemeId++;
+                if(loadThemeId>3){
+                    loadThemeId = 0;
+                }
+                changeTheme(loadThemeId);
+                Log.d("id after click"," "+loadThemeId);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("themeid",loadThemeId);
+                editor.apply();
+                break;
         }
     }
     public void checkEmpty(List list){
@@ -194,27 +222,20 @@ public class todolist_MainMenu_Activity extends Activity {
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
     }
-    public void changeTheme(){
+    public void changeTheme(int loadThemeId){
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_main);
-        if(themeId>3){
-            themeId = 0;
-        }
-        switch (themeId){
+        switch (loadThemeId){
             case 0:
                 bgView.setBackgroundResource(R.drawable.bg_todolist1);
-                themeId ++;
                 break;
             case 1:
                 bgView.setBackgroundResource(R.drawable.bg_todolist2);
-                themeId ++;
                 break;
             case 2:
                 bgView.setBackgroundResource(R.drawable.bg_todolist3);
-                themeId ++;
                 break;
             case 3:
                 bgView.setBackgroundResource(R.drawable.bg_todolist4);
-                themeId ++;
                 break;
         }
     }
