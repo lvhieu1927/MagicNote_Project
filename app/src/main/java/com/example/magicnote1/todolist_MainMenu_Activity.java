@@ -2,11 +2,15 @@ package com.example.magicnote1;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -15,8 +19,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +37,9 @@ import com.example.magicnote1.model.todolist_item_Activity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.zip.Inflater;
 
 
 //Activity quản lý task
@@ -100,17 +110,17 @@ public class todolist_MainMenu_Activity extends Activity {
                         if(buttonView.isChecked()) {
                             listTask.get(position).setCompleted(true);
                             rowItem.setBackgroundResource(R.drawable.round_item_completed);
-//                            mAlarm.cancel(notificationReceiverPending);
+                            mAlarm.cancel(notificationReceiverPending);
                         } else {
                             Log.d("id noti main"," "+listTask.get(position).getIdTask());
                             listTask.get(position).setCompleted(false);
                             rowItem.setBackgroundResource(R.drawable.round_item);
-//                            if(listTask.get(position).getDate().length()>0) {
-//                                long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
-//                                if (wTime > 0) {
-//                                    setReminder(wTime);
-//                                } else setReminder(86460000 + wTime);
-//                            }
+                            if(listTask.get(position).getDate().length()>0) {
+                                long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+                                if (wTime > 0) {
+                                    setReminder(wTime);
+                                } else setReminder(86460000 + wTime);
+                            }
                         }
                         toDoList.updateTask(listTask.get(position));
                     }
@@ -138,6 +148,9 @@ public class todolist_MainMenu_Activity extends Activity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 //
                 break;
+            case R.id.change_theme_button:
+                changeTheme();
+
         }
     }
     public void checkEmpty(List list){
@@ -177,5 +190,30 @@ public class todolist_MainMenu_Activity extends Activity {
     public String timeFormat(long millis){
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
+    }
+    public void changeTheme(){
+//        View bgView = getLayoutInflater().inflate(R.layout.activity_todolist_main_menu,null);
+        LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_main);
+        ImageButton changeTheme = (ImageButton)findViewById(R.id.change_theme_button);
+        changeTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int random = new Random().nextInt(4);
+                switch (random){
+                    case 0:
+                        bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                        break;
+                    case 1:
+                        bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                        break;
+                    case 2:
+                        bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                        break;
+                    case 3:
+                        bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                        break;
+                }
+            }
+        });
     }
 }

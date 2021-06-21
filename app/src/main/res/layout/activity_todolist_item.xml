@@ -44,7 +44,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Due date"
+                    android:layout_gravity="center_vertical"
                     android:textSize="20dp"
                     android:padding="10dp"/>
                 <ImageButton
@@ -66,9 +68,12 @@
                 <TextView
                     android:id="@+id/showDate"
                     android:layout_width="wrap_content"
+                    android:layout_weight="10"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
                     android:padding="10dp"
+                    android:paddingLeft="10dp"
+                    android:layout_gravity="center_vertical"
                     android:inputType="text"
                     android:focusable="true"
                     android:focusableInTouchMode="true"/>
@@ -76,11 +81,71 @@
                     android:id="@+id/clrtime"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
+                    android:layout_weight="0"
                     android:src="@drawable/ic_clear"
                     android:scaleType="fitCenter"
                     android:background="@drawable/bt_round_button"
                     android:onClick="clickButton"
                     android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Repeat "
+                    android:layout_gravity="center_vertical"
+                    android:textSize="20sp"
+                    android:padding="10dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical|center_horizontal">
+                        <RadioButton
+                            android:id="@+id/mon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="M"
+                            android:layout_gravity="center_vertical"/>
+                        <RadioButton
+                            android:id="@+id/tue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="T"
+                            android:layout_gravity="center_vertical"/>
+                        <RadioButton
+                            android:id="@+id/wed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="W"
+                            android:layout_gravity="center_vertical"/>
+                        <RadioButton
+                            android:id="@+id/thu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="T"
+                            android:layout_gravity="center_vertical"/>
+                        <RadioButton
+                            android:id="@+id/fri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="F"
+                            android:layout_gravity="center_vertical"/>
+                        <RadioButton
+                            android:id="@+id/sat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="S"
+                            android:layout_gravity="center_vertical"/>
+                        <RadioButton
+                            android:id="@+id/sun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="S"
+                            android:layout_gravity="center_vertical"/>
+                </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

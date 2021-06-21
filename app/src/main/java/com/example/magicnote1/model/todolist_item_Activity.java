@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -75,14 +76,6 @@ public class todolist_item_Activity extends Activity {
                 int month = calendar.get(Calendar.MONTH);
                 Date date = calendar.getTime();
                 long m = date.getMinutes();
-//                datePicker = new DatePickerDialog(todolist_item_Activity.this, new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                        setDate.setText(dayOfMonth + " " + month);
-//                    }
-//                },date.getYear(),day,month);
-//                datePicker.show();
-//            }
                 timePicker = new TimePickerDialog(todolist_item_Activity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -218,6 +211,7 @@ public class todolist_item_Activity extends Activity {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minutes = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
+        CheckBox checkBoxComplete = (CheckBox)findViewById(R.id.CBcompleted);
         TextView textId = (TextView)findViewById(R.id.id_view);
         CheckBox checkPriority = (CheckBox)findViewById(R.id.CBpriority);
         TextView dueDate = (TextView) findViewById(R.id.due_date);
@@ -257,6 +251,14 @@ public class todolist_item_Activity extends Activity {
                         } else setReminder(86400000 + wTime, task.getIdTask());
                     }
                 }
+                checkBoxComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            cancelReminder(task.getIdTask());
+                        }
+                    }
+                });
             }
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -293,11 +295,21 @@ public class todolist_item_Activity extends Activity {
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
+    private void cancelReminder(int id){
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+        mAlarm.cancel(notificationReceiverPending);
+    }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
     }
     public String timeFormat(long millis){
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
+    }
+    public void scheduleAlarm(int dayOfWeek){
+
     }
 }
