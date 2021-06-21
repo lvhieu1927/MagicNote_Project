@@ -22,7 +22,6 @@
     <color name="content_text_color">#999da4</color>
     <color name="bad">#f2131f</color>
     <color name="mauchu">#b35900</color>
-
     <array name="manymood">
         <item>@color/happy</item>
         <item>@color/good</item>

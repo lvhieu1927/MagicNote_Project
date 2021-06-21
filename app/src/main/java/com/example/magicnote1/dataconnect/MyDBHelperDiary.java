@@ -63,7 +63,6 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         return  count;
     }
 
-
     //xóa note có diary id =
     public void deleteDiaryNote(int diary_ID)
     {

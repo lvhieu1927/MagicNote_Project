@@ -2,17 +2,26 @@ package com.example.magicnote1.model;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -32,15 +41,16 @@ public class todolist_item_Activity extends Activity {
     private PendingIntent notificationReceiverPending;
     TimePickerDialog timePicker;
     DatePickerDialog datePicker;
+    ImageButton clrtime;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist_item);
-        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        notificationReceiver = new Intent(todolist_item_Activity.this,
-                reminderReceiver.class);
-        notificationReceiverPending = PendingIntent.getBroadcast(
-                todolist_item_Activity.this, 0, notificationReceiver, 0);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        int loadThemeId = sharedPreferences.getInt("themeid",0);
+        Log.d("id at Create"," "+loadThemeId);
+        changeTheme(loadThemeId);
         toDoList = new ToDoList(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
@@ -58,6 +68,10 @@ public class todolist_item_Activity extends Activity {
         }
         TextView saveDate = (TextView) findViewById(R.id.due_date);
         TextView showDate = (TextView) findViewById(R.id.showDate);
+        clrtime = (ImageButton)findViewById(R.id.clrtime);
+        if(saveDate.getText().length()<=0){
+            clrtime.setVisibility(View.GONE);
+        }
         ImageButton pickTime = (ImageButton)findViewById(R.id.timepicker);
         pickTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,16 +82,6 @@ public class todolist_item_Activity extends Activity {
                 int second = calendar.get(Calendar.SECOND);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
                 int month = calendar.get(Calendar.MONTH);
-                Date date = calendar.getTime();
-                long m = date.getMinutes();
-//                datePicker = new DatePickerDialog(todolist_item_Activity.this, new DatePickerDialog.OnDateSetListener() {
-//                    @Override
-//                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-//                        setDate.setText(dayOfMonth + " " + month);
-//                    }
-//                },date.getYear(),day,month);
-//                datePicker.show();
-//            }
                 timePicker = new TimePickerDialog(todolist_item_Activity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -85,6 +89,7 @@ public class todolist_item_Activity extends Activity {
                         long time = toMillis(hourOfDay,minute,0);
                         saveDate.setText(String.valueOf(time));
                         showDate.setText(timeFormat(time));
+                        clrtime.setVisibility(View.VISIBLE);
                     }
                 },hour,minutes, true);
                 timePicker.show();
@@ -112,7 +117,21 @@ public class todolist_item_Activity extends Activity {
                 updateTask();
                 break;
             case R.id.button_delete_task:
-                deleteTask();
+                AlertDialog alertDialog = new AlertDialog.Builder(this)
+                        .setTitle("Bạn có chắc muốn xoá ?")
+                        .setMessage("Khi đã xoá sẽ không thể phục hồi")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                deleteTask();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        })
+                        .show();
                 break;
             case R.id.button_back:
                 finish();
@@ -129,6 +148,8 @@ public class todolist_item_Activity extends Activity {
                 catch (ActivityNotFoundException a){
                     Toast.makeText(getApplicationContext(),"Oops",Toast.LENGTH_SHORT).show();
                 }
+            case R.id.clrtime:
+                clearTime();
         }
     }
     //Load data của task
@@ -143,7 +164,6 @@ public class todolist_item_Activity extends Activity {
         textId.setText(String.valueOf(task.getIdTask()));
         checkPriority.setChecked(task.getPriority());
         dueDate.setText(task.getDate());
-        showDate.setText(timeFormat(Long.valueOf(task.getDate())));
         if(task.getDate().length()>0) {
             showDate.setText(timeFormat(Long.valueOf(task.getDate())));
         } else showDate.setText("");
@@ -170,24 +190,26 @@ public class todolist_item_Activity extends Activity {
         task.setCompleted(checkCompleted.isChecked());
         Task taskNew = toDoList.createTask(task);
         textId.setText(String.valueOf(taskNew.getIdTask()));
-        if(dueDate.getText().toString().length()>0) {
-            if(!checkCompleted.isChecked()) {
-                long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
-                if (wTime > 0) {
-                    setReminder(wTime);
-                } else setReminder(86460000 + wTime);
-            }
-        }
-
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
             deleteTask();
             Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
         }
-        else Toast.makeText(getApplicationContext(),"Thêm thành công",Toast.LENGTH_SHORT).show();
-        finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        else {
+            Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+            if (dueDate.getText().toString().length() > 0) {
+                if (!checkCompleted.isChecked()) {
+                    long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+                    if (wTime > 0) {
+                        setReminder(wTime, taskNew.getIdTask());
+                        Log.d("task id", "add id " + taskNew.getIdTask());
+                    } else setReminder(86400000 + wTime, taskNew.getIdTask());
+                }
+            }
+        }
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     //Cập nhật task
     private void updateTask(){
@@ -195,6 +217,7 @@ public class todolist_item_Activity extends Activity {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minutes = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
+        CheckBox checkBoxComplete = (CheckBox)findViewById(R.id.CBcompleted);
         TextView textId = (TextView)findViewById(R.id.id_view);
         CheckBox checkPriority = (CheckBox)findViewById(R.id.CBpriority);
         TextView dueDate = (TextView) findViewById(R.id.due_date);
@@ -217,23 +240,32 @@ public class todolist_item_Activity extends Activity {
 //            } else{
 //                setReminder(Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second));
 //            }
-            if(dueDate.getText().toString().length()>0) {
-                if (!checkCompleted.isChecked()) {
-                    long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
-                    if (wTime > 0) {
-                        setReminder(wTime);
-                    } else setReminder(86460000 + wTime);
-                }
-            }
-
-
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
                 Toast.makeText(getApplicationContext(),"Bạn cần có nội dung task",Toast.LENGTH_SHORT).show();
                 deleteTask();
                 Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
             }
-            else Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
+            else {
+                Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                if (dueDate.getText().toString().length() > 0) {
+                    if (!checkCompleted.isChecked()) {
+                        long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+                        if (wTime > 0) {
+                            setReminder(wTime, task.getIdTask());
+                            Log.d("task id", "update id " + id);
+                        } else setReminder(86400000 + wTime, task.getIdTask());
+                    }
+                }
+                checkBoxComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(isChecked){
+                            cancelReminder(task.getIdTask());
+                        }
+                    }
+                });
+            }
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
@@ -246,16 +278,40 @@ public class todolist_item_Activity extends Activity {
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
         }
-        Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
-    private void setReminder(long time){
-        mAlarm.set(AlarmManager.RTC_WAKEUP,
+    private void clearTime(){
+        TextView dueDate = (TextView) findViewById(R.id.due_date);
+        TextView showDate = (TextView) findViewById(R.id.showDate);
+        dueDate.setText("");
+        showDate.setText("");
+        clrtime.setVisibility(View.GONE);
+    }
+    private void setReminder(long time,int id){
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + time,
+                    notificationReceiverPending);
+        }
+        else mAlarm.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
+    }
+    private void cancelReminder(int id){
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+        mAlarm.cancel(notificationReceiverPending);
     }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
@@ -263,5 +319,25 @@ public class todolist_item_Activity extends Activity {
     public String timeFormat(long millis){
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
+    }
+    public void scheduleAlarm(int dayOfWeek){
+
+    }
+    public void changeTheme(int loadThemeId){
+        LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_item);
+        switch (loadThemeId){
+            case 0:
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                break;
+            case 1:
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                break;
+            case 2:
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                break;
+            case 3:
+                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                break;
+        }
     }
 }

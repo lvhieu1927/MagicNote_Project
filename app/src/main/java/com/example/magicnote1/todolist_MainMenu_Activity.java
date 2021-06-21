@@ -2,18 +2,33 @@ package com.example.magicnote1;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +41,9 @@ import com.example.magicnote1.model.todolist_item_Activity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.zip.Inflater;
 
 //Activity quản lý task
 public class todolist_MainMenu_Activity extends Activity {
@@ -38,22 +55,38 @@ public class todolist_MainMenu_Activity extends Activity {
     private AlarmManager mAlarm;
     private Intent notificationReceiver;
     private PendingIntent notificationReceiverPending;
+    private int themeId = 0;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist_main_menu);
         loadingLogo();
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         listTask = new ArrayList<Task>(0);
         toDoList = new ToDoList(this);
         listViewTask = (ListView)findViewById(R.id.lisk_view_task);
         updateListViewTask();
         listViewTask.setOnItemClickListener(listViewListener);
+        int loadThemeId = sharedPreferences.getInt("themeid",0);
+        Log.d("id at Create"," "+loadThemeId);
+        changeTheme(loadThemeId);
     }
 
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putInt("themeid",themeId);
+//        editor.apply();
+//    }
     @Override
     protected void onResume(){
         super.onResume();
         updateListViewTask();
+        int loadThemeId = sharedPreferences.getInt("themeid",0);
+        Log.d("id at Resume"," "+loadThemeId);
+        changeTheme(loadThemeId);
     }
     //Xử lý khi nhấn vào task
     private AdapterView.OnItemClickListener listViewListener = new AdapterView.OnItemClickListener() {
@@ -75,34 +108,38 @@ public class todolist_MainMenu_Activity extends Activity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View rowItem = getLayoutInflater().inflate(R.layout.item_layout,null);
-                Switch switchDone = (Switch) rowItem.findViewById(R.id.switch_done);
+                CheckBox checkDone = (CheckBox) rowItem.findViewById(R.id.check_done);
                 TextView itemView = (TextView)rowItem.findViewById(R.id.item_view);
                 itemView.setText(listTask.get(position).result());
                 if(listTask.get(position).getCompleted())
                 {
-                    switchDone.setChecked(true);
+                    checkDone.setChecked(true);
                     rowItem.setBackgroundResource(R.drawable.round_item_completed);
                 }
-                switchDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                checkDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Calendar calendar = Calendar.getInstance();
                         notificationReceiver = new Intent(todolist_MainMenu_Activity.this,
                                 reminderReceiver.class);
                         notificationReceiverPending = PendingIntent.getBroadcast(
-                                todolist_MainMenu_Activity.this, 0, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+                                todolist_MainMenu_Activity.this, listTask.get(position).getIdTask(), notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
                         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
                         if(buttonView.isChecked()) {
                             listTask.get(position).setCompleted(true);
                             rowItem.setBackgroundResource(R.drawable.round_item_completed);
-                            //mAlarm.cancel(notificationReceiverPending);
+                            mAlarm.cancel(notificationReceiverPending);
                         } else {
+                            Log.d("id noti main"," "+listTask.get(position).getIdTask());
                             listTask.get(position).setCompleted(false);
                             rowItem.setBackgroundResource(R.drawable.round_item);
-//                            long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
-//                            if (wTime > 0) {
-//                                setReminder(wTime);
-//                            } else setReminder(86460000 + wTime);
+                            if(listTask.get(position).getDate().length()>0) {
+                                long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+                                if (wTime > 0) {
+                                    setReminder(wTime);
+                                } else setReminder(86460000 + wTime);
+                            }
                         }
                         toDoList.updateTask(listTask.get(position));
                     }
@@ -129,6 +166,19 @@ public class todolist_MainMenu_Activity extends Activity {
                 //Transition animation
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 //
+                break;
+            case R.id.change_theme_button:
+                int loadThemeId = sharedPreferences.getInt("themeid",0);
+                Log.d("id at click"," "+loadThemeId);
+                loadThemeId++;
+                if(loadThemeId>3){
+                    loadThemeId = 0;
+                }
+                changeTheme(loadThemeId);
+                Log.d("id after click"," "+loadThemeId);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("themeid",loadThemeId);
+                editor.apply();
                 break;
         }
     }
@@ -157,7 +207,12 @@ public class todolist_MainMenu_Activity extends Activity {
         },700);
     }
     private void setReminder(long time){
-        mAlarm.set(AlarmManager.RTC_WAKEUP,
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + time,
+                    notificationReceiverPending);
+        }
+        else mAlarm.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60- Calendar.getInstance().get(Calendar.SECOND)),
@@ -169,5 +224,22 @@ public class todolist_MainMenu_Activity extends Activity {
     public String timeFormat(long millis){
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
+    }
+    public void changeTheme(int loadThemeId){
+        LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_main);
+        switch (loadThemeId){
+            case 0:
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                break;
+            case 1:
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                break;
+            case 2:
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                break;
+            case 3:
+                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                break;
+        }
     }
 }
