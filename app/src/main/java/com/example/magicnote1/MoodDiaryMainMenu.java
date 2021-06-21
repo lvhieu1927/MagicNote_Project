@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.magicnote1.adapter.DiaryNoteAdapter;
@@ -20,8 +23,9 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     private ArrayList<DiaryNote> mListDiary;
     private RecyclerView mRecyclerView;
     private DiaryNoteAdapter mDiaryNoteAdapter;
-
+    private EditText searchInput;
     private ImageButton bt_AddDiary;
+    CharSequence search="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +44,28 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mDiaryNoteAdapter = new DiaryNoteAdapter(mListDiary, this);
+        searchInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
+                mDiaryNoteAdapter.getFilter().filter(s);
+                search = s;
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     private void addControl() {
@@ -52,5 +76,6 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         mRecyclerView.setAdapter(mDiaryNoteAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         bt_AddDiary = findViewById(R.id.bt_AddDiary);
+        searchInput = findViewById(R.id.search_input);
     }
 }

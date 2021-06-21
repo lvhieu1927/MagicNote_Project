@@ -1,5 +1,6 @@
 package com.example.magicnote1;
 
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -46,7 +47,7 @@ public class WishListMainActivity extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
-
+        ActionBar actionBar = this.getActionBar();
         myDB = new WishListDatabaseHelper(WishListMainActivity.this);
         itemId = new ArrayList<>();
         itemName = new ArrayList<>();
@@ -105,7 +106,7 @@ public class WishListMainActivity extends AppCompatActivity {
         menu.findItem(R.id.item_searchItem).setOnActionExpandListener(onActionExpandListener);
         SearchView searchView = (SearchView) menu.findItem(R.id.item_searchItem).getActionView();
         searchView.setQueryHint("Search item here...");
-
+        searchView.setBackground(this.getResources().getDrawable(R.drawable.bg_gradient));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

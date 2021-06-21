@@ -5,12 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.example.magicnote1.model.DiaryNote;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MyDBHelperDiary extends SQLiteOpenHelper {
 
@@ -35,6 +37,20 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         //
+    }
+
+
+    public String getPositiveString()
+    {
+        db = helper.openDatabase();
+        int min = 2;
+        int max = 35;
+        int random = new Random().nextInt((max - min) + 1) + min;
+        Cursor cursor = db.rawQuery("select positive_str from positive where positive_id = ?",new String[]{random+""});
+        cursor.moveToNext();
+        String string= cursor.getString(0);
+        db.close();
+        return string;
     }
 
     public int countMood(String mood)

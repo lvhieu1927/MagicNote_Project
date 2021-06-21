@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PieChartActivity extends Activity {
 
-    TextView textView1,textView2,textView3,textView4,textView5;
+    TextView textView1,textView2,textView3,textView4,textView5,tv_positive;
     MyDBHelperDiary dbHelperDiary;
     PieChart pieChart;
 
@@ -34,6 +34,7 @@ public class PieChartActivity extends Activity {
     private void addEvent() {
         setChart();
         setTextView();
+        setPositive();
     }
 
     private void addControl() {
@@ -44,6 +45,7 @@ public class PieChartActivity extends Activity {
         textView3 = findViewById(R.id.textview3);
         textView4 = findViewById(R.id.textview4);
         textView5 = findViewById(R.id.textview5);
+        tv_positive = findViewById(R.id.tv_positive);
     }
 
     void setTextView()
@@ -55,6 +57,11 @@ public class PieChartActivity extends Activity {
         textView5.setText(dbHelperDiary.countMood("bad")+"");
     }
 
+    void setPositive()
+    {
+        tv_positive.setText(dbHelperDiary.getPositiveString());
+    }
+
     void setChart()
     {
         List<PieEntry> NoOfEmp = new ArrayList();
@@ -63,12 +70,6 @@ public class PieChartActivity extends Activity {
         NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("neutral")*1f, 2));
         NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("awful")*1f, 3));
         NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("bad")*1f, 4));
-
-        Log.d("Magic count",dbHelperDiary.countMood("happy")+"");
-        Log.d("Magic count",dbHelperDiary.countMood("good")+"");
-        Log.d("Magic count",dbHelperDiary.countMood("neutral")+"");
-        Log.d("Magic count",dbHelperDiary.countMood("awful")+"");
-        Log.d("Magic count",dbHelperDiary.countMood("bad")+"");
 
         NoOfEmp.get(0).setLabel("HAPPY");
         NoOfEmp.get(1).setLabel("GOOD");

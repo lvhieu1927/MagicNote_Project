@@ -24,7 +24,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.MyView
     private Context context;
     private Activity activity;
     private ArrayList item_id, item_name, item_price;
-
+    private int count =1;
     //khai bao contractor voi cac doi so truyen vao
     public WishListAdapter(Activity activity, Context context, ArrayList id, ArrayList name, ArrayList price){
         this.activity = activity;
@@ -45,7 +45,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull WishListAdapter.MyViewHolder holder, int position) {
-        holder.item_id.setText(String.valueOf(item_id.get(position)));
+        holder.item_id.setText((position+1)+"");
         holder.item_name.setText(String.valueOf(item_name.get(position)));
         holder.item_price.setText(String.valueOf(item_price.get(position)));
 
