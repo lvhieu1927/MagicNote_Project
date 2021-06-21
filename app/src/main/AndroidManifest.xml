@@ -34,7 +34,12 @@
         <activity android:name=".todolist_MainMenu_Activity" />
         <activity android:name=".model.todolist_item_Activity" />
 
-        <receiver android:name=".model.reminderReceiver"/>
+        <receiver android:name=".model.reminderReceiver"
+        android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
