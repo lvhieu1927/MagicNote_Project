@@ -8,30 +8,33 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.example.magicnote1.R;
+import com.example.magicnote1.model.todolist_item_Activity;
 import com.example.magicnote1.todolist_MainMenu_Activity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class reminderReceiver extends BroadcastReceiver {
 
     // Notification Sound and Vibration on Arrival
 
-    private long[] mVibratePattern = { 0, 200, 200, 300 };
-
+    private long[] mVibratePattern = { 0, 1000, 1000, 1000, 1000 };
+    PendingIntent contentIntent;
     @Override
     public void onReceive(Context context, Intent intent) {
-
+            Task task = new Task();
             String CHANNEL_ID = "MESSAGE";
             String CHANNEL_NAME = "MESSAGE";
             Intent notiIntent = new Intent(context, todolist_MainMenu_Activity.class);
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notiIntent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
+                    PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationManagerCompat manager = NotificationManagerCompat.from(context);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -46,6 +49,7 @@ public class reminderReceiver extends BroadcastReceiver {
                     .setContentTitle("Nhắc nhở công việc")
                     .setContentText("Bạn có công tiệc cần làm bây giờ. Check ngay !")
                     .setAutoCancel(true)
+                    .setVibrate(new long[]{1000,1000})
                     .build();
             manager.notify(getRandomNumber(), notification);
 

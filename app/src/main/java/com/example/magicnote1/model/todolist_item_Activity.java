@@ -2,13 +2,16 @@ package com.example.magicnote1.model;
 
 import android.app.Activity;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,11 +41,6 @@ public class todolist_item_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todolist_item);
-        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        notificationReceiver = new Intent(todolist_item_Activity.this,
-                reminderReceiver.class);
-        notificationReceiverPending = PendingIntent.getBroadcast(
-                todolist_item_Activity.this, 0, notificationReceiver, 0);
         toDoList = new ToDoList(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
@@ -61,7 +59,10 @@ public class todolist_item_Activity extends Activity {
         TextView saveDate = (TextView) findViewById(R.id.due_date);
         TextView showDate = (TextView) findViewById(R.id.showDate);
         clrtime = (ImageButton)findViewById(R.id.clrtime);
-        clrtime.setVisibility(View.GONE);
+        if(saveDate.getText().length()<=0){
+            clrtime.setVisibility(View.GONE);
+        }
+
         ImageButton pickTime = (ImageButton)findViewById(R.id.timepicker);
         pickTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +118,21 @@ public class todolist_item_Activity extends Activity {
                 updateTask();
                 break;
             case R.id.button_delete_task:
-                deleteTask();
+                AlertDialog alertDialog = new AlertDialog.Builder(this)
+                        .setTitle("Bạn có chắc muốn xoá ?")
+                        .setMessage("Khi đã xoá sẽ không thể phục hồi")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                deleteTask();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        })
+                        .show();
                 break;
             case R.id.button_back:
                 finish();
@@ -176,24 +191,26 @@ public class todolist_item_Activity extends Activity {
         task.setCompleted(checkCompleted.isChecked());
         Task taskNew = toDoList.createTask(task);
         textId.setText(String.valueOf(taskNew.getIdTask()));
-        if(dueDate.getText().toString().length()>0) {
-            if(!checkCompleted.isChecked()) {
-                long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
-                if (wTime > 0) {
-                    setReminder(wTime);
-                } else setReminder(86460000 + wTime);
-            }
-        }
-
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
             Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
             deleteTask();
             Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
         }
-        else Toast.makeText(getApplicationContext(),"Thêm thành công",Toast.LENGTH_SHORT).show();
-        finish();
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        else {
+            Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+            if (dueDate.getText().toString().length() > 0) {
+                if (!checkCompleted.isChecked()) {
+                    long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+                    if (wTime > 0) {
+                        setReminder(wTime, taskNew.getIdTask());
+                        Log.d("task id", "add id " + taskNew.getIdTask());
+                    } else setReminder(86400000 + wTime, taskNew.getIdTask());
+                }
+            }
+        }
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
     //Cập nhật task
     private void updateTask(){
@@ -223,23 +240,24 @@ public class todolist_item_Activity extends Activity {
 //            } else{
 //                setReminder(Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second));
 //            }
-            if(dueDate.getText().toString().length()>0) {
-                if (!checkCompleted.isChecked()) {
-                    long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
-                    if (wTime > 0) {
-                        setReminder(wTime);
-                    } else setReminder(86460000 + wTime);
-                }
-            }
-
-
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
                 Toast.makeText(getApplicationContext(),"Bạn cần có nội dung task",Toast.LENGTH_SHORT).show();
                 deleteTask();
                 Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
             }
-            else Toast.makeText(getApplicationContext(),"Cập nhật thành công",Toast.LENGTH_SHORT).show();
+            else {
+                Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                if (dueDate.getText().toString().length() > 0) {
+                    if (!checkCompleted.isChecked()) {
+                        long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+                        if (wTime > 0) {
+                            setReminder(wTime, task.getIdTask());
+                            Log.d("task id", "update id " + id);
+                        } else setReminder(86400000 + wTime, task.getIdTask());
+                    }
+                }
+            }
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
@@ -252,7 +270,7 @@ public class todolist_item_Activity extends Activity {
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
         }
-        Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
         finish();
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
@@ -263,7 +281,12 @@ public class todolist_item_Activity extends Activity {
         showDate.setText("");
         clrtime.setVisibility(View.GONE);
     }
-    private void setReminder(long time){
+    private void setReminder(long time,int id){
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
         mAlarm.set(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);

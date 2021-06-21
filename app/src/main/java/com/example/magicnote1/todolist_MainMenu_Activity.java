@@ -6,11 +6,14 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -27,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
 
 //Activity quản lý task
 public class todolist_MainMenu_Activity extends Activity {
@@ -75,34 +79,38 @@ public class todolist_MainMenu_Activity extends Activity {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View rowItem = getLayoutInflater().inflate(R.layout.item_layout,null);
-                Switch switchDone = (Switch) rowItem.findViewById(R.id.switch_done);
+                CheckBox checkDone = (CheckBox) rowItem.findViewById(R.id.check_done);
                 TextView itemView = (TextView)rowItem.findViewById(R.id.item_view);
                 itemView.setText(listTask.get(position).result());
                 if(listTask.get(position).getCompleted())
                 {
-                    switchDone.setChecked(true);
+                    checkDone.setChecked(true);
                     rowItem.setBackgroundResource(R.drawable.round_item_completed);
                 }
-                switchDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                checkDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         Calendar calendar = Calendar.getInstance();
                         notificationReceiver = new Intent(todolist_MainMenu_Activity.this,
                                 reminderReceiver.class);
                         notificationReceiverPending = PendingIntent.getBroadcast(
-                                todolist_MainMenu_Activity.this, 0, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+                                todolist_MainMenu_Activity.this, listTask.get(position).getIdTask(), notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
                         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+
                         if(buttonView.isChecked()) {
                             listTask.get(position).setCompleted(true);
                             rowItem.setBackgroundResource(R.drawable.round_item_completed);
-                            //mAlarm.cancel(notificationReceiverPending);
+//                            mAlarm.cancel(notificationReceiverPending);
                         } else {
+                            Log.d("id noti main"," "+listTask.get(position).getIdTask());
                             listTask.get(position).setCompleted(false);
                             rowItem.setBackgroundResource(R.drawable.round_item);
-//                            long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
-//                            if (wTime > 0) {
-//                                setReminder(wTime);
-//                            } else setReminder(86460000 + wTime);
+//                            if(listTask.get(position).getDate().length()>0) {
+//                                long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
+//                                if (wTime > 0) {
+//                                    setReminder(wTime);
+//                                } else setReminder(86460000 + wTime);
+//                            }
                         }
                         toDoList.updateTask(listTask.get(position));
                     }
