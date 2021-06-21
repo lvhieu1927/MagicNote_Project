@@ -52,6 +52,7 @@ public class todolist_MainMenu_Activity extends Activity {
     private AlarmManager mAlarm;
     private Intent notificationReceiver;
     private PendingIntent notificationReceiverPending;
+    private int themeId = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,12 +63,14 @@ public class todolist_MainMenu_Activity extends Activity {
         listViewTask = (ListView)findViewById(R.id.lisk_view_task);
         updateListViewTask();
         listViewTask.setOnItemClickListener(listViewListener);
+        changeTheme();
     }
 
     @Override
     protected void onResume(){
         super.onResume();
         updateListViewTask();
+        changeTheme();
     }
     //Xử lý khi nhấn vào task
     private AdapterView.OnItemClickListener listViewListener = new AdapterView.OnItemClickListener() {
@@ -192,28 +195,27 @@ public class todolist_MainMenu_Activity extends Activity {
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
     }
     public void changeTheme(){
-//        View bgView = getLayoutInflater().inflate(R.layout.activity_todolist_main_menu,null);
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_main);
-        ImageButton changeTheme = (ImageButton)findViewById(R.id.change_theme_button);
-        changeTheme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int random = new Random().nextInt(4);
-                switch (random){
-                    case 0:
-                        bgView.setBackgroundResource(R.drawable.bg_todolist1);
-                        break;
-                    case 1:
-                        bgView.setBackgroundResource(R.drawable.bg_todolist2);
-                        break;
-                    case 2:
-                        bgView.setBackgroundResource(R.drawable.bg_todolist3);
-                        break;
-                    case 3:
-                        bgView.setBackgroundResource(R.drawable.bg_todolist4);
-                        break;
-                }
-            }
-        });
+        if(themeId>3){
+            themeId = 0;
+        }
+        switch (themeId){
+            case 0:
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                themeId ++;
+                break;
+            case 1:
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                themeId ++;
+                break;
+            case 2:
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                themeId ++;
+                break;
+            case 3:
+                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                themeId ++;
+                break;
+        }
     }
 }
