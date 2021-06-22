@@ -24,11 +24,15 @@
         <activity android:name=".todolist_MainMenu_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.REBOOT"/>
             </intent-filter>
         </activity>
         <activity android:name=".model.todolist_item_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.REBOOT"/>
             </intent-filter>
         </activity>
         <activity android:name=".splash.SplashScreen">
@@ -49,6 +53,8 @@
         <receiver android:name=".model.reminderReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.REBOOT"/>
             </intent-filter>
         </receiver>
     </application>

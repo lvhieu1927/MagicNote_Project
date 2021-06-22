@@ -217,7 +217,6 @@ public class todolist_item_Activity extends Activity {
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minutes = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
-        CheckBox checkBoxComplete = (CheckBox)findViewById(R.id.CBcompleted);
         TextView textId = (TextView)findViewById(R.id.id_view);
         CheckBox checkPriority = (CheckBox)findViewById(R.id.CBpriority);
         TextView dueDate = (TextView) findViewById(R.id.due_date);
@@ -255,16 +254,8 @@ public class todolist_item_Activity extends Activity {
                             setReminder(wTime, task.getIdTask());
                             Log.d("task id", "update id " + id);
                         } else setReminder(86400000 + wTime, task.getIdTask());
-                    }
-                }
-                checkBoxComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if(isChecked){
-                            cancelReminder(task.getIdTask());
-                        }
-                    }
-                });
+                    } else cancelReminder(task.getIdTask());
+                } else cancelReminder(task.getIdTask());
             }
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -311,7 +302,10 @@ public class todolist_item_Activity extends Activity {
                 reminderReceiver.class);
         notificationReceiverPending = PendingIntent.getBroadcast(
                 todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
-        mAlarm.cancel(notificationReceiverPending);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        if(notificationReceiverPending != null) {
+            mAlarm.cancel(notificationReceiverPending);
+        }
     }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
