@@ -297,15 +297,17 @@ public class todolist_item_Activity extends Activity {
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
+    public void scheduleReminder(int dayOfWeek){
+
+    }
+
     private void cancelReminder(int id){
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
         notificationReceiverPending = PendingIntent.getBroadcast(
                 todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        if(notificationReceiverPending != null) {
-            mAlarm.cancel(notificationReceiverPending);
-        }
+        mAlarm.cancel(notificationReceiverPending);
     }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
@@ -313,9 +315,6 @@ public class todolist_item_Activity extends Activity {
     public String timeFormat(long millis){
         return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
-    }
-    public void scheduleAlarm(int dayOfWeek){
-
     }
     public void changeTheme(int loadThemeId){
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_item);
