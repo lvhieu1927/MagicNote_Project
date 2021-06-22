@@ -38,7 +38,7 @@ public class TaskWorkDBA {
         }
         values.put(dbTask.PRIORITY, priority);
         values.put(dbTask.DATE, task.getDate());
-        values.put(dbTask.REPEAT, task.getDate());
+        values.put(dbTask.REPEAT, task.getRepeat());
         values.put(dbTask.TASK_DES,task.getTaskDetails());
         values.put(dbTask.COMPLETED, done);
         long insertId = database.insert(dbTask.TABLE, null, values);
@@ -67,7 +67,7 @@ public class TaskWorkDBA {
         values.put(dbTask.COMPLETED,done);
         values.put(dbTask.TASK_DES,task.getTaskDetails());
         values.put(dbTask.DATE,task.getDate());
-        values.put(dbTask.REPEAT,task.getDate());
+        values.put(dbTask.REPEAT,task.getRepeat());
         database.update(dbTask.TABLE, values, dbTask.ID + " = " + id,null);
     }
     public List<Task> getAllTask(){

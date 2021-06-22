@@ -167,6 +167,8 @@ public class todolist_item_Activity extends Activity {
         textId.setText(String.valueOf(task.getIdTask()));
         checkPriority.setChecked(task.getPriority());
         dueDate.setText(task.getDate());
+        setDateChecked(task.getRepeat());
+        Log.d("load repeat checked",task.getRepeat());
         if(task.getDate().length()>0) {
             showDate.setText(timeFormat(Long.valueOf(task.getDate())));
         } else showDate.setText("");
@@ -188,6 +190,7 @@ public class todolist_item_Activity extends Activity {
         task.setPriority(checkPriority.isChecked());
         task.setDate(dueDate.getText().toString());
         task.setRepeat(getDateChecked());
+        Log.d("check repeat",getDateChecked());
         task.setTaskDetails(description.getText().toString());
         task.setCompleted(checkCompleted.isChecked());
         Task taskNew = toDoList.createTask(task);
@@ -229,6 +232,7 @@ public class todolist_item_Activity extends Activity {
             Task task = toDoList.getTask(id);
             task.setPriority(checkPriority.isChecked());
             task.setDate(dueDate.getText().toString());
+            task.setRepeat(getDateChecked());
             task.setTaskDetails(description.getText().toString());
             task.setCompleted(checkCompleted.isChecked());
             toDoList.updateTask(task);
@@ -272,7 +276,7 @@ public class todolist_item_Activity extends Activity {
         TextView showDate = (TextView) findViewById(R.id.showDate);
         dueDate.setText("");
         showDate.setText("");
-        clearRepeat();
+        clearRepeatCheck();
         clrtime.setVisibility(View.GONE);
     }
     private void setReminder(long time,int id){
@@ -415,7 +419,7 @@ public class todolist_item_Activity extends Activity {
             }
         });
     }
-    public void clearRepeat(){
+    public void clearRepeatCheck(){
         TextView showDate = (TextView) findViewById(R.id.showDate);
         CheckBox mon = (CheckBox)findViewById(R.id.mon);
         CheckBox tue = (CheckBox)findViewById(R.id.tue);
@@ -436,7 +440,6 @@ public class todolist_item_Activity extends Activity {
     }
     public String getDateChecked(){
         String str = "";
-        TextView showDate = (TextView) findViewById(R.id.showDate);
         CheckBox mon = (CheckBox)findViewById(R.id.mon);
         CheckBox tue = (CheckBox)findViewById(R.id.tue);
         CheckBox wed = (CheckBox)findViewById(R.id.wed);
@@ -447,7 +450,7 @@ public class todolist_item_Activity extends Activity {
         if(mon.isChecked()){
             str = str + 1;
         } else str = str + 0;
-        if(thu.isChecked()){
+        if(tue.isChecked()){
             str = str + 1;
         } else str = str + 0;
         if(wed.isChecked()){
@@ -466,5 +469,37 @@ public class todolist_item_Activity extends Activity {
             str = str + 1;
         } else str = str + 0;
         return str;
+    }
+    public void setDateChecked(String str){
+        TextView showDate = (TextView) findViewById(R.id.showDate);
+        CheckBox mon = (CheckBox)findViewById(R.id.mon);
+        CheckBox tue = (CheckBox)findViewById(R.id.tue);
+        CheckBox wed = (CheckBox)findViewById(R.id.wed);
+        CheckBox thu = (CheckBox)findViewById(R.id.thu);
+        CheckBox fri = (CheckBox)findViewById(R.id.fri);
+        CheckBox sat = (CheckBox)findViewById(R.id.sat);
+        CheckBox sun = (CheckBox)findViewById(R.id.sun);
+        if(str.substring(0, 1).equals("1")){
+            mon.setChecked(true);
+        } else mon.setChecked(false);
+        if(str.substring(1, 2).equals("1")){
+            tue.setChecked(true);
+        } else tue.setChecked(false);
+        if(str.substring(2, 3).equals("1")){
+            wed.setChecked(true);
+        } else wed.setChecked(false);
+        if(str.substring(3, 4).equals("1")){
+            thu.setChecked(true);
+        } else thu.setChecked(false);
+        if(str.substring(4, 5).equals("1")){
+            fri.setChecked(true);
+        } else fri.setChecked(false);
+        if(str.substring(5, 6).equals("1")){
+            sat.setChecked(true);
+        } else sat.setChecked(false);
+        if(str.substring(6, 7).equals("1")){
+            sun.setChecked(true);
+        } else sun.setChecked(false);
+
     }
 }
