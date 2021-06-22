@@ -7,6 +7,7 @@ public class Task {
     private int idTask;
     private boolean priority;
     private String date;
+    private String repeat;
     private String task;
     private boolean isCompleted;
 
@@ -25,7 +26,9 @@ public class Task {
         this.date = d;
     }
 
-
+    public void setRepeat(String r) {
+        this.repeat = r;
+    }
 
     public void setTaskDetails(String t) {
         this.task = t;
@@ -46,6 +49,10 @@ public class Task {
 
     public String getDate() {
         return date;
+    }
+
+    public String getRepeat() {
+        return repeat;
     }
 
     public String getTaskDetails() {

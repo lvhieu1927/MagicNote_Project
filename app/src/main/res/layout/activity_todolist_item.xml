@@ -110,43 +110,43 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:background="@drawable/round_item"
                     android:padding="5dp">
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/mon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="M"
                             android:layout_gravity="center_vertical"/>
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/tue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="T"
                             android:layout_gravity="center_vertical"/>
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/wed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="W"
                             android:layout_gravity="center_vertical"/>
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/thu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="T"
                             android:layout_gravity="center_vertical"/>
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/fri"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="F"
                             android:layout_gravity="center_vertical"/>
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/sat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="S"
                             android:layout_gravity="center_vertical"/>
-                        <RadioButton
+                        <CheckBox
                             android:id="@+id/sun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

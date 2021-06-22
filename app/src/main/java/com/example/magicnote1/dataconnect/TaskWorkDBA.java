@@ -16,7 +16,7 @@ import java.util.List;
 public class TaskWorkDBA {
     private SQLiteDatabase database;
     private dbTask dbHelper;
-    private String[] column = { dbTask.ID, dbTask.PRIORITY, dbTask.DATE, dbTask.TASK_DES, dbTask.COMPLETED};
+    private String[] column = { dbTask.ID, dbTask.PRIORITY, dbTask.DATE, dbTask.REPEAT, dbTask.TASK_DES, dbTask.COMPLETED};
     public TaskWorkDBA(Context context){
         dbHelper = new dbTask(context);
     }
@@ -38,6 +38,7 @@ public class TaskWorkDBA {
         }
         values.put(dbTask.PRIORITY, priority);
         values.put(dbTask.DATE, task.getDate());
+        values.put(dbTask.REPEAT, task.getRepeat());
         values.put(dbTask.TASK_DES,task.getTaskDetails());
         values.put(dbTask.COMPLETED, done);
         long insertId = database.insert(dbTask.TABLE, null, values);
@@ -66,6 +67,7 @@ public class TaskWorkDBA {
         values.put(dbTask.COMPLETED,done);
         values.put(dbTask.TASK_DES,task.getTaskDetails());
         values.put(dbTask.DATE,task.getDate());
+        values.put(dbTask.REPEAT,task.getRepeat());
         database.update(dbTask.TABLE, values, dbTask.ID + " = " + id,null);
     }
     public List<Task> getAllTask(){
@@ -83,12 +85,14 @@ public class TaskWorkDBA {
         int id = cursor.getInt(0);
         int priority = cursor.getInt(1);
         String date = cursor.getString(2);
-        String taskString = cursor.getString(3);
-        int complete = cursor.getInt(4);
+        String repeat = cursor.getString(3);
+        String taskString = cursor.getString(4);
+        int complete = cursor.getInt(5);
         Task task = new Task();
         task.setIdTask(id);
         task.setPriority(priority == 1);
         task.setDate(date);
+        task.setRepeat(repeat);
         task.setTaskDetails(taskString);
         task.setCompleted(complete == 1);
         return task;

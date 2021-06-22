@@ -122,6 +122,8 @@ public class todolist_MainMenu_Activity extends Activity {
                         Calendar calendar = Calendar.getInstance();
                         notificationReceiver = new Intent(todolist_MainMenu_Activity.this,
                                 reminderReceiver.class);
+                        notificationReceiver.putExtra("content alarm",listTask.get(position).getTaskDetails());
+                        Log.d("123",listTask.get(position).getTaskDetails());
                         notificationReceiverPending = PendingIntent.getBroadcast(
                                 todolist_MainMenu_Activity.this, listTask.get(position).getIdTask(), notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
                         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);

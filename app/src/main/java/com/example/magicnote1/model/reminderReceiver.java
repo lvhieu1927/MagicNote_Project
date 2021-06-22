@@ -30,10 +30,10 @@ public class reminderReceiver extends BroadcastReceiver {
             String CHANNEL_ID = "MESSAGE";
             String CHANNEL_NAME = "MESSAGE";
             Intent notiIntent = new Intent(context, todolist_MainMenu_Activity.class);
+            Log.d("123",intent.getStringExtra("content alarm"));
             PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notiIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT);
             NotificationManagerCompat manager = NotificationManagerCompat.from(context);
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME,
                         NotificationManager.IMPORTANCE_DEFAULT);
@@ -44,7 +44,8 @@ public class reminderReceiver extends BroadcastReceiver {
                     .setContentIntent(contentIntent)
                     .setSmallIcon(android.R.drawable.ic_popup_reminder)
                     .setContentTitle("Nhắc nhở công việc")
-                    .setContentText("Bạn có công tiệc cần làm bây giờ. Check ngay !")
+                    .setContentText("Bạn có công việc cần làm bây giờ. Check ngay !")
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Nội dung: " + intent.getStringExtra("content alarm")))
                     .setAutoCancel(true)
                     .setVibrate(new long[]{1000,1000})
                     .build();

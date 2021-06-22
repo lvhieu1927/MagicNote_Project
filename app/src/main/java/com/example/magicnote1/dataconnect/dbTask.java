@@ -10,6 +10,7 @@ public class dbTask extends SQLiteOpenHelper {
     public static final String ID = "id";
     public static final String PRIORITY = "priority";
     public static final String DATE = "date";
+    public static final String REPEAT = "repeat";
     public static final String TASK_DES = "tasks";
     public static final String COMPLETED = "completed";
     public static final String DB_NAME = "task.db";
@@ -18,6 +19,7 @@ public class dbTask extends SQLiteOpenHelper {
             + ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + PRIORITY + " INTEGER NOT NULL, "
             + DATE + " TEXT NOT NULL, "
+            + REPEAT + " TEXT NOT NULL, "
             + TASK_DES + " TEXT NOT NULL, "
             + COMPLETED + " INTEGER NOT NULL );";
     public dbTask(Context context){
