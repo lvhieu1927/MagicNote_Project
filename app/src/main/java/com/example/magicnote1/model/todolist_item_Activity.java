@@ -302,7 +302,7 @@ public class todolist_item_Activity extends Activity {
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":"+ Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
-    public void scheduleReminder(long time, int id, String date){
+    public void scheduleAlarm(long time, int id, String date){
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
         notificationReceiverPending = PendingIntent.getBroadcast(
