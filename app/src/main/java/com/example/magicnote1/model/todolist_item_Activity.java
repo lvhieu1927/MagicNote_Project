@@ -302,11 +302,11 @@ public class todolist_item_Activity extends Activity {
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":"+ Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
-    public void scheduleReminder(long time, int dayOfWeek){
+    public void scheduleReminder(long time, int id, String date){
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
         notificationReceiverPending = PendingIntent.getBroadcast(
-                todolist_item_Activity.this, dayOfWeek, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
         mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY*7, notificationReceiverPending);
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
