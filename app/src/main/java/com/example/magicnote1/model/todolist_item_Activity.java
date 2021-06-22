@@ -312,7 +312,6 @@ public class todolist_item_Activity extends Activity {
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
-
     private void cancelReminder(int id){
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
