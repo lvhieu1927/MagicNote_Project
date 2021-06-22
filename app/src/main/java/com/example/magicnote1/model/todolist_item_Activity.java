@@ -22,12 +22,14 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.magicnote1.R;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -95,6 +97,7 @@ public class todolist_item_Activity extends Activity {
                 timePicker.show();
             }
         });
+        checkCondRepeat();
 
     }
     @Override
@@ -169,8 +172,6 @@ public class todolist_item_Activity extends Activity {
         } else showDate.setText("");
         description.setText(task.getTaskDetails());
         checkCompleted.setChecked(task.getCompleted());
-
-
     }
     //Thêm task
     private void addTask(){
@@ -186,6 +187,7 @@ public class todolist_item_Activity extends Activity {
         Task task = new Task();
         task.setPriority(checkPriority.isChecked());
         task.setDate(dueDate.getText().toString());
+        task.setRepeat(getDateChecked());
         task.setTaskDetails(description.getText().toString());
         task.setCompleted(checkCompleted.isChecked());
         Task taskNew = toDoList.createTask(task);
@@ -231,14 +233,6 @@ public class todolist_item_Activity extends Activity {
             task.setCompleted(checkCompleted.isChecked());
             toDoList.updateTask(task);
             textId.setText(String.valueOf(task.getIdTask()));
-//            if(dueDate.getText().toString().length()<=0) {
-//                if(checkPriority.isChecked()) {
-//                    dueDate.setError("Nếu quan trong, không được để trống ô này");
-//                    return;
-//                }
-//            } else{
-//                setReminder(Long.valueOf(dueDate.getText().toString()) - toMillis(hour,minutes,second));
-//            }
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
                 Toast.makeText(getApplicationContext(),"Bạn cần có nội dung task",Toast.LENGTH_SHORT).show();
@@ -278,11 +272,15 @@ public class todolist_item_Activity extends Activity {
         TextView showDate = (TextView) findViewById(R.id.showDate);
         dueDate.setText("");
         showDate.setText("");
+        clearRepeat();
         clrtime.setVisibility(View.GONE);
     }
     private void setReminder(long time,int id){
+        Task taskget = toDoList.getTask(id);
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
+        notificationReceiver.putExtra("content alarm",taskget.getTaskDetails());
+        Log.d("123",taskget.getTaskDetails());
         notificationReceiverPending = PendingIntent.getBroadcast(
                 todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -291,14 +289,24 @@ public class todolist_item_Activity extends Activity {
                     System.currentTimeMillis() + time,
                     notificationReceiverPending);
         }
-        else mAlarm.setExact(AlarmManager.RTC_WAKEUP,
-                System.currentTimeMillis() + time,
-                notificationReceiverPending);
-        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
+        else {
+            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + time,
+                    notificationReceiverPending);
+        }
+//        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, 60000, notificationReceiverPending);
+        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":"+ Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
                 Toast.LENGTH_LONG).show();
     }
-    public void scheduleReminder(int dayOfWeek){
-
+    public void scheduleReminder(long time, int dayOfWeek){
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        notificationReceiverPending = PendingIntent.getBroadcast(
+                todolist_item_Activity.this, dayOfWeek, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY*7, notificationReceiverPending);
+        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
+                Toast.LENGTH_LONG).show();
     }
 
     private void cancelReminder(int id){
@@ -313,8 +321,9 @@ public class todolist_item_Activity extends Activity {
         return Long.valueOf((h*3600 + m *60 + s)*1000);
     }
     public String timeFormat(long millis){
-        return String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
+        String t = String.format("%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis),
                 TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)));
+        return t;
     }
     public void changeTheme(int loadThemeId){
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_item);
@@ -332,5 +341,130 @@ public class todolist_item_Activity extends Activity {
                 bgView.setBackgroundResource(R.drawable.bg_todolist4);
                 break;
         }
+    }
+    public void checkCondRepeat(){
+        TextView showDate = (TextView) findViewById(R.id.showDate);
+        CheckBox mon = (CheckBox)findViewById(R.id.mon);
+        CheckBox tue = (CheckBox)findViewById(R.id.tue);
+        CheckBox wed = (CheckBox)findViewById(R.id.wed);
+        CheckBox thu = (CheckBox)findViewById(R.id.thu);
+        CheckBox fri = (CheckBox)findViewById(R.id.fri);
+        CheckBox sat = (CheckBox)findViewById(R.id.sat);
+        CheckBox sun = (CheckBox)findViewById(R.id.sun);
+        mon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    mon.setChecked(false);
+                }
+            }
+        });
+        tue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    tue.setChecked(false);
+                }
+            }
+        });
+        wed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    wed.setChecked(false);
+                }
+            }
+        });
+        thu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    thu.setChecked(false);
+                }
+            }
+        });
+        fri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    fri.setChecked(false);
+                }
+            }
+        });
+        sat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    sat.setChecked(false);
+                }
+            }
+        });
+        sun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (showDate.getText().toString().length() <= 0) {
+                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    sun.setChecked(false);
+                }
+            }
+        });
+    }
+    public void clearRepeat(){
+        TextView showDate = (TextView) findViewById(R.id.showDate);
+        CheckBox mon = (CheckBox)findViewById(R.id.mon);
+        CheckBox tue = (CheckBox)findViewById(R.id.tue);
+        CheckBox wed = (CheckBox)findViewById(R.id.wed);
+        CheckBox thu = (CheckBox)findViewById(R.id.thu);
+        CheckBox fri = (CheckBox)findViewById(R.id.fri);
+        CheckBox sat = (CheckBox)findViewById(R.id.sat);
+        CheckBox sun = (CheckBox)findViewById(R.id.sun);
+        if(showDate.getText().toString().length()<=0){
+            mon.setChecked(false);
+            tue.setChecked(false);
+            wed.setChecked(false);
+            thu.setChecked(false);
+            fri.setChecked(false);
+            sat.setChecked(false);
+            sun.setChecked(false);
+        }
+    }
+    public String getDateChecked(){
+        String str = "";
+        TextView showDate = (TextView) findViewById(R.id.showDate);
+        CheckBox mon = (CheckBox)findViewById(R.id.mon);
+        CheckBox tue = (CheckBox)findViewById(R.id.tue);
+        CheckBox wed = (CheckBox)findViewById(R.id.wed);
+        CheckBox thu = (CheckBox)findViewById(R.id.thu);
+        CheckBox fri = (CheckBox)findViewById(R.id.fri);
+        CheckBox sat = (CheckBox)findViewById(R.id.sat);
+        CheckBox sun = (CheckBox)findViewById(R.id.sun);
+        if(mon.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        if(thu.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        if(wed.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        if(thu.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        if(fri.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        if(sat.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        if(sun.isChecked()){
+            str = str + 1;
+        } else str = str + 0;
+        return str;
     }
 }
