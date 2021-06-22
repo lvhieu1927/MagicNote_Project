@@ -3,6 +3,7 @@ package com.example.magicnote1.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,13 +27,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.ViewHolder> implements Filterable {
+public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.ViewHolder>  {
 
     private ArrayList<DiaryNote> mDiaryList;
-    private ArrayList<DiaryNote> mData;
+    private ArrayList<DiaryNote> mData,temp;
+
     private Context mContext;
     private ViewBinderHelper viewBinderHelper = new ViewBinderHelper();
 
+
+    public void setmDiaryList(ArrayList<DiaryNote> mDiaryList) {
+        this.mDiaryList = mDiaryList;
+    }
 
     public interface ItemClickListener {
         void onClick(View view, int position, boolean isLongClick);
@@ -81,6 +87,7 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
 
     public DiaryNoteAdapter(ArrayList<DiaryNote> _DiaryList, Context _Context) {
         mDiaryList = _DiaryList;
+        mData = _DiaryList;
         mContext = _Context;
     }
 
@@ -184,48 +191,6 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
         return formatter.format(calendar.getTime());
     }
 
-    @Override
-    public Filter getFilter() {
-
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-
-                String Key = constraint.toString();
-                if (Key.isEmpty()) {
-
-                    mDiaryList = mData;
-
-                } else {
-                    ArrayList<DiaryNote> lstFiltered = new ArrayList<>();
-                    for (DiaryNote row : mData) {
-
-                        if (row.getHeadline().toLowerCase().contains(Key.toLowerCase())) {
-                            lstFiltered.add(row);
-                        }
-
-                    }
-
-                    mDiaryList = lstFiltered;
-
-                }
 
 
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = mDiaryList;
-                return filterResults;
-
-            }
-
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-
-
-                mDiaryList = (ArrayList<DiaryNote>) results.values;
-                notifyDataSetChanged();
-
-            }
-        };
-
-    }
 }

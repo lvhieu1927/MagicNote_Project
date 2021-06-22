@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MoodDiaryMainMenu" />
+        <activity android:name=".MoodDiaryMainMenu" android:parentActivityName=".activity_home_screen"/>
         <activity android:name=".Add_Diary_3Activity" />
         <activity android:name=".Add_Diary_2Activity" />
         <activity android:name=".Add_itemActivity" />
@@ -36,11 +36,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".splash.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".WishListMainActivity" />
         <activity android:name=".AddActivityWishList" />
@@ -57,6 +53,17 @@
                 <action android:name="android.intent.action.REBOOT"/>
             </intent-filter>
         </receiver>
+
+        <activity android:name=".intro.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".intro.IntroductionActivity"/>
+
     </application>
+
 
 </manifest>

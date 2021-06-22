@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -44,28 +45,8 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mDiaryNoteAdapter = new DiaryNoteAdapter(mListDiary, this);
-        searchInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-                mDiaryNoteAdapter.getFilter().filter(s);
-                search = s;
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        addTextListener();
     }
 
     private void addControl() {
@@ -77,5 +58,35 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         bt_AddDiary = findViewById(R.id.bt_AddDiary);
         searchInput = findViewById(R.id.search_input);
+    }
+
+    public void addTextListener(){
+
+        searchInput.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+
+                query = query.toString().toLowerCase();
+                ArrayList<DiaryNote> filteredList = new ArrayList<>();
+
+                for (int i = 0; i < mListDiary.size(); i++) {
+
+                     String text = mListDiary.get(i).getNote().toLowerCase()+ mListDiary.get(i).getHeadline().toLowerCase();
+                    if (text.contains(query)) {
+
+                        Log.d("Magic count",query+" +1+ "+text);
+                        filteredList.add(mListDiary.get(i));
+                    }
+                }
+
+                mRecyclerView.removeAllViews();;
+                mDiaryNoteAdapter = new DiaryNoteAdapter(filteredList,MoodDiaryMainMenu.this);
+                mRecyclerView.setAdapter(mDiaryNoteAdapter);
+            }
+        });
     }
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+
     <EditText
         android:drawablePadding="8dp"
         android:drawableLeft="@drawable/ic_search_gray_24dp"
