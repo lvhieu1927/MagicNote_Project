@@ -43,6 +43,7 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
     compile 'com.chauthai.swipereveallayout:swipe-reveal-layout:1.4.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
