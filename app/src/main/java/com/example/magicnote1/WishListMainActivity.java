@@ -37,6 +37,7 @@ public class WishListMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wish_list_main);
+        //commander line
 
         recyclerView = findViewById(R.id.recyclerView);
         addButton = findViewById(R.id.add_button);
