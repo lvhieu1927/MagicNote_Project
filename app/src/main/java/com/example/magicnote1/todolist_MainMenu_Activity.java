@@ -45,6 +45,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.Inflater;
 
+import pl.droidsonroids.gif.GifImageView;
+
 //Activity quản lý task
 public class todolist_MainMenu_Activity extends Activity {
     private ListView listViewTask;
@@ -57,6 +59,7 @@ public class todolist_MainMenu_Activity extends Activity {
     private PendingIntent notificationReceiverPending;
     private int themeId = 0;
     private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -192,7 +195,7 @@ public class todolist_MainMenu_Activity extends Activity {
         else emptyView.setVisibility(View.VISIBLE);
     }
     public void loadingLogo(){
-        ImageView logo =(ImageView)findViewById(R.id.logo);
+        GifImageView logo =(GifImageView) findViewById(R.id.logo);
 //        logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_in_anim));
         handler = new Handler();
         handler.postDelayed(new Runnable() {

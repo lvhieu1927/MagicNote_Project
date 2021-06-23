@@ -64,11 +64,20 @@
             android:padding="5dp"
             android:layout_gravity="bottom|left"
             android:onClick="clickButton"/>
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/logo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/img_loading"-->
+<!--            android:background="@color/white"-->
+<!--            android:scaleType="centerInside"-->
+<!--            android:layout_gravity="center_horizontal|center_vertical"/>-->
+
+        <pl.droidsonroids.gif.GifImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/img_loading"
+            android:src="@drawable/todolist_splashscreen"
             android:background="@color/white"
             android:scaleType="centerInside"
             android:layout_gravity="center_horizontal|center_vertical"/>
