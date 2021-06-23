@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:fontFamily="@font/wildword_roman"
-        android:textSize="23dp"
+        android:fontFamily="@font/helveticaneue"
+        android:textSize="20dp"
         android:padding="10dp"/>
     <CheckBox
         android:id="@+id/check_done"
