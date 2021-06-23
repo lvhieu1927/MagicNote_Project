@@ -17,16 +17,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Calendar"></activity>
         <activity
             android:name=".MoodDiaryMainMenu"
             android:parentActivityName=".activity_home_screen" />
-=======
-        android:theme="@style/Theme.MagicNote">
-        <activity android:name=".MoodDiaryMainMenu" android:parentActivityName=".activity_home_screen"/>
->>>>>>> 008753c339bea59b217f66d492bc95ba3982e75f
         <activity android:name=".Add_Diary_3Activity" />
         <activity android:name=".Add_Diary_2Activity" />
         <activity android:name=".Add_itemActivity" />
