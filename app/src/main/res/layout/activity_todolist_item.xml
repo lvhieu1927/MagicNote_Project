@@ -39,7 +39,6 @@
                     android:layout_height="wrap_content"
                     android:text="Important"
                     android:fontFamily="@font/wildword_roman"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="24dp"/>
             </LinearLayout>
@@ -56,7 +55,8 @@
                     android:fontFamily="@font/wildword_roman"
                     android:layout_gravity="center_vertical"
                     android:textSize="22dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textColor="@color/black"/>
                 <ImageButton
                     android:id="@+id/timepicker"
                     android:layout_width="25dp"
@@ -203,7 +203,6 @@
                     android:layout_height="wrap_content"
                     android:text="Completed"
                     android:fontFamily="@font/wildword_roman"
-                    android:textStyle="bold"
                     android:textSize="22dp"
                     android:textColor="@color/black"/>
             </LinearLayout>

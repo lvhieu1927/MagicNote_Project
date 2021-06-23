@@ -217,7 +217,16 @@ public class todolist_MainMenu_Activity extends Activity {
         else mAlarm.setExact(AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + time,
                 notificationReceiverPending);
-        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)+":" + Long.valueOf(60- Calendar.getInstance().get(Calendar.SECOND)),
+        String timeHhMm = timeFormat(time);
+        long second = Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND));
+        String timeSs ="" + second;
+        if(second == 60){
+            timeHhMm = timeFormat(time - 60000);
+        }
+        if(second < 10){
+            timeSs = "0"+second;
+        }
+        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeHhMm  + ":"+ timeSs,
                 Toast.LENGTH_LONG).show();
     }
     public long toMillis(int h, int m, int s){
