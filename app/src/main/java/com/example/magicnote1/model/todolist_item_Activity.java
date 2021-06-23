@@ -342,17 +342,6 @@ public class todolist_item_Activity extends Activity {
                 todolist_item_Activity.this, alarmid, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
         mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY*7, notificationReceiverPending);
-//        String timeHhMm = timeFormat(time);
-//        long second = Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND));
-//        String timeSs ="" + second;
-//        if(second == 60){
-//            timeHhMm = timeFormat(time - 60000);
-//        }
-//        if(second < 10){
-//            timeSs = "0"+second;
-//        }
-//        Toast.makeText(getApplicationContext(), "Nhắc nhở công việc này sẽ được lặp lại sau " + timeHhMm  + ":" + timeSs,
-//                Toast.LENGTH_LONG).show();
     }
     public void setRepeatAlarm(String str,long time, int id){
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
