@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
 
     Animation topAnim, bottomAnim;
     TextView tv_title;
-    GifImageView gif_imageView;
+    ImageView intro_imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +32,11 @@ public class SplashScreen extends AppCompatActivity {
         topAnim = AnimationUtils.loadAnimation(this,R.anim.anim_top_down);
         bottomAnim = AnimationUtils.loadAnimation(this,R.anim.anim_bottom_up);
 
-        gif_imageView = (GifImageView) findViewById(R.id.app_gif);
+        intro_imageView = (ImageView) findViewById(R.id.intro_imageView);
         tv_title = (TextView) findViewById(R.id.app_title);
 
         //cau hinh animation
-        gif_imageView.setAnimation(topAnim);
+        intro_imageView.setAnimation(topAnim);
         tv_title.setAnimation(bottomAnim);
 
         new Handler().postDelayed(new Runnable() {
