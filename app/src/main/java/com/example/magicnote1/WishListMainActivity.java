@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,6 +30,8 @@ import java.util.ArrayList;
 public class WishListMainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FloatingActionButton addButton;
+    ImageView img_no_item;
+    TextView tv_no_item;
 
     WishListDatabaseHelper myDB;
     ArrayList<String> itemId, itemName, itemPrice;
@@ -46,6 +50,9 @@ public class WishListMainActivity extends AppCompatActivity {
         Log.d("new 1", "onCreate: ");
 
         addButton = findViewById(R.id.add_button);
+        img_no_item = findViewById(R.id.img_no_item);
+        tv_no_item = findViewById(R.id.tv_no_item);
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +85,8 @@ public class WishListMainActivity extends AppCompatActivity {
     void displayInArray(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){ //khong tim duoc data
-            Toast.makeText(this,"No item.", Toast.LENGTH_SHORT).show();
+            img_no_item.setVisibility(View.VISIBLE);
+            tv_no_item.setVisibility(View.VISIBLE);
         }
         else{
             while(cursor.moveToNext()){ //tim thay data
@@ -86,6 +94,8 @@ public class WishListMainActivity extends AppCompatActivity {
                 itemName.add(cursor.getString(1));
                 itemPrice.add(cursor.getString(2));
             }
+            img_no_item.setVisibility(View.GONE);
+            tv_no_item.setVisibility(View.GONE);
         }
     }
 
