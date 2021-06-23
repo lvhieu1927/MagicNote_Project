@@ -38,20 +38,24 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Important"
-                    android:textSize="20dp"/>
+                    android:fontFamily="@font/wildword_roman"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="24dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@drawable/round_item">
+                android:background="@drawable/bt_round_button_action">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Due date:"
+                    android:fontFamily="@font/wildword_roman"
                     android:layout_gravity="center_vertical"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
                     android:padding="10dp"/>
                 <ImageButton
                     android:id="@+id/timepicker"
@@ -101,14 +105,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="Repeat "
+                    android:fontFamily="@font/wildword_roman"
                     android:layout_gravity="center_vertical"
-                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="22dp"
                     android:padding="10dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical|center_horizontal"
-                    android:background="@drawable/round_item"
+                    android:background="@drawable/bt_round_button"
                     android:padding="5dp">
                         <CheckBox
                             android:id="@+id/mon"
@@ -163,7 +170,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Description:"
-                    android:textSize="20dp"
+                    android:fontFamily="@font/wildword_roman"
+                    android:textSize="22dp"
+                    android:textColor="@color/black"
                     android:padding="10dp">
                 </TextView>
 
@@ -171,11 +180,12 @@
                     android:id="@+id/task_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/round_item"
+                    android:fontFamily="@font/wildword_roman"
+                    android:gravity="left|top"
                     android:inputType="text|textMultiLine|textCapSentences"
                     android:padding="10dp"
-                    android:textSize="20dp"
-                    android:gravity="left|top"
-                    android:background="@drawable/round_item"/>
+                    android:textSize="26dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -192,7 +202,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Completed"
-                    android:textSize="20dp"/>
+                    android:fontFamily="@font/wildword_roman"
+                    android:textStyle="bold"
+                    android:textSize="22dp"
+                    android:textColor="@color/black"/>
             </LinearLayout>
         </LinearLayout>
     </TableRow>
@@ -208,6 +221,8 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="Tap to speak"
+                android:fontFamily="@font/wildword_roman"
+                android:textSize="22dp"
                 android:onClick="clickButton"
                 android:layout_gravity="center|top"
                 android:layout_marginTop="20dp"
@@ -216,44 +231,94 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center_vertical|center_horizontal"
                 android:layout_marginTop="100dp">
-                <ImageButton
+                <Button
                     android:id="@+id/button_add_task"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/img_add"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="75dp"
+                    android:paddingLeft="75dp"
+                    android:text="Add task"
+                    android:fontFamily="@font/wildword_roman"
+                    android:textSize="22dp"
                     android:onClick="clickButton"
-                    android:background="@drawable/bt_round_button"
-                    android:layout_marginRight="50dp"/>
-                <ImageButton
+                    android:background="@drawable/bt_round_button_action"
+                    android:backgroundTint="#4caf50"
+                    android:layout_marginBottom="20dp"/>
+                <Button
                     android:id="@+id/button_update_task"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/img_update"
-                    android:background="@drawable/bt_round_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="60dp"
+                    android:paddingLeft="60dp"
+                    android:text="Update task"
+                    android:fontFamily="@font/wildword_roman"
+                    android:textSize="22dp"
                     android:onClick="clickButton"
-                    android:layout_marginRight="10dp"/>
-                <ImageButton
+                    android:background="@drawable/bt_round_button_action"
+                    android:backgroundTint="#00acc1"
+                    android:layout_marginBottom="10dp"/>
+                <Button
                     android:id="@+id/button_delete_task"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/img_delete"
-                    android:background="@drawable/bt_round_button"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="60dp"
+                    android:paddingLeft="60dp"
+                    android:text="Delete task"
+                    android:fontFamily="@font/wildword_roman"
+                    android:textSize="22dp"
                     android:onClick="clickButton"
-                    android:layout_marginRight="10dp"/>
-                <ImageButton
+                    android:background="@drawable/bt_round_button_action"
+                    android:backgroundTint="#ef5350"
+                    android:layout_marginBottom="10dp"/>
+                <Button
                     android:id="@+id/button_back"
-                    android:layout_height="100dp"
-                    android:layout_width="100dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/img_back"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="35dp"
+                    android:paddingLeft="35dp"
+                    android:text="Back to Main menu"
+                    android:fontFamily="@font/wildword_roman"
+                    android:textSize="22dp"
                     android:onClick="clickButton"
-                    android:background="@drawable/bt_round_button" />
+                    android:background="@drawable/bt_round_button_action" />
+<!--                <ImageButton-->
+<!--                    android:id="@+id/button_add_task"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:scaleType="centerInside"-->
+<!--                    android:src="@drawable/img_add"-->
+<!--                    android:onClick="clickButton"-->
+<!--                    android:background="@drawable/bt_round_button"-->
+<!--                    android:layout_marginRight="50dp"/>-->
+<!--                <ImageButton-->
+<!--                    android:id="@+id/button_update_task"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:scaleType="centerInside"-->
+<!--                    android:src="@drawable/img_update"-->
+<!--                    android:background="@drawable/bt_round_button"-->
+<!--                    android:onClick="clickButton"-->
+<!--                    android:layout_marginRight="10dp"/>-->
+<!--                <ImageButton-->
+<!--                    android:id="@+id/button_delete_task"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:scaleType="centerInside"-->
+<!--                    android:src="@drawable/img_delete"-->
+<!--                    android:background="@drawable/bt_round_button"-->
+<!--                    android:onClick="clickButton"-->
+<!--                    android:layout_marginRight="10dp"/>-->
+<!--                <ImageButton-->
+<!--                    android:id="@+id/button_back"-->
+<!--                    android:layout_height="100dp"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:scaleType="centerInside"-->
+<!--                    android:src="@drawable/img_back"-->
+<!--                    android:onClick="clickButton"-->
+<!--                    android:background="@drawable/bt_round_button" />-->
             </LinearLayout>
         </FrameLayout>
     </TableRow>

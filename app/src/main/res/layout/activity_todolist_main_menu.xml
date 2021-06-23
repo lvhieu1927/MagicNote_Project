@@ -12,14 +12,24 @@
     <FrameLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
-        <ListView
-            android:id="@+id/lisk_view_task"
-            android:layout_height="match_parent"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:padding="10dp"
-            android:divider="#0000"
-            android:dividerHeight="10dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ListView
+                android:id="@+id/lisk_view_task"
+                android:layout_height="0dp"
+                android:layout_width="match_parent"
+                android:layout_weight="9"
+                android:padding="10dp"
+                android:divider="#0000"
+                android:dividerHeight="10dp"
+                android:layout_marginTop="10dp"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+        </LinearLayout>
         <ImageView
             android:id="@+id/empty_view"
             android:layout_width="wrap_content"
@@ -31,25 +41,27 @@
             android:id="@+id/button_add_task_form"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:minHeight="50dp"
-            android:minWidth="50dp"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
             android:src="@drawable/ic_note_add_black_48dp"
             android:scaleType="centerInside"
             android:background="@drawable/bt_round_button"
             android:layout_marginBottom="20dp"
+            android:padding="5dp"
             android:layout_gravity="bottom|center"
             android:onClick="clickButton"/>
         <ImageButton
             android:id="@+id/change_theme_button"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:minHeight="50dp"
-            android:minWidth="50dp"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
             android:src="@drawable/ic_image_black_24dp"
             android:scaleType="centerInside"
             android:background="@drawable/bt_round_button"
             android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
+            android:padding="5dp"
             android:layout_gravity="bottom|left"
             android:onClick="clickButton"/>
         <ImageView
