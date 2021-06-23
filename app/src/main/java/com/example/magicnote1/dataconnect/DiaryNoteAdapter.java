@@ -149,7 +149,7 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
                 break;
         }
         holder.tv_Header.setText("Headline: "+diaryNote.getHeadline());
-        holder.tv_Date.setText(this.getDate(diaryNote.getDate(),"dd/MM/yyyy"));
+        holder.tv_Date.setText(diaryNote.getDateText());
 
         //set button cho gọi tới màn hình sửa
         Intent intent = new Intent(mContext, Add_Diary_3Activity.class);
@@ -173,17 +173,6 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
     @Override
     public int getItemCount() {
         return mDiaryList.size();
-    }
-
-    public String getDate(long milliSeconds, String dateFormat)
-    {
-        // Create a DateFormatter object for displaying date in specified format.
-        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
-
-        // Create a calendar object that will convert the date and time value in milliseconds to date.
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(milliSeconds);
-        return formatter.format(calendar.getTime());
     }
 
 

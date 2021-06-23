@@ -15,6 +15,15 @@ public class DiaryNote {
     private String note;
     private byte[] Photo;
     private long date;
+    private String dateText;
+
+    public String getDateText() {
+        return dateText;
+    }
+
+    public void setDateText(String dateText) {
+        this.dateText = dateText;
+    }
 
     private ArrayList<String> ActivityList;
 
@@ -59,6 +68,8 @@ public class DiaryNote {
         this.note = null;
         this.Photo = null;
     }
+
+
 
     public String getMoodName()
     {

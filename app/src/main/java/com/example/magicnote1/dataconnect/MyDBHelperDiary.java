@@ -11,8 +11,13 @@ import androidx.annotation.Nullable;
 
 import com.example.magicnote1.model.DiaryNote;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
+
+import sun.bob.mcalendarview.vo.DateData;
 
 public class MyDBHelperDiary extends SQLiteOpenHelper {
 
@@ -39,6 +44,33 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
         //
     }
 
+
+    public ArrayList<DateData> getListDate()
+    {
+        ArrayList<DateData> arrayList = new ArrayList<>();
+        db = helper.openDatabase();
+        Cursor cursor = db.rawQuery("Select date from diary",null);
+        while (cursor.moveToNext())
+        {
+            String dateString = getDate(cursor.getLong(0), "dd-MM-yyyy");
+            int selectedYear = Integer.parseInt(dateString.substring(6,10));
+            int selectedMonth = Integer.parseInt(dateString.substring(3,5));
+            int selectedDayOfMonth = Integer.parseInt(dateString.substring(0,2));
+            DateData dateData = new DateData(selectedYear,selectedMonth,selectedDayOfMonth);
+            arrayList.add(dateData);
+        }
+        return  arrayList;
+    }
+
+    public String getDate(long milliSeconds, String dateFormat) {
+        // Create a DateFormatter object for displaying date in specified format.
+        SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
+
+        // Create a calendar object that will convert the date and time value in milliseconds to date.
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(milliSeconds);
+        return formatter.format(calendar.getTime());
+    }
 
     public String getPositiveString()
     {
@@ -205,7 +237,7 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
     {
         ArrayList<DiaryNote> arrayList = new ArrayList<DiaryNote>();
         db = helper.openDatabase();
-        String sql = "select * from diary ORDER by date desc LIMIT 20 ";
+        String sql = "select * from diary ORDER by date desc";
         Cursor cursor = db.rawQuery(sql,null);
         while (cursor.moveToNext())
         {
@@ -217,6 +249,7 @@ public class MyDBHelperDiary extends SQLiteOpenHelper {
             diaryNote.setNote(cursor.getString(4));
             diaryNote.setPhoto(cursor.getBlob(5));
             diaryNote.setActivityList(this.getActivityListbyDiaryId(diaryNote.getDiaryID()));
+            diaryNote.setDateText(getDate(diaryNote.getDate(),"dd/MM/yyyy"));
             arrayList.add(diaryNote);
         }
         db.close() ;

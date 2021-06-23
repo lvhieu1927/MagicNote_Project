@@ -7,26 +7,50 @@
     android:orientation="vertical"
     >
 
-    <EditText
-        android:drawablePadding="8dp"
-        android:drawableLeft="@drawable/ic_search_gray_24dp"
-        android:textColor="@color/content_text_color"
-        android:hint="search"
-        android:background="@drawable/search_input_style"
-        android:id="@+id/search_input"
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_home"
+            android:src="@drawable/ic_home"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            />
+
+        <EditText
+            android:drawablePadding="8dp"
+            android:drawableLeft="@drawable/ic_search_gray_24dp"
+            android:textColor="@color/content_text_color"
+            android:hint="search"
+            android:background="@drawable/search_input_style"
+            android:id="@+id/search_input"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:backgroundTint="@color/tab_indicator_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:id="@+id/bt_DateChoose"
+            android:src="@drawable/ic_date_range"
+            />
+    </LinearLayout>
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -40,14 +64,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="#00000000">
         <ImageButton
             android:id="@+id/bt_AddDiary"
             android:layout_centerHorizontal="true"
             android:layout_width="110dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_fab"
-            android:background="@drawable/bg_gradient2"
-            android:layout_marginBottom="24dp" />
+            android:background="@drawable/bg_gradient"
+            android:layout_marginBottom="15dp" />
     </RelativeLayout>
 </LinearLayout>

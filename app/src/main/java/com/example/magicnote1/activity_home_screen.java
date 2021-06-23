@@ -34,7 +34,7 @@ public class activity_home_screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_home_screen.this,MoodDiaryMainMenu.class);
-                startActivity(intent);
+                startActivityForResult(intent,2);
             }
         });
         cardView1.setOnClickListener(new View.OnClickListener() {

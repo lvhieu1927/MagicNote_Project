@@ -5,9 +5,11 @@
     <uses-sdk
         android:minSdkVersion="21"
         android:targetSdkVersion="30" />
+
     <supports-screens android:largestWidthLimitDp="480" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MoodDiaryMainMenu" android:parentActivityName=".activity_home_screen"/>
+        <activity android:name=".Calendar"></activity>
+        <activity
+            android:name=".MoodDiaryMainMenu"
+            android:parentActivityName=".activity_home_screen" />
         <activity android:name=".Add_Diary_3Activity" />
         <activity android:name=".Add_Diary_2Activity" />
         <activity android:name=".Add_itemActivity" />
@@ -25,32 +30,29 @@
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="android.intent.action.REBOOT"/>
+                <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </activity>
         <activity android:name=".model.todolist_item_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="android.intent.action.REBOOT"/>
+                <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </activity>
-        <activity android:name=".splash.SplashScreen">
-
-        </activity>
+        <activity android:name=".splash.SplashScreen"></activity>
         <activity android:name=".WishListMainActivity" />
         <activity android:name=".AddActivityWishList" />
         <activity android:name=".UpdateActivityWishList" />
         <activity android:name=".splash.SplashScreenWishlist" />
         <activity android:name=".activity_home_screen" />
-
-        <activity android:name=".chart.PieChartActivity"/>
+        <activity android:name=".chart.PieChartActivity" />
 
         <receiver android:name=".model.reminderReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
-                <action android:name="android.intent.action.REBOOT"/>
+                <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </receiver>
 
@@ -61,9 +63,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".intro.IntroductionActivity"/>
-
+        <activity android:name=".intro.IntroductionActivity" />
     </application>
-
 
 </manifest>
