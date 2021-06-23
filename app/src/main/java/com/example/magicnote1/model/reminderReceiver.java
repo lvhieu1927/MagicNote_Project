@@ -8,6 +8,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Vibrator;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -20,11 +21,6 @@ import com.example.magicnote1.todolist_MainMenu_Activity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 public class reminderReceiver extends BroadcastReceiver {
-
-    // Notification Sound and Vibration on Arrival
-
-    private long[] mVibratePattern = { 0, 1000, 1000, 1000, 1000 };
-    PendingIntent contentIntent;
     @Override
     public void onReceive(Context context, Intent intent) {
             String CHANNEL_ID = "MESSAGE";
@@ -39,7 +35,6 @@ public class reminderReceiver extends BroadcastReceiver {
                         NotificationManager.IMPORTANCE_DEFAULT);
                 manager.createNotificationChannel(channel);
             }
-
             Notification notification = new NotificationCompat.Builder(context,CHANNEL_ID)
                     .setContentIntent(contentIntent)
                     .setSmallIcon(android.R.drawable.ic_popup_reminder)
@@ -47,10 +42,12 @@ public class reminderReceiver extends BroadcastReceiver {
                     .setContentText("Bạn có công việc cần làm bây giờ. Check ngay !")
                     .setStyle(new NotificationCompat.BigTextStyle().bigText("Nội dung: " + intent.getStringExtra("content alarm")))
                     .setAutoCancel(true)
-                    .setVibrate(new long[]{1000,1000})
+                    .setVibrate(new long[]{500, 500})
                     .build();
+            Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(1000);
             manager.notify(getRandomNumber(), notification);
-
+            Log.d("12345","đã đến đây");
     }
     private static int getRandomNumber() {
         Date dd= new Date();

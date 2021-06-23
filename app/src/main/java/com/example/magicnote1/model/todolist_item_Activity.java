@@ -56,9 +56,9 @@ public class todolist_item_Activity extends Activity {
         toDoList = new ToDoList(this);
         Intent intent = getIntent();
         int id = intent.getIntExtra("id",0);
-        ImageButton buttonAdd = (ImageButton)findViewById(R.id.button_add_task);
-        ImageButton buttonEdit = (ImageButton)findViewById(R.id.button_update_task);
-        ImageButton buttonDelete = (ImageButton)findViewById(R.id.button_delete_task);
+        Button buttonAdd = (Button)findViewById(R.id.button_add_task);
+        Button buttonEdit = (Button)findViewById(R.id.button_update_task);
+        Button buttonDelete = (Button)findViewById(R.id.button_delete_task);
         if(id != 0){
             buttonAdd.setVisibility(View.GONE);
             loadTaskData(id);
@@ -205,11 +205,19 @@ public class todolist_item_Activity extends Activity {
             Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
             if (dueDate.getText().toString().length() > 0) {
                 if (!checkCompleted.isChecked()) {
+                    if(task.getRepeat().equals("0000000")){
+                        cancelScheduleAlarm(taskNew.getIdTask());
+                        Log.d("cancel repeat", " "+taskNew.getIdTask() + taskNew.getRepeat());
+                    }
                     long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
                     if (wTime > 0) {
                         setReminder(wTime, taskNew.getIdTask());
-                        Log.d("task id", "add id " + taskNew.getIdTask());
-                    } else setReminder(86400000 + wTime, taskNew.getIdTask());
+                        setRepeatAlarm(task.getRepeat(), wTime, taskNew.getIdTask());
+                        Log.d("task id", "update id " + taskNew.getIdTask());
+                    } else {
+                        setReminder(86400000 + wTime, taskNew.getIdTask());
+                        setRepeatAlarm(task.getRepeat(),86400000 + wTime, taskNew.getIdTask());
+                    }
                 }
             }
         }
@@ -244,20 +252,34 @@ public class todolist_item_Activity extends Activity {
                 Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
             }
             else {
-                Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                if (dueDate.getText().toString().length() > 0) {
-                    if (!checkCompleted.isChecked()) {
-                        long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
-                        if (wTime > 0) {
-                            setReminder(wTime, task.getIdTask());
-                            Log.d("task id", "update id " + id);
-                        } else setReminder(86400000 + wTime, task.getIdTask());
-                    } else cancelReminder(task.getIdTask());
-                } else cancelReminder(task.getIdTask());
+                    Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                    if (dueDate.getText().toString().length() > 0) {
+                        if (!checkCompleted.isChecked()) {
+                            if(task.getRepeat().equals("0000000")){
+                                cancelScheduleAlarm(task.getIdTask());
+                                Log.d("cancel repeat", " "+task.getIdTask() + task.getRepeat());
+                            }
+                            long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
+                            if (wTime > 0) {
+                                setReminder(wTime, task.getIdTask());
+                                setRepeatAlarm(task.getRepeat(), wTime, task.getIdTask());
+                                Log.d("task id", "update id " + id);
+                            } else {
+                                setReminder(86460000 + wTime, task.getIdTask());
+                                setRepeatAlarm(task.getRepeat(),86460000 + wTime, task.getIdTask());
+                            }
+                        } else {
+                            cancelReminder(task.getIdTask());
+                            cancelScheduleAlarm(task.getIdTask());
+                        }
+                    } else {
+                        cancelReminder(task.getIdTask());
+                        cancelScheduleAlarm(task.getIdTask());
+                    }
+                }
             }
             finish();
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        }
     }
     //Xoá task
     private void deleteTask(){
@@ -299,26 +321,90 @@ public class todolist_item_Activity extends Activity {
                     notificationReceiverPending);
         }
 //        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, 60000, notificationReceiverPending);
-        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":"+ Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
+        String timeHhMm = timeFormat(time);
+        long second = Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND));
+        String timeSs ="" + second;
+        if(second == 60){
+            timeHhMm = timeFormat(time - 60000);
+        }
+        if(second < 10){
+            timeSs = "0"+second;
+        }
+        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeHhMm  + ":"+ timeSs,
                 Toast.LENGTH_LONG).show();
     }
-    public void scheduleAlarm(long time, int id, String date){
+    public void scheduleAlarm(long time, int id, int alarmid){
+        Task taskget = toDoList.getTask(id);
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
+        notificationReceiver.putExtra("content alarm",taskget.getTaskDetails());
         notificationReceiverPending = PendingIntent.getBroadcast(
-                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+                todolist_item_Activity.this, alarmid, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
         mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY*7, notificationReceiverPending);
-        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeFormat(time)  + ":" + Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND)),
+        String timeHhMm = timeFormat(time);
+        long second = Long.valueOf(60-Calendar.getInstance().get(Calendar.SECOND));
+        String timeSs ="" + second;
+        if(second == 60){
+            timeHhMm = timeFormat(time - 60000);
+        }
+        if(second < 10){
+            timeSs = "0"+second;
+        }
+        Toast.makeText(getApplicationContext(), "Nhắc nhở công việc này sẽ được lặp lại sau " + timeHhMm  + ":" + timeSs,
                 Toast.LENGTH_LONG).show();
+    }
+    public void setRepeatAlarm(String str,long time, int id){
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        if(str.substring(0, 1).equals("1")){
+            scheduleAlarm(time+Math.abs(day-2)*86400000,id,-Integer.valueOf(id+"2"));
+            Log.d("check setRepeatAlarm","Đã set repeat thứ 2 phát trong "+ Math.abs(day - 2));
+        }
+        if(str.substring(1, 2).equals("1")){
+            scheduleAlarm(time+Math.abs(day-3)*86400000,id,-Integer.valueOf(id+"3"));
+            Log.d("check setRepeatAlarm","Đã set repeat thứ 3 phát trong " + Math.abs(day - 3));
+        }
+        if(str.substring(2, 3).equals("1")){
+            scheduleAlarm(time+Math.abs(day-4)*86400000,id,-Integer.valueOf(id+"4"));
+            Log.d("check setRepeatAlarm","Đã set repeat thứ 4 phát trong" + Math.abs(day - 4));
+        }
+        if(str.substring(3, 4).equals("1")){
+            scheduleAlarm(time+Math.abs(day-5)*86400000,id,-Integer.valueOf(id+"5"));
+            Log.d("check setRepeatAlarm","Đã set repeat thứ 5 phát trong " + Math.abs(day - 5));
+        }
+        if(str.substring(4, 5).equals("1")){
+            scheduleAlarm(time+Math.abs(day-6)*86400000,id,-Integer.valueOf(id+"6"));
+            Log.d("check setRepeatAlarm","Đã set repeat thứ 6 phát trong " + Math.abs(day - 6));
+        }
+        if(str.substring(5, 6).equals("1")){
+            scheduleAlarm(time+Math.abs(day-7)*86400000,id,-Integer.valueOf(id+"7"));
+            Log.d("check setRepeatAlarm","Đã set repeat thứ 7 phát trong " + Math.abs(day - 7));
+        }
+        if(str.substring(6, 7).equals("1")){
+            scheduleAlarm(time+Math.abs(day-1)*86400000,id,-Integer.valueOf(id+"8"));
+            Log.d("check setRepeatAlarm","Đã set repeat CN phát trong " + Math.abs(day - 1));
+        }
     }
     private void cancelReminder(int id){
         notificationReceiver = new Intent(todolist_item_Activity.this,
                 reminderReceiver.class);
-        notificationReceiverPending = PendingIntent.getBroadcast(
-                todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        mAlarm.cancel(notificationReceiverPending);
+            notificationReceiverPending = PendingIntent.getBroadcast(
+                    todolist_item_Activity.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+            mAlarm.cancel(notificationReceiverPending);
+    }
+    public void cancelScheduleAlarm(int id){
+        int day = 2;
+        notificationReceiver = new Intent(todolist_item_Activity.this,
+                reminderReceiver.class);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        while (day<=8) {
+            notificationReceiverPending = PendingIntent.getBroadcast(
+                    todolist_item_Activity.this, -Integer.valueOf(id + "" + day), notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+            Log.d("repeat cancle", " " + -Integer.valueOf(id + "" + day));
+            mAlarm.cancel(notificationReceiverPending);
+            day++;
+        }
     }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
@@ -499,6 +585,5 @@ public class todolist_item_Activity extends Activity {
         if(str.substring(6, 7).equals("1")){
             sun.setChecked(true);
         } else sun.setChecked(false);
-
     }
 }
