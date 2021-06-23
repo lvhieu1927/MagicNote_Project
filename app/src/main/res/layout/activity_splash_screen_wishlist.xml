@@ -10,29 +10,29 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bg_gradient"
+        android:background="@color/white"
         tools:layout_editor_absoluteX="-101dp"
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
             android:id="@+id/mainLayout"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="250dp"
-            android:background="@drawable/ic_splash_wishlist" />
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/wishlist_splashscreen" />
 
         <TextView
             android:id="@+id/homeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/mainLayout"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/main_font"
             android:layout_centerInParent="true"
             android:text="WishList"
-            android:textColor="@color/white"
-            android:textSize="24dp"
+            android:textColor="@color/teal_700"
+            android:textSize="30dp"
             android:textStyle="bold" />
 
     </RelativeLayout>
