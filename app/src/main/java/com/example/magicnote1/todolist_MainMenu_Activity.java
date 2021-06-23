@@ -207,9 +207,9 @@ public class todolist_MainMenu_Activity extends Activity {
                     public void run() {
                         logo.setVisibility(View.GONE);
                     }
-                },100);
+                },1000);
             }
-        },700);
+        },1000);
     }
     private void setReminder(long time){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
