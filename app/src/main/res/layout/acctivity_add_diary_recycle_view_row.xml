@@ -121,8 +121,9 @@
             android:layout_marginTop="5dp"
             android:layout_below="@+id/img_mood"
             android:text="neutral"
+
             android:textAllCaps="true"
-            android:textColor="#dd42f5"
+            android:textColor="@color/pinkhome"
             android:textSize="12dp"
             android:textStyle="bold"
             />

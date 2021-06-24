@@ -1,5 +1,6 @@
 package com.example.magicnote1.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chauthai.swipereveallayout.ViewBinderHelper;
 import com.example.magicnote1.Add_Diary_3Activity;
 import com.example.magicnote1.R;
+import com.example.magicnote1.model.DialogPhoto;
 import com.example.magicnote1.model.DiaryNote;
 
 import java.text.SimpleDateFormat;
@@ -173,6 +175,14 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
                     mContext.startActivity(intent);
                 }
             }
+        });
+
+        holder.img_Photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogPhoto dialogPhoto = new DialogPhoto(mContext,diaryNote.getBitmap());
+                dialogPhoto.show();
+                Log.d("Magicc","runnnnnnnnnnnnnnnnnnnnnnnnnnnn!!!!!!!!!!!");            }
         });
     }
 

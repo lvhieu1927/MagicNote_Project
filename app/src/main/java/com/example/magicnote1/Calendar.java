@@ -48,6 +48,7 @@ public class Calendar extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     private void addControl() {
