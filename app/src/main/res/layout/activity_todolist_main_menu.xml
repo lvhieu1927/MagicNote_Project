@@ -34,8 +34,9 @@
             android:id="@+id/empty_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_notfound"
+            android:src="@drawable/img_todolist_data_notfound"
             android:scaleType="centerInside"
+            android:padding="70dp"
             android:layout_gravity="center_horizontal|center_vertical"/>
         <ImageButton
             android:id="@+id/button_add_task_form"
@@ -64,11 +65,19 @@
             android:padding="5dp"
             android:layout_gravity="bottom|left"
             android:onClick="clickButton"/>
-        <ImageView
+<!--        <ImageView-->
+<!--            android:id="@+id/logo"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:src="@drawable/img_loading"-->
+<!--            android:background="@color/white"-->
+<!--            android:scaleType="centerInside"-->
+<!--            android:layout_gravity="center_horizontal|center_vertical"/>-->
+        <pl.droidsonroids.gif.GifImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/img_loading"
+            android:src="@drawable/gif_todolist_splashscreen"
             android:background="@color/white"
             android:scaleType="centerInside"
             android:layout_gravity="center_horizontal|center_vertical"/>

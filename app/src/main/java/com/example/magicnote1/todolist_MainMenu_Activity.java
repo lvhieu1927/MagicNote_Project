@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -45,6 +46,8 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.zip.Inflater;
 
+import pl.droidsonroids.gif.GifImageView;
+
 //Activity quản lý task
 public class todolist_MainMenu_Activity extends Activity {
     private ListView listViewTask;
@@ -57,6 +60,7 @@ public class todolist_MainMenu_Activity extends Activity {
     private PendingIntent notificationReceiverPending;
     private int themeId = 0;
     private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,10 +115,12 @@ public class todolist_MainMenu_Activity extends Activity {
                 CheckBox checkDone = (CheckBox) rowItem.findViewById(R.id.check_done);
                 TextView itemView = (TextView)rowItem.findViewById(R.id.item_view);
                 itemView.setText(listTask.get(position).result());
+                itemView.setPaintFlags(0);
                 if(listTask.get(position).getCompleted())
                 {
                     checkDone.setChecked(true);
                     rowItem.setBackgroundResource(R.drawable.round_item_completed);
+                    itemView.setPaintFlags(itemView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 }
                 checkDone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
@@ -131,11 +137,13 @@ public class todolist_MainMenu_Activity extends Activity {
                         if(buttonView.isChecked()) {
                             listTask.get(position).setCompleted(true);
                             rowItem.setBackgroundResource(R.drawable.round_item_completed);
+                            itemView.setPaintFlags(itemView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                             mAlarm.cancel(notificationReceiverPending);
                         } else {
                             Log.d("id noti main"," "+listTask.get(position).getIdTask());
                             listTask.get(position).setCompleted(false);
                             rowItem.setBackgroundResource(R.drawable.round_item);
+                            itemView.setPaintFlags(0);
                             if(listTask.get(position).getDate().length()>0) {
                                 long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
                                 if (wTime > 0) {
@@ -192,7 +200,7 @@ public class todolist_MainMenu_Activity extends Activity {
         else emptyView.setVisibility(View.VISIBLE);
     }
     public void loadingLogo(){
-        ImageView logo =(ImageView)findViewById(R.id.logo);
+        GifImageView logo =(GifImageView) findViewById(R.id.logo);
 //        logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_in_anim));
         handler = new Handler();
         handler.postDelayed(new Runnable() {
@@ -206,7 +214,7 @@ public class todolist_MainMenu_Activity extends Activity {
                     }
                 },100);
             }
-        },700);
+        },3000);
     }
     private void setReminder(long time){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -122,43 +122,50 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="M"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/tue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="T"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/wed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="W"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/thu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="T"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/fri"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="F"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/sat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="S"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/sun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="S"
-                            android:layout_gravity="center_vertical"/>
+                            android:layout_gravity="center_vertical"
+                            android:buttonTint="@color/black"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -181,11 +188,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/round_item"
-                    android:fontFamily="@font/wildword_roman"
+                    android:fontFamily="@font/helveticaneue"
                     android:gravity="left|top"
                     android:inputType="text|textMultiLine|textCapSentences"
                     android:padding="10dp"
-                    android:textSize="26dp" />
+                    android:textSize="20dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

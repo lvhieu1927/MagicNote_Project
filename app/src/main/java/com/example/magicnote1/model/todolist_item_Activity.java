@@ -212,7 +212,7 @@ public class todolist_item_Activity extends Activity {
                     long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
                     if (wTime > 0) {
                         setReminder(wTime, taskNew.getIdTask());
-                        setRepeatAlarm(task.getRepeat(), AlarmManager.INTERVAL_DAY*7 + wTime, taskNew.getIdTask());
+                        setRepeatAlarm(task.getRepeat(), wTime, taskNew.getIdTask());
                         Log.d("task id", "update id " + taskNew.getIdTask());
                     } else {
                         setReminder(86400000 + wTime, taskNew.getIdTask());
@@ -262,7 +262,7 @@ public class todolist_item_Activity extends Activity {
                             long wTime = Long.valueOf(dueDate.getText().toString()) - toMillis(hour, minutes, second);
                             if (wTime > 0) {
                                 setReminder(wTime, task.getIdTask());
-                                setRepeatAlarm(task.getRepeat(), AlarmManager.INTERVAL_DAY*7 + wTime, task.getIdTask());
+                                setRepeatAlarm(task.getRepeat(), wTime, task.getIdTask());
                                 Log.d("task id", "update id " + id);
                             } else {
                                 setReminder(86400000 + wTime, task.getIdTask());
@@ -345,31 +345,31 @@ public class todolist_item_Activity extends Activity {
     }
     public void setRepeatAlarm(String str,long time, int id){
         int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
-        if(str.substring(0, 1).equals("1")){
+        if(str.substring(0, 1).equals("1") && (day - 2) != 0){
             scheduleAlarm(time+Math.abs(day-2)*86400000,id,-Integer.valueOf(id+"2"));
             Log.d("check setRepeatAlarm","Đã set repeat thứ 2 phát sau "+ Math.abs(day - 2));
         }
-        if(str.substring(1, 2).equals("1")){
+        if(str.substring(1, 2).equals("1") && (day - 3) != 0){
             scheduleAlarm(time+Math.abs(day-3)*86400000,id,-Integer.valueOf(id+"3"));
             Log.d("check setRepeatAlarm","Đã set repeat thứ 3 phát sau " + Math.abs(day - 3));
         }
-        if(str.substring(2, 3).equals("1")){
+        if(str.substring(2, 3).equals("1") && (day - 4) != 0){
             scheduleAlarm(time+Math.abs(day-4)*86400000,id,-Integer.valueOf(id+"4"));
             Log.d("check setRepeatAlarm","Đã set repeat thứ 4 phát sau " + Math.abs(day - 4));
         }
-        if(str.substring(3, 4).equals("1")){
+        if(str.substring(3, 4).equals("1") && (day - 5) != 0){
             scheduleAlarm(time+Math.abs(day-5)*86400000,id,-Integer.valueOf(id+"5"));
             Log.d("check setRepeatAlarm","Đã set repeat thứ 5 phát sau " + Math.abs(day - 5));
         }
-        if(str.substring(4, 5).equals("1")){
+        if(str.substring(4, 5).equals("1") && (day - 6) != 0){
             scheduleAlarm(time+Math.abs(day-6)*86400000,id,-Integer.valueOf(id+"6"));
             Log.d("check setRepeatAlarm","Đã set repeat thứ 6 phát sau " + Math.abs(day - 6));
         }
-        if(str.substring(5, 6).equals("1")){
+        if(str.substring(5, 6).equals("1") && (day - 7) != 0){
             scheduleAlarm(time+Math.abs(day-7)*86400000,id,-Integer.valueOf(id+"7"));
             Log.d("check setRepeatAlarm","Đã set repeat thứ 7 phát sau " + Math.abs(day - 7));
         }
-        if(str.substring(6, 7).equals("1")){
+        if(str.substring(6, 7).equals("1") && (day - 8) != 0){
             scheduleAlarm(time+Math.abs(day-1)*86400000,id,-Integer.valueOf(id+"8"));
             Log.d("check setRepeatAlarm","Đã set repeat CN phát sau " + Math.abs(day - 1));
         }
@@ -433,7 +433,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     mon.setChecked(false);
                 }
             }
@@ -442,7 +442,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     tue.setChecked(false);
                 }
             }
@@ -451,7 +451,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     wed.setChecked(false);
                 }
             }
@@ -460,7 +460,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     thu.setChecked(false);
                 }
             }
@@ -469,7 +469,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     fri.setChecked(false);
                 }
             }
@@ -478,7 +478,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     sat.setChecked(false);
                 }
             }
@@ -487,7 +487,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn time bạn ơi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
                     sun.setChecked(false);
                 }
             }
