@@ -10,7 +10,7 @@ import com.example.magicnote1.R;
 import com.example.magicnote1.WishListMainActivity;
 
 public class SplashScreenWishlist extends AppCompatActivity {
-    private static int SPLASH_SCREEN_SHOWING = 2000; //thoi  gian chay splash screen
+    private static int SPLASH_SCREEN_SHOWING = 1000; //thoi  gian chay splash screen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -29,7 +29,8 @@
                 android:id="@+id/bt_home"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_home"
+                android:src="@drawable/ic_wishlist_home"
+                android:background="#FFE5E4"
                 />
             <EditText
                 android:id="@+id/search_input"
@@ -63,15 +64,15 @@
         android:layout_marginBottom="24dp"
         android:clickable="true"
         android:focusable="true"
-        android:background="@color/white"
+        android:backgroundTint="#40C4FF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_wishlist" />
 
     <ImageView
         android:id="@+id/img_no_item"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
         android:layout_marginTop="160dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -83,9 +84,10 @@
         android:id="@+id/tv_no_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="No item here. Let's add more new items"
         android:textSize="13sp"
+        android:textStyle="bold|italic"
         android:fontFamily="@font/poppins_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
