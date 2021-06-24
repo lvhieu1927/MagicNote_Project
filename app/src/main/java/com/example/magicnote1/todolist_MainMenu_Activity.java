@@ -171,7 +171,7 @@ public class todolist_MainMenu_Activity extends Activity {
                 editor.putInt("themeid",loadThemeId);
                 editor.apply();
                 break;
-                //////////////////////////////////////
+                ////////////////////////////////////////
             case R.id.go_to_diary:
                 int DIARY = 113;
                 ///Đoạn này lấy nội dung todolist
@@ -187,7 +187,7 @@ public class todolist_MainMenu_Activity extends Activity {
                 startActivityForResult(goToDiary,DIARY);
                 ///Check log để xem kết quả
                 Log.d("123",contentTodolist);
-                /////////////////////////////////////
+                ///////////////////////////////////////
         }
     }
     public void checkEmpty(List list){
