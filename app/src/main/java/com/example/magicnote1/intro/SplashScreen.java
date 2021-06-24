@@ -16,7 +16,7 @@ import com.example.magicnote1.R;
 import pl.droidsonroids.gif.GifImageView;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int SPLASH_SCREEN_DISPLAY = 1000;
+    private static int SPLASH_SCREEN_DISPLAY = 2000;
 
     Animation topAnim, bottomAnim;
     TextView tv_title;
@@ -51,6 +51,7 @@ public class SplashScreen extends AppCompatActivity {
 
                 finish();
                 // ket thuc activity hien tai
+                overridePendingTransition(R.anim.fadein,R.anim.slide_out_left);
             }
         }, SPLASH_SCREEN_DISPLAY);
 

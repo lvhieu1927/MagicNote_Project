@@ -84,13 +84,12 @@ public class PieChartActivity extends Activity {
 
         pieChart.setData(data);
         pieChart.setCenterTextSize(15);
-        pieChart.setEntryLabelTextSize(13);
-        pieChart.setCenterTextSizePixels(13);
-        pieChart.setScrollBarSize(20);
-
+        pieChart.setDrawSliceText(false);
+        pieChart.setUsePercentValues(true);
+        pieChart.setEntryLabelTextSize(15);
         pieChart.setCenterText("Mood Diary");
         pieChart.setCenterTextColor(R.color.mauchu);
 
-        pieChart.animateXY(4000, 4000);
+        pieChart.animateXY(5000, 5000);
     }
 }
