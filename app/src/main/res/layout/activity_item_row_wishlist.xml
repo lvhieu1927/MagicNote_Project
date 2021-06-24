@@ -9,14 +9,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="340dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="10dp"
         app:cardCornerRadius="15dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp">
@@ -26,30 +27,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
+                android:layout_centerVertical="true"
                 android:textSize="24sp"
                 android:textColor="#000"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/comic_text"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_alignParentLeft="true" />
 
             <TextView
                 android:id="@+id/item_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
+                android:layout_centerVertical="true"
                 android:text="Item 1"
                 android:textSize="19sp"
                 android:textColor="#000"
                 android:fontFamily="@font/comic_text1"
                 android:textStyle="bold"
                 android:layout_marginTop="4dp"
-                app:layout_constraintStart_toEndOf="@+id/item_id"
-                app:layout_constraintTop_toTopOf="@+id/item_id" />
+                android:layout_toRightOf="@+id/item_id" />
 
             <TextView
                 android:id="@+id/item_price"
+                android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12000 đ"
@@ -58,8 +59,7 @@
                 android:layout_marginRight="10dp"
                 android:textStyle="italic"
                 android:fontFamily="@font/poppins_medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

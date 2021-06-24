@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +24,10 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.magicnote1.adapter.DiaryNoteAdapter;
 import com.example.magicnote1.adapter.WishListAdapter;
 import com.example.magicnote1.dataconnect.WishListDatabaseHelper;
+import com.example.magicnote1.model.DiaryNote;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -32,7 +37,7 @@ public class WishListMainActivity extends AppCompatActivity {
     FloatingActionButton addButton;
     ImageView img_no_item;
     TextView tv_no_item;
-
+    private EditText searchInput;
     WishListDatabaseHelper myDB;
     ArrayList<String> itemId, itemName, itemPrice;
     WishListAdapter customAdapter;
@@ -71,6 +76,8 @@ public class WishListMainActivity extends AppCompatActivity {
         customAdapter = new WishListAdapter(this,this, itemId, itemName,itemPrice);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(WishListMainActivity.this));
+        searchInput = findViewById(R.id.search_input);
+        addTextListener();
     }
 
     @Override
@@ -171,4 +178,35 @@ public class WishListMainActivity extends AppCompatActivity {
         builder.create().show();
     }
 
+    public void addTextListener(){
+
+        searchInput.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+
+                query = query.toString().toLowerCase();
+                ArrayList<String> tempName = new ArrayList<>();
+                ArrayList<String> tempPrice = new ArrayList<>();
+                ArrayList<String> tempID = new ArrayList<>();
+                for (int i = 0; i < itemName.size(); i++) {
+
+                    String text = itemName.get(i).toLowerCase()+ itemPrice.get(i).toLowerCase();
+                    if (text.contains(query)) {
+
+                        tempName.add(itemName.get(i));
+                        tempPrice.add(itemPrice.get(i));
+                        tempID.add(itemId.get(i));
+                    }
+                }
+
+                recyclerView.removeAllViews();;
+                customAdapter = new WishListAdapter(WishListMainActivity.this,WishListMainActivity.this, tempID, tempName,tempPrice);
+                recyclerView.setAdapter(customAdapter);
+            }
+        });
+    }
 }

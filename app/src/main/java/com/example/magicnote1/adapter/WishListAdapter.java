@@ -80,8 +80,7 @@ public class WishListAdapter extends RecyclerView.Adapter<WishListAdapter.MyView
             mainLayout = itemView.findViewById(R.id.mainLayout);
 
             //tao animation tren recyclerview
-            Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.slide_out_left);
-            mainLayout.setAnimation(translate_anim);
+            
 
         }
     }

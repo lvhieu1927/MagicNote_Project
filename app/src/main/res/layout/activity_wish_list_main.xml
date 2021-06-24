@@ -6,28 +6,53 @@
     android:layout_height="match_parent"
     tools:context=".WishListMainActivity"
     android:background="@drawable/wishlist_bg_image">
-
-    <EditText
-        android:id="@+id/search_input"
-        android:drawablePadding="8dp"
-        android:drawableLeft="@drawable/ic_search"
-        android:textColor="@color/white"
-        android:hint="Search"
-        android:textColorHint="@color/white"
-        android:background="@drawable/search_input_type"
-        android:layout_height="wrap_content"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="16dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageButton
+                android:id="@+id/bt_home"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_home"
+                />
+            <EditText
+                android:id="@+id/search_input"
+                android:drawablePadding="8dp"
+                android:drawableLeft="@drawable/ic_search"
+                android:textColor="@color/white"
+                android:hint="Search"
+                android:textColorHint="@color/white"
+                android:background="@drawable/search_input_type"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_alignStart="@id/linear1"
+            android:layout_below="@id/linear1" />
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_button"
@@ -42,14 +67,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_wishlist" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="410dp"
-        android:layout_height="730dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_input" />
 
     <ImageView
         android:id="@+id/img_no_item"
