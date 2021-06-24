@@ -1,13 +1,19 @@
 package com.example.magicnote1.chart;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.magicnote1.R;
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
+import com.example.magicnote1.model.DiaryNote;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -16,11 +22,14 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class PieChartActivity extends Activity {
 
     TextView textView1,textView2,textView3,textView4,textView5,tv_positive;
     MyDBHelperDiary dbHelperDiary;
     PieChart pieChart;
+    LineChart lineChart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,7 @@ public class PieChartActivity extends Activity {
         setChart();
         setTextView();
         setPositive();
+        setToLineChart();
     }
 
     private void addControl() {
@@ -46,7 +56,32 @@ public class PieChartActivity extends Activity {
         textView4 = findViewById(R.id.textview4);
         textView5 = findViewById(R.id.textview5);
         tv_positive = findViewById(R.id.tv_positive);
+        lineChart = findViewById(R.id.linechart);
     }
+
+    private void  setToLineChart(){
+
+        ArrayList<Integer> yAxisData = new ArrayList<>();
+        ArrayList<DiaryNote> diaryNotes = dbHelperDiary.getTop20DiaryNote();
+        for (int i=0; i <diaryNotes.size(); i++){
+            yAxisData.add(diaryNotes.get(i).getMoodID());
+        }
+        ArrayList<Entry> arrayList = new ArrayList<>();
+
+        for (int i=0; i < diaryNotes.size(); i++)
+        {
+            arrayList.add(new Entry(i,yAxisData.get(i)));
+        }
+        LineDataSet lineDataSet = new LineDataSet(arrayList,"country");
+        lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        lineDataSet.setFillAlpha(110);
+        LineData lineData;
+        lineData = new LineData(lineDataSet);
+        lineChart.setData(lineData);
+        lineChart.setVisibleXRangeMaximum(30);
+        lineChart.invalidate();
+    }
+
 
     void setTextView()
     {
@@ -62,7 +97,8 @@ public class PieChartActivity extends Activity {
         tv_positive.setText(dbHelperDiary.getPositiveString());
     }
 
-    void setChart()
+
+    private void setChart()
     {
         List<PieEntry> NoOfEmp = new ArrayList();
         NoOfEmp.add(new PieEntry(dbHelperDiary.countMood("happy")*1f, 0));
