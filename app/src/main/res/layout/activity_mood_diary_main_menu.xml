@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/mood_diary_main_menu"
+    android:background="@drawable/bg_todolist1"
     >
 
     <LinearLayout
@@ -73,5 +75,18 @@
             android:src="@drawable/ic_fab"
             android:background="@drawable/bg_gradient"
             android:layout_marginBottom="15dp" />
+        <ImageButton
+            android:id="@+id/change_theme_button"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
+            android:src="@drawable/ic_image_black_24dp"
+            android:scaleType="centerInside"
+            android:background="@drawable/bt_round_button"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|left"/>
     </RelativeLayout>
 </LinearLayout>
