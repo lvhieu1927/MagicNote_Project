@@ -27,10 +27,12 @@
 
             <ImageButton
                 android:id="@+id/bt_home"
+                android:padding="@dimen/margin_basex3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_wishlist_home"
-                android:background="#FFE5E4"
+                android:background="@drawable/bt_background"
+                android:layout_marginRight="10dp"
                 />
             <EditText
                 android:id="@+id/search_input"

@@ -277,16 +277,16 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_main);
         switch (loadThemeId){
             case 0:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
                 break;
             case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
                 break;
             case 2:
-                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
                 break;
             case 3:
-                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
                 break;
         }
     }
