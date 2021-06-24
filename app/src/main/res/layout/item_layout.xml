@@ -13,6 +13,7 @@
         android:layout_weight="1"
         android:fontFamily="@font/helveticaneue"
         android:textSize="18sp"
+        android:textStyle="bold"
         android:padding="10dp"/>
     <CheckBox
         android:id="@+id/check_done"
