@@ -16,7 +16,7 @@ import com.example.magicnote1.R;
 import pl.droidsonroids.gif.GifImageView;
 
 public class SplashScreen extends AppCompatActivity {
-    private static int SPLASH_SCREEN_DISPLAY = 4000;
+    private static int SPLASH_SCREEN_DISPLAY = 1000;
 
     Animation topAnim, bottomAnim;
     TextView tv_title;

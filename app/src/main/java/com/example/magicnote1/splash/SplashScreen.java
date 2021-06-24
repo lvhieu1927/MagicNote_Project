@@ -12,7 +12,7 @@ import com.example.magicnote1.activity_home_screen;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN_DISPLAY = 2000;
+    private static int SPLASH_SCREEN_DISPLAY = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
