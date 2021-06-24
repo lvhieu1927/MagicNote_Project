@@ -24,6 +24,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.magicnote1.model.Task;
 import com.example.magicnote1.model.ToDoList;
 import com.example.magicnote1.model.reminderReceiver;
@@ -37,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 import pl.droidsonroids.gif.GifImageView;
 
 //Activity quản lý task
-public class todolist_MainMenu_Activity extends Activity {
+public class todolist_MainMenu_Activity extends AppCompatActivity {
     private ListView listViewTask;
     private List<Task> listTask;
     private ToDoList toDoList;
@@ -48,6 +51,16 @@ public class todolist_MainMenu_Activity extends Activity {
     private PendingIntent notificationReceiverPending;
     private int themeId = 0;
     private SharedPreferences sharedPreferences;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 113)
+            if (resultCode == Activity.RESULT_OK)
+            {
+                Toast.makeText(getApplicationContext(),"Insert today note to diary successfully!",Toast.LENGTH_SHORT).show();
+            }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,11 +196,14 @@ public class todolist_MainMenu_Activity extends Activity {
                 }
 
                 Intent goToDiary = new Intent(todolist_MainMenu_Activity.this,Add_Diary_3Activity.class);
-                goToDiary.putExtra("goToDiary",contentTodolist);
 
+                Bundle bundle = new Bundle();
+                bundle.putString("goToDiary",contentTodolist);
+                bundle.putInt("flag",2);
+                goToDiary.putExtras(bundle);
                 startActivityForResult(goToDiary,DIARY);
                 ///Check log để xem kết quả
-                Log.d("123",contentTodolist);
+                Log.d("Magic",contentTodolist);
                 ///////////////////////////////////////
         }
     }

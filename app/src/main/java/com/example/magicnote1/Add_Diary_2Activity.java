@@ -29,14 +29,10 @@ public class Add_Diary_2Activity extends AppCompatActivity {
     private ArrayList<Buttonnew> arrButton;
     private ArrayList<String>    arrActivity;
     private Button bt_Save, bt_Next;
-    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__diary_2);
-        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
-        int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
-        changeTheme(loadThemeId);
         addControl();
         addEvent();
     }
@@ -315,21 +311,5 @@ public class Add_Diary_2Activity extends AppCompatActivity {
             ml_Chores.addView(buttonnew);
         }
     }
-    public void changeTheme(int loadThemeId){
-        LinearLayout bgView = (LinearLayout) findViewById(R.id.add_diary_2);
-        switch (loadThemeId){
-            case 0:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
-                break;
-            case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist2);
-                break;
-            case 2:
-                bgView.setBackgroundResource(R.drawable.bg_todolist3);
-                break;
-            case 3:
-                bgView.setBackgroundResource(R.drawable.bg_todolist4);
-                break;
-        }
-    }
+
 }

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentResolver;
@@ -78,24 +79,9 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__diary_3);
-        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
-        int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
-        changeTheme(loadThemeId);
         addControl();
         addEvent();
-<<<<<<< HEAD
 
-        ///Đoạn này lấy nội dung todolist
-        String contentTodolist ="";
-        toDoList = new ToDoList(this);
-        for (int i = 0; i < toDoList.getAllTask().size();i++){
-            contentTodolist += toDoList.getAllTask().get(i).getTaskDetails() + "\n";
-        }
-        ///Check log để xem kết quả
-        Log.d("Magic todo",contentTodolist);
-        /////////////////////////////////
-=======
->>>>>>> bd442482abbd6bbfa686fa9c96e6af4467220df1
     }
 
     //hàm khai báo các định danh cho biến
@@ -119,14 +105,21 @@ public class Add_Diary_3Activity extends AppCompatActivity {
 
     //hàm dùng bắt sự kiện
     private void addEvent() {
-        if (check() == 0){
-            setMood();
-            setDate();
-            scrollActivitySet();
-            setButtonExit();
-        }
-        else {
-            setUpUpdate(diary_ID_Receiver);
+
+        switch (check())
+        {
+            case 0:
+                setMood();
+                setDate();
+                scrollActivitySet();
+                setButtonExit();
+                break;
+            case 1:
+                setUpUpdate(diary_ID_Receiver);
+                break;
+            case 2:
+                setTodayNote();
+                break;
         }
 
         Intent intent = new Intent(this,MoodDiaryMainMenu.class);
@@ -134,7 +127,12 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         bt_save.setOnClickListener(v -> {
             insertOrUpdateDataToDiary();
             insertDiary_Activity();
-            startActivity(intent);
+            if (check() == 2) {
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
+            else
+                startActivity(intent);
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +172,26 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 buttonChangeActivity();
+            }
+        });
+    }
+
+    //lấy dữ liệu ngày hôm nay của todolist
+    private void setTodayNote() {
+        bt_Exit.setImageResource(R.drawable.ic_clear);
+        img_Mood.setImageResource(R.drawable.ic_neutral_white);
+        str_Mood  = "neutral";
+        setDate();
+        text_HeadLine.setText("TodoList of day");
+        Intent intent = getIntent();
+        String todayNote = intent.getStringExtra("goToDiary");
+        edt_Note.setText(todayNote);
+        bt_Exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentTodo = new Intent();
+                setResult(Activity.RESULT_CANCELED,intentTodo);
+                finish();
             }
         });
     }
@@ -393,7 +411,8 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
         if(requestCode == REQUEST_ACTIVITY && resultCode == RESULT_OK)
         {
-            activity.clear();
+            if (activity!=null)
+                activity.clear();
             activity = data.getStringArrayListExtra("activity");
             layout_Activity.removeAllViews();
             if (activity != null)
@@ -416,7 +435,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         diaryNote.setHeadline(text_HeadLine.getText().toString());
         diaryNote.setNote(edt_Note.getText().toString());
         diaryNote.setPhoto(getBitmapAsByteArray(bitmap));
-        if (check() ==0)
+        if (check() ==0 || check() == 2)
             helperDiary.insertDiaryNote(diaryNote);
         else
             {
@@ -432,11 +451,12 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     public void insertDiary_Activity2()
     {
         MyDBHelperDiary helperDiary = new MyDBHelperDiary(this,null,null,1);
-        for (int i = 0; i < activity.size(); i++)
-        {
-            int activity_id = helperDiary.getActivityIdByActivityName(activity.get(i));
-            helperDiary.insertDiary_Activity(diary_ID_Receiver, activity_id);
-        }
+        if (activity !=null)
+            for (int i = 0; i < activity.size(); i++)
+            {
+                int activity_id = helperDiary.getActivityIdByActivityName(activity.get(i));
+                helperDiary.insertDiary_Activity(diary_ID_Receiver, activity_id);
+            }
     }
 
     // gọi hàm thêm diary note activity
@@ -444,11 +464,12 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     {
         MyDBHelperDiary helperDiary = new MyDBHelperDiary(this,null,null,1);
         int diary_id = helperDiary.getLastDiaryNoteID();
+        if (activity != null)
         for (int i = 0; i < activity.size(); i++)
-        {
-            int activity_id = helperDiary.getActivityIdByActivityName(activity.get(i));
-            helperDiary.insertDiary_Activity(diary_id, activity_id);
-        }
+            {
+                int activity_id = helperDiary.getActivityIdByActivityName(activity.get(i));
+                helperDiary.insertDiary_Activity(diary_id, activity_id);
+            }
     }
 
     //chuyển bitmap thành mảng byte để lưu trữ
@@ -544,21 +565,5 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         long timeInMilliseconds = datex.getTime();
         return timeInMilliseconds;
     }
-    public void changeTheme(int loadThemeId){
-        LinearLayout bgView = (LinearLayout) findViewById(R.id.add_diary_3);
-        switch (loadThemeId){
-            case 0:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
-                break;
-            case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist2);
-                break;
-            case 2:
-                bgView.setBackgroundResource(R.drawable.bg_todolist3);
-                break;
-            case 3:
-                bgView.setBackgroundResource(R.drawable.bg_todolist4);
-                break;
-        }
-    }
+
 }

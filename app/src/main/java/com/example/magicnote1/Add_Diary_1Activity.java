@@ -25,14 +25,10 @@ public class Add_Diary_1Activity extends AppCompatActivity {
     TextView hello_text;
     ImageButton button1, button2, button3, button4, button5;
     private TextClock textClock;
-    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__diary_1);
-        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
-        int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
-        changeTheme(loadThemeId);
         addControl();
         addEvents();
     }
@@ -97,11 +93,6 @@ public class Add_Diary_1Activity extends AppCompatActivity {
 
 
     // Hàm để thay đổi hình theme tự động theo thời gian
-    private void changeTheme()
-    {
-        int i = getTimeFromAndroid();
-        hello_text.setText(set_hello_text(i)+"\nLet's start with your mood");
-    }
 
     //Hàm lấy thời gian thực của máy
     private int getTimeFromAndroid() {
@@ -129,21 +120,5 @@ public class Add_Diary_1Activity extends AppCompatActivity {
             return  "Good evening!";
         return "Good Night!";
     }
-    public void changeTheme(int loadThemeId){
-        RelativeLayout bgView = (RelativeLayout) findViewById(R.id.add_diary_1);
-        switch (loadThemeId){
-            case 0:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
-                break;
-            case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist2);
-                break;
-            case 2:
-                bgView.setBackgroundResource(R.drawable.bg_todolist3);
-                break;
-            case 3:
-                bgView.setBackgroundResource(R.drawable.bg_todolist4);
-                break;
-        }
-    }
+
 }

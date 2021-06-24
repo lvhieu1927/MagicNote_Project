@@ -179,7 +179,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         });
     }
     public void changeTheme(int loadThemeId){
-        LinearLayout bgView = (LinearLayout)findViewById(R.id.mood_diary_main_menu);
+        LinearLayout bgView = (LinearLayout)findViewById(R.id.linearAll);
         switch (loadThemeId){
             case 0:
                 bgView.setBackgroundResource(R.drawable.bg_todolist1);
@@ -191,7 +191,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 bgView.setBackgroundResource(R.drawable.bg_todolist3);
                 break;
             case 3:
-                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                bgView.setBackgroundResource(R.drawable.bg_gradient);
                 break;
         }
     }
