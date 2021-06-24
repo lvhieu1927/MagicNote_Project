@@ -379,7 +379,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 e.printStackTrace();
             }
             BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize=4;
+            options.inSampleSize=8;
             bitmap = BitmapFactory.decodeStream(in,null,options);
             imageView.setImageBitmap(bitmap);
         }
