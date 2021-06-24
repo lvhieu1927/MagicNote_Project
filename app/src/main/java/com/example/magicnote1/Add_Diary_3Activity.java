@@ -34,6 +34,7 @@ import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 import com.example.magicnote1.model.Buttonnew;
 import com.example.magicnote1.model.DialogChooseMood;
 import com.example.magicnote1.model.DiaryNote;
+import com.example.magicnote1.model.ToDoList;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.io.ByteArrayOutputStream;
@@ -70,13 +71,23 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private String str_Mood;
     private ArrayList<String> activity;
     int diary_ID_Receiver = 0;
-
+    private ToDoList toDoList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__diary_3);
         addControl();
         addEvent();
+
+        ///Đoạn này lấy nội dung todolist
+        String contentTodolist ="";
+        toDoList = new ToDoList(this);
+        for (int i = 0; i < toDoList.getAllTask().size();i++){
+            contentTodolist += toDoList.getAllTask().get(i).getTaskDetails() + "\n";
+        }
+        ///Check log để xem kết quả
+        Log.d("123",contentTodolist);
+        /////////////////////////////////
     }
 
     //hàm khai báo các định danh cho biến
