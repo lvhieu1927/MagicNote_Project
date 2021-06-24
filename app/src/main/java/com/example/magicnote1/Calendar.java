@@ -42,7 +42,7 @@ public class Calendar extends AppCompatActivity {
             public void onDateClick(View view, DateData date) {
                 Intent intent = new Intent();
                 Bundle bundle = new Bundle();
-                bundle.putString("date",date.getDay()+"/"+date.getMonthString()+"/"+date.getYear());
+                bundle.putString("date",date.getDayString()+"/"+date.getMonthString()+"/"+date.getYear());
                 intent.putExtras(bundle);
                 setResult(Activity.RESULT_OK,intent);
                 finish();

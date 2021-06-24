@@ -86,7 +86,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(MoodDiaryMainMenu.this,activity_home_screen.class);
-                startActivity(intent);
+                startActivity(intent1);
             }
         });
 
@@ -94,10 +94,10 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (flag ==0) {
-                    Intent intent1 = new Intent(MoodDiaryMainMenu.this, Calendar.class);
+                    Intent intent2 = new Intent(MoodDiaryMainMenu.this, Calendar.class);
                     bt_ChooseDate.setImageResource(R.drawable.ic_clear);
                     flag=1;
-                    startActivityForResult(intent1, 123);
+                    startActivityForResult(intent2, 123);
                 }
                 else {
                     bt_ChooseDate.setImageResource(R.drawable.ic_date_range);
