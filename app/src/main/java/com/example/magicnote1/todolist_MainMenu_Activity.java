@@ -195,7 +195,7 @@ public class todolist_MainMenu_Activity extends Activity {
                     }
                 },100);
             }
-        },3000);
+        },1500);
     }
     private void setReminder(long time){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
