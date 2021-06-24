@@ -18,21 +18,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.magicnote1.R;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 //Activity thao tác với task
@@ -326,6 +322,7 @@ public class todolist_item_Activity extends Activity {
         String timeSs ="" + second;
         if(second == 60){
             timeHhMm = timeFormat(time - 60000);
+            timeSs = ""+ (second - 1);
         }
         if(second < 10){
             timeSs = "0"+second;
