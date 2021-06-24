@@ -7,7 +7,8 @@
     tools:context=".Add_Diary_3Activity"
     android:background="@drawable/bg_gradient"
     android:paddingBottom="10dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/add_diary_3">
 
     <RelativeLayout
         android:layout_width="wrap_content"

@@ -65,6 +65,20 @@
             android:padding="5dp"
             android:layout_gravity="bottom|left"
             android:onClick="clickButton"/>
+        <ImageButton
+            android:id="@+id/go_to_diary"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:minHeight="40dp"
+            android:minWidth="40dp"
+            android:src="@drawable/ic_insert_emoticon_black_24dp"
+            android:scaleType="centerInside"
+            android:background="@drawable/bt_round_button"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:padding="5dp"
+            android:layout_gravity="bottom|right"
+            android:onClick="clickButton"/>
 <!--        <ImageView-->
 <!--            android:id="@+id/logo"-->
 <!--            android:layout_width="match_parent"-->

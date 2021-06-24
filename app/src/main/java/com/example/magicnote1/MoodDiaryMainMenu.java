@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 
 import com.example.magicnote1.adapter.DiaryNoteAdapter;
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
@@ -27,7 +30,8 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private DiaryNoteAdapter mDiaryNoteAdapter;
     private EditText searchInput;
-    private ImageButton bt_AddDiary,bt_Home,bt_ChooseDate;
+    private ImageButton bt_AddDiary,bt_Home,bt_ChooseDate, bt_ChangeTheme;
+    private SharedPreferences sharedPreferences;
     CharSequence search="";
     static int flag = 0;
     private MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
@@ -36,6 +40,10 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mood_diary_main_menu);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
+        changeTheme(loadThemeId);
+
         addControl();
 
         addEvent();
@@ -109,6 +117,23 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
 
             }
         });
+        bt_ChangeTheme = (ImageButton) findViewById(R.id.change_theme_button) ;
+        bt_ChangeTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
+                Log.d("id at click"," "+loadThemeId);
+                loadThemeId++;
+                if(loadThemeId>3){
+                    loadThemeId = 0;
+                }
+                changeTheme(loadThemeId);
+                Log.d("id after click"," "+loadThemeId);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("themeIdDiary",loadThemeId);
+                editor.apply();
+            }
+        });
     }
 
     private void addControl() {
@@ -152,5 +177,22 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 mRecyclerView.setAdapter(mDiaryNoteAdapter);
             }
         });
+    }
+    public void changeTheme(int loadThemeId){
+        LinearLayout bgView = (LinearLayout)findViewById(R.id.mood_diary_main_menu);
+        switch (loadThemeId){
+            case 0:
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                break;
+            case 1:
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                break;
+            case 2:
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                break;
+            case 3:
+                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                break;
+        }
     }
 }

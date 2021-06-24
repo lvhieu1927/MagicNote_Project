@@ -2,11 +2,15 @@ package com.example.magicnote1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -21,11 +25,14 @@ public class Add_Diary_1Activity extends AppCompatActivity {
     TextView hello_text;
     ImageButton button1, button2, button3, button4, button5;
     private TextClock textClock;
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__diary_1);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
+        changeTheme(loadThemeId);
         addControl();
         addEvents();
     }
@@ -122,5 +129,21 @@ public class Add_Diary_1Activity extends AppCompatActivity {
             return  "Good evening!";
         return "Good Night!";
     }
-
+    public void changeTheme(int loadThemeId){
+        RelativeLayout bgView = (RelativeLayout) findViewById(R.id.add_diary_1);
+        switch (loadThemeId){
+            case 0:
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                break;
+            case 1:
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                break;
+            case 2:
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                break;
+            case 3:
+                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                break;
+        }
+    }
 }

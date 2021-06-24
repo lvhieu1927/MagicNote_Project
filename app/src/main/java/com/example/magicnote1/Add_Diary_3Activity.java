@@ -12,6 +12,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -72,12 +73,17 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private ArrayList<String> activity;
     int diary_ID_Receiver = 0;
     private ToDoList toDoList;
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__diary_3);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        int loadThemeId = sharedPreferences.getInt("themeIdDiary",0);
+        changeTheme(loadThemeId);
         addControl();
         addEvent();
+<<<<<<< HEAD
 
         ///Đoạn này lấy nội dung todolist
         String contentTodolist ="";
@@ -88,6 +94,8 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         ///Check log để xem kết quả
         Log.d("Magic todo",contentTodolist);
         /////////////////////////////////
+=======
+>>>>>>> bd442482abbd6bbfa686fa9c96e6af4467220df1
     }
 
     //hàm khai báo các định danh cho biến
@@ -535,5 +543,22 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         }
         long timeInMilliseconds = datex.getTime();
         return timeInMilliseconds;
+    }
+    public void changeTheme(int loadThemeId){
+        LinearLayout bgView = (LinearLayout) findViewById(R.id.add_diary_3);
+        switch (loadThemeId){
+            case 0:
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                break;
+            case 1:
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                break;
+            case 2:
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                break;
+            case 3:
+                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                break;
+        }
     }
 }
