@@ -64,6 +64,7 @@ public class todolist_MainMenu_Activity extends Activity {
         Log.d("id at Create"," "+loadThemeId);
         changeTheme(loadThemeId);
     }
+
     @Override
     protected void onResume(){
         super.onResume();

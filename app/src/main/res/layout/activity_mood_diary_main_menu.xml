@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_gradient"
     >
 
     <LinearLayout
@@ -19,9 +20,11 @@
             android:id="@+id/bt_home"
 
             android:src="@drawable/ic_home"
-            android:background="#00000000"
+
+            android:background="@drawable/bt_background"
             android:padding="10dp"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="5dp"
             android:layout_marginLeft="8dp"
             />
 
@@ -41,10 +44,11 @@
 
         <ImageButton
             android:padding="10dp"
-            android:backgroundTint="@color/tab_indicator_gray"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00000000"
+            android:background="@drawable/bt_background"
             android:layout_marginTop="8dp"
             android:id="@+id/bt_DateChoose"
             android:src="@drawable/ic_date_range"
@@ -68,10 +72,11 @@
         <ImageButton
             android:id="@+id/bt_AddDiary"
             android:layout_centerHorizontal="true"
-            android:layout_width="110dp"
+            android:layout_width="90dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_fab"
-            android:background="@drawable/bg_gradient"
-            android:layout_marginBottom="15dp" />
+            android:background="@drawable/bt_background"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp" />
     </RelativeLayout>
 </LinearLayout>

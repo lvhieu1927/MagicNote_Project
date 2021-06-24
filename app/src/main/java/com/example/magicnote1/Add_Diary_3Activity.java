@@ -86,7 +86,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             contentTodolist += toDoList.getAllTask().get(i).getTaskDetails() + "\n";
         }
         ///Check log để xem kết quả
-        Log.d("123",contentTodolist);
+        Log.d("Magic todo",contentTodolist);
         /////////////////////////////////
     }
 
