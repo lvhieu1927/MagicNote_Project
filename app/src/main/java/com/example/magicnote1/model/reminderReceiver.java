@@ -7,9 +7,11 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Vibrator;
 import android.util.Log;
+import android.view.SoundEffectConstants;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -38,11 +40,11 @@ public class reminderReceiver extends BroadcastReceiver {
             Notification notification = new NotificationCompat.Builder(context,CHANNEL_ID)
                     .setContentIntent(contentIntent)
                     .setSmallIcon(android.R.drawable.ic_popup_reminder)
-                    .setContentTitle("Nhắc nhở công việc")
+                    .setContentTitle("Nhắc nhở công việc")  
                     .setContentText("Bạn có công việc cần làm bây giờ. Check ngay !")
                     .setStyle(new NotificationCompat.BigTextStyle().bigText("Nội dung: " + intent.getStringExtra("content alarm")))
                     .setAutoCancel(true)
-                    .setVibrate(new long[]{500, 500})
+                    .setVibrate(new long[]{0, 200, 200, 300})
                     .build();
             Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
             v.vibrate(1000);
