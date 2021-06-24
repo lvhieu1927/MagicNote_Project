@@ -64,14 +64,6 @@ public class todolist_MainMenu_Activity extends Activity {
         Log.d("id at Create"," "+loadThemeId);
         changeTheme(loadThemeId);
     }
-
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putInt("themeid",themeId);
-//        editor.apply();
-//    }
     @Override
     protected void onResume(){
         super.onResume();
@@ -127,6 +119,7 @@ public class todolist_MainMenu_Activity extends Activity {
                             rowItem.setBackgroundResource(R.drawable.round_item_completed);
                             itemView.setPaintFlags(itemView.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                             mAlarm.cancel(notificationReceiverPending);
+                            cancelScheduleAlarm(listTask.get(position).getIdTask());
                         } else {
                             Log.d("id noti main"," "+listTask.get(position).getIdTask());
                             listTask.get(position).setCompleted(false);
@@ -225,6 +218,19 @@ public class todolist_MainMenu_Activity extends Activity {
         }
         Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeHhMm  + ":"+ timeSs,
                 Toast.LENGTH_LONG).show();
+    }
+    public void cancelScheduleAlarm(int id){
+        int day = 2;
+        notificationReceiver = new Intent(todolist_MainMenu_Activity.this,
+                reminderReceiver.class);
+        mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
+        while (day<=8) {
+            notificationReceiverPending = PendingIntent.getBroadcast(
+                    todolist_MainMenu_Activity.this, -Integer.valueOf(id + "" + day), notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+            Log.d("repeat cancle", " " + -Integer.valueOf(id + "" + day));
+            mAlarm.cancel(notificationReceiverPending);
+            day++;
+        }
     }
     public long toMillis(int h, int m, int s){
         return Long.valueOf((h*3600 + m *60 + s)*1000);
