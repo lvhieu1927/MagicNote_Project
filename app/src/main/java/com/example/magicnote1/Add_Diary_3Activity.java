@@ -83,16 +83,6 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         changeTheme(loadThemeId);
         addControl();
         addEvent();
-
-        ///Đoạn này lấy nội dung todolist
-        String contentTodolist ="";
-        toDoList = new ToDoList(this);
-        for (int i = 0; i < toDoList.getAllTask().size();i++){
-            contentTodolist += toDoList.getAllTask().get(i).getTaskDetails() + "\n";
-        }
-        ///Check log để xem kết quả
-        Log.d("123",contentTodolist);
-        /////////////////////////////////
     }
 
     //hàm khai báo các định danh cho biến

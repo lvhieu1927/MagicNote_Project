@@ -171,6 +171,23 @@ public class todolist_MainMenu_Activity extends Activity {
                 editor.putInt("themeid",loadThemeId);
                 editor.apply();
                 break;
+                //////////////////////////////////////
+            case R.id.go_to_diary:
+                int DIARY = 113;
+                ///Đoạn này lấy nội dung todolist
+                String contentTodolist ="";
+                toDoList = new ToDoList(this);
+                for (int i = 0; i < toDoList.getAllTask().size();i++){
+                    contentTodolist += toDoList.getAllTask().get(i).getTaskDetails() + "\n";
+                }
+
+                Intent goToDiary = new Intent(todolist_MainMenu_Activity.this,Add_Diary_3Activity.class);
+                goToDiary.putExtra("goToDiary",contentTodolist);
+
+                startActivityForResult(goToDiary,DIARY);
+                ///Check log để xem kết quả
+                Log.d("123",contentTodolist);
+                /////////////////////////////////////
         }
     }
     public void checkEmpty(List list){
