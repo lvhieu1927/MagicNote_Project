@@ -105,7 +105,7 @@ public class PieChartActivity extends Activity {
         {
             arrayList.add(new Entry(i,yAxisData.get(i)));
         }
-        LineDataSet lineDataSet = new LineDataSet(arrayList,"your Mood");
+        LineDataSet lineDataSet = new LineDataSet(arrayList,"your Mood (chart has score 1 (bad) - 5 (happy)");
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setFillAlpha(110);
         LineData lineData;

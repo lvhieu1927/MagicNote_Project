@@ -36,8 +36,6 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_add__diary_1);
         addControl();
         addEvents();
-
-
     }
 
     @Override
@@ -148,15 +146,16 @@ public class Add_Diary_1Activity extends AppCompatActivity {
     }
 
     //Hàm lấy nội dung câu chào theo thời gian buổi
-    public String set_hello_text(int i)
+    public void set_hello_text(int i)
     {
         if (i == 1 )
-            return "Good morning!";
+            hello_text.setText(R.string.goodmorning + R.string.AddDiary1_Hello1);
         if (i == 2)
-            return  "Good afternoon!";
+            hello_text.setText(R.string.goodmorning + R.string.AddDiary1_Hello1);
         if (i == 3)
-            return  "Good evening!";
-        return "Good Night!";
+            hello_text.setText(R.string.goodmorning + R.string.AddDiary1_Hello1);
+        if (i == 4)
+            hello_text.setText(R.string.goodmorning + R.string.AddDiary1_Hello1);
     }
     public void setAppLang(String local){
         Resources res = getResources();
