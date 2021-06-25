@@ -47,7 +47,6 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
-        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("lang","en");
         setAppLang(lang);
         setContentView(R.layout.activity_mood_diary_main_menu);
@@ -86,7 +85,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 mDiaryNoteAdapter = new DiaryNoteAdapter(filteredList,MoodDiaryMainMenu.this);
                 mRecyclerView.setAdapter(mDiaryNoteAdapter);
             }
-            if (resultCode == Activity.RESULT_CANCELED)
+            if (resultCode == 11)
             {
                 String date = data.getStringExtra("mood");
                 ArrayList<DiaryNote> filteredList = new ArrayList<>();

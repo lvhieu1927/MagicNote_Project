@@ -117,7 +117,7 @@
                         android:layout_below="@+id/layouttime"
                         android:textAlignment="center"
                         android:fontFamily="@font/font_1_dancingscript_regular"
-                        android:text="Today,\n what you want to remember?"
+                        android:text="@string/AddDiary3_question"
                         android:textSize="18dp"
                         android:textStyle="italic" />
 

@@ -46,7 +46,7 @@
             android:fontFamily="@font/font_1_dancingscript_regular"
             android:gravity="center"
             android:layout_marginTop="50dp"
-            android:text="Good evening!\nLet's start with your mood\nHow are you today?\nLet's me save your emotion"
+            android:text="@string/AddDiary1_Hello1"
             android:textAlignment="center"
             android:textColor="@color/mauchu"
             android:textSize="20dp"
@@ -69,7 +69,7 @@
         android:textColor="@color/mauchu"
         android:fontFamily="@font/font_1_dancingscript_regular"
         android:textSize="20dp"
-        android:text="Choose your emotion on today to start our journey!"/>
+        android:text="@string/AddDiary1_ChooseMood"/>
 
         <LinearLayout
             android:id="@+id/ln2"

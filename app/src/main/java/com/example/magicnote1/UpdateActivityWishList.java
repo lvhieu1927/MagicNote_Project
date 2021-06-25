@@ -1,7 +1,12 @@
 package com.example.magicnote1;
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,14 +19,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.magicnote1.dataconnect.WishListDatabaseHelper;
 
+import java.util.Locale;
+
 public class UpdateActivityWishList extends AppCompatActivity {
     EditText itemName_input, itemPrice_input;
     Button updateButton, deleteButton;
     String id, name, price;
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
         setContentView(R.layout.activity_update_wishlist);
 
         //dinh danh cac id tuong ung
@@ -100,6 +110,13 @@ public class UpdateActivityWishList extends AppCompatActivity {
             }
         });
         builder.create().show();
+    }
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
     }
 
 }
