@@ -57,7 +57,10 @@
             android:src="@drawable/ic_date_range"
             />
     </LinearLayout>
-
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="8">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcv_main"
@@ -65,8 +68,16 @@
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
-        android:divider="#00000000" />
-
+        android:divider="#00000000"/>
+    <ImageView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_diary_data_notfound"
+        android:scaleType="centerInside"
+        android:padding="70dp"
+        android:layout_gravity="center_horizontal|center_vertical"/>
+    </FrameLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

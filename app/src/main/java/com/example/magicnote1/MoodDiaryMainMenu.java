@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.magicnote1.adapter.DiaryNoteAdapter;
@@ -23,6 +24,7 @@ import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 import com.example.magicnote1.model.DiaryNote;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MoodDiaryMainMenu extends AppCompatActivity {
 
@@ -31,6 +33,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     private DiaryNoteAdapter mDiaryNoteAdapter;
     private EditText searchInput;
     private ImageButton bt_AddDiary,bt_Home,bt_ChooseDate, bt_ChangeTheme;
+    private ImageView emptyView;
     private SharedPreferences sharedPreferences;
     CharSequence search="";
     static int flag = 0;
@@ -191,5 +194,12 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 bgView.setBackgroundResource(R.drawable.bg_todolist3);
                 break;
         }
+    }
+    public void checkEmpty(List list){
+        emptyView = (ImageView) findViewById(R.id.empty_view);
+        if(list.size()>0){
+            emptyView.setVisibility(View.GONE);
+        }
+        else emptyView.setVisibility(View.VISIBLE);
     }
 }
