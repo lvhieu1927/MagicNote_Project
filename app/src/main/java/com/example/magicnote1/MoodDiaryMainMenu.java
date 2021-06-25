@@ -46,6 +46,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         addControl();
         addEvent();
+        checkEmpty();
     }
 
     @Override
@@ -59,18 +60,32 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 ArrayList<DiaryNote> filteredList = new ArrayList<>();
 
                 for (int i = 0; i < mListDiary.size(); i++) {
-                    Log.d("Magic count size",mListDiary.size()+"");
 
                     String text = mListDiary.get(i).getDateText();
-                    Log.d("Magic count size text",text);
-                    Log.d("Magic count size date",date);
+                    if (text.equals(date)) {
+
+                        filteredList.add(mListDiary.get(i));
+                    }
+                }
+
+                mRecyclerView.removeAllViews();;
+                mDiaryNoteAdapter = new DiaryNoteAdapter(filteredList,MoodDiaryMainMenu.this);
+                mRecyclerView.setAdapter(mDiaryNoteAdapter);
+            }
+            if (resultCode == Activity.RESULT_CANCELED)
+            {
+                String date = data.getStringExtra("mood");
+                ArrayList<DiaryNote> filteredList = new ArrayList<>();
+
+                for (int i = 0; i < mListDiary.size(); i++) {
+
+                    String text = mListDiary.get(i).getMoodName();
                     if (text.equals(date)) {
 
                         Log.d("Magic count",date+" +1+ "+text);
                         filteredList.add(mListDiary.get(i));
                     }
                 }
-
                 mRecyclerView.removeAllViews();;
                 mDiaryNoteAdapter = new DiaryNoteAdapter(filteredList,MoodDiaryMainMenu.this);
                 mRecyclerView.setAdapter(mDiaryNoteAdapter);
@@ -92,8 +107,9 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         bt_Home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(MoodDiaryMainMenu.this,activity_home_screen.class);
-                startActivity(intent1);
+                Intent intent12 = new Intent(MoodDiaryMainMenu.this,activity_home_screen.class);
+                intent12.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent12);
             }
         });
 
@@ -195,7 +211,8 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 break;
         }
     }
-    public void checkEmpty(List list){
+
+    public void checkEmpty(){
         emptyView = (ImageView) findViewById(R.id.empty_view);
         if(mDiaryNoteAdapter.getItemCount()>0){
             emptyView.setVisibility(View.GONE);
