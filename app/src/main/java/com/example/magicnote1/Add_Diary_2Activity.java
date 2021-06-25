@@ -45,6 +45,13 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         addEvent();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
+    }
+
     private void addControl() {
         ml_Social = findViewById(R.id.layout_Social);
         ml_Entertainment = findViewById(R.id.layout_Entertainment);

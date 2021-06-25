@@ -41,6 +41,13 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         setAppLang(lang);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
+    }
+
     // Hàm để khai báo các thành phần được sử dụng trong activity
     public void addControl() {
         hello_text = (TextView) findViewById(R.id.hello_text);

@@ -1,12 +1,17 @@
 package com.example.magicnote1;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,6 +37,7 @@ import com.example.magicnote1.model.DiaryNote;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class WishListMainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
@@ -43,11 +49,14 @@ public class WishListMainActivity extends AppCompatActivity {
     WishListDatabaseHelper myDB;
     ArrayList<String> itemId, itemName, itemPrice;
     WishListAdapter customAdapter;
-
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
         setContentView(R.layout.activity_wish_list_main);
 
         //commander line
@@ -220,4 +229,12 @@ public class WishListMainActivity extends AppCompatActivity {
             }
         });
     }
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
+    }
+
 }
