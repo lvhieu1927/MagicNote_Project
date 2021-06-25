@@ -239,13 +239,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_android"
+                    android:src="@drawable/ic_info"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Application"
+                    android:text="About Us"
                     android:layout_marginTop="5dp"
                     android:textColor="@color/pinkhome"
                     android:fontFamily="@font/home_font"
