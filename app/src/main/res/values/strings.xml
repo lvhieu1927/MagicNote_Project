@@ -12,6 +12,20 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+//Mood
+    <string name="eng_happy">happy</string>
+    <string name="eng_neutral">neutral</string>
+    <string name="eng_good">good</string>
+    <string name="eng_awful">awful</string>
+    <string name="eng_bad">bad</string>
+
+    <string name="vi_happy">tốt</string>
+    <string name="vi_good">khá tốt</string>
+    <string name="vi_neutral">bình thường</string>
+    <string name="vi_awful">hơi tệ</string>
+    <string name="vi_bad">tệ</string>
+
+
 //PieChartLayout
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

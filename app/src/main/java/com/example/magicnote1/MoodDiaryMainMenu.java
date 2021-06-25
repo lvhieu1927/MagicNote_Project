@@ -197,7 +197,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     }
     public void checkEmpty(List list){
         emptyView = (ImageView) findViewById(R.id.empty_view);
-        if(list.size()>0){
+        if(mDiaryNoteAdapter.getItemCount()>0){
             emptyView.setVisibility(View.GONE);
         }
         else emptyView.setVisibility(View.VISIBLE);
