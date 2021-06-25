@@ -79,7 +79,7 @@ public class Calendar extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("mood","good");
                 intent.putExtras(bundle);
-                setResult(Activity.RESULT_CANCELED,intent);
+                setResult(11,intent);
                 finish();
             }
         });
@@ -90,7 +90,7 @@ public class Calendar extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("mood","neutral");
                 intent.putExtras(bundle);
-                setResult(Activity.RESULT_CANCELED,intent);
+                setResult(11,intent);
                 finish();
             }
         });
@@ -101,7 +101,7 @@ public class Calendar extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("mood","awful");
                 intent.putExtras(bundle);
-                setResult(Activity.RESULT_CANCELED,intent);
+                setResult(11,intent);
                 finish();
             }
         });
@@ -112,7 +112,7 @@ public class Calendar extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("mood","bad");
                 intent.putExtras(bundle);
-                setResult(Activity.RESULT_CANCELED,intent);
+                setResult(11,intent);
                 finish();
             }
         });}

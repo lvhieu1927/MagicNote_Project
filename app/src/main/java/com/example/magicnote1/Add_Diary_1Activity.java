@@ -26,7 +26,7 @@ import java.util.Locale;
 
 public class Add_Diary_1Activity extends AppCompatActivity {
 
-    TextView hello_text;
+    TextView hello_text,textView2;
     ImageButton button1, button2, button3, button4, button5;
     private TextClock textClock;
     private SharedPreferences sharedPreferences;
@@ -35,15 +35,16 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("lang","en");
-        setAppLang(lang);
         setContentView(R.layout.activity_add__diary_1);
         addControl();
         addEvents();
+        setAppLang(lang);
     }
 
     // Hàm để khai báo các thành phần được sử dụng trong activity
     public void addControl() {
         hello_text = (TextView) findViewById(R.id.hello_text);
+        textView2 = findViewById(R.id.text2);
         button1 = findViewById(R.id.add_diary_button_1);
         button2 = findViewById(R.id.add_diary_button_2);
         button3 = findViewById(R.id.add_diary_button_3);
@@ -132,6 +133,9 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
+        if (local.equals("vi"))
+        {
+        }
         conf.setLocale(new Locale(local.toLowerCase()));
         res.updateConfiguration(conf,dm);
     }
