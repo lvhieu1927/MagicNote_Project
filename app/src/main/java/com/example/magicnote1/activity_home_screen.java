@@ -1,10 +1,15 @@
 package com.example.magicnote1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -17,15 +22,15 @@ import java.util.Locale;
 public class activity_home_screen extends AppCompatActivity {
 
     private CardView cardView1,cardView2,cardView3,cardView4,cardView5,cardView6;
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         addControl();
         addEvent();
     }
-
     private void addEvent() {
         cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,11 +70,21 @@ public class activity_home_screen extends AppCompatActivity {
         cardView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        Locale locale = new Locale("vi_VN");
-                        Locale.setDefault(locale);
-                        Configuration config = new Configuration();
-                        config.locale = locale;
-                Log.d("123", "Clicked");
+                String loadLang = sharedPreferences.getString("lang","en");
+                String lang;
+                if(loadLang.equals("en")){
+                    loadLang = "vi";
+                    lang = "Việt Nam";
+                } else {
+                    loadLang = "en";
+                    lang = "English";
+                }
+                setAppLang(loadLang);
+                Toast.makeText(getApplicationContext(), "Đã chuyển ngôn ngữ thành " + lang, Toast.LENGTH_SHORT).show();
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("lang",loadLang);
+                editor.apply();
+                Log.d("123", "Clicked " + loadLang);
             }
         });
         cardView6.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +104,11 @@ public class activity_home_screen extends AppCompatActivity {
         cardView5 = findViewById(R.id.card5);
         cardView6 = findViewById(R.id.card6);
     }
-
-
-
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
+    }
 }

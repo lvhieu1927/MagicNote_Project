@@ -51,7 +51,7 @@
         <activity android:name=".splash.SplashScreenWishlist" />
         <activity android:name=".activity_home_screen" />
         <activity android:name=".chart.PieChartActivity" />
-
+        <activity android:name=".aboutApp_Activity"/>
         <receiver android:name=".model.reminderReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

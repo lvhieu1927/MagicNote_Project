@@ -1,8 +1,13 @@
 package com.example.magicnote1.chart;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -21,7 +26,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Locale;
 
 
 public class PieChartActivity extends Activity {
@@ -30,11 +35,14 @@ public class PieChartActivity extends Activity {
     MyDBHelperDiary dbHelperDiary;
     PieChart pieChart;
     LineChart lineChart;
-
+    private SharedPreferences sharedPreferences;
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
         setContentView(R.layout.chart_pie_layout);
         addControl();
         addEvent();
@@ -145,5 +153,12 @@ public class PieChartActivity extends Activity {
         pieChart.setCenterTextColor(R.color.mauchu);
 
         pieChart.animateXY(5000, 5000);
+    }
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
     }
 }

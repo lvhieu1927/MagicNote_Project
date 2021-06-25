@@ -12,9 +12,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -46,8 +48,11 @@ public class todolist_item_Activity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_todolist_item);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        Log.d("123", "lang at on create menu " + lang);
+        setAppLang(lang);
+        setContentView(R.layout.activity_todolist_item);
         int loadThemeId = sharedPreferences.getInt("themeid",0);
         Log.d("id at Create"," "+loadThemeId);
         changeTheme(loadThemeId);
@@ -404,12 +409,6 @@ public class todolist_item_Activity extends Activity {
     }
     public void changeTheme(int loadThemeId){
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_item);
-        Locale locale = new Locale("vi_VN");
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
         switch (loadThemeId){
             case 0:
                 bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
@@ -579,5 +578,12 @@ public class todolist_item_Activity extends Activity {
         if(str.substring(6, 7).equals("1")){
             sun.setChecked(true);
         } else sun.setChecked(false);
+    }
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
     }
 }

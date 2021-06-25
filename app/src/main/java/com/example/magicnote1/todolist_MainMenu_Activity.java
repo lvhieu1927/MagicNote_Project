@@ -6,10 +6,13 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +38,7 @@ import com.example.magicnote1.model.todolist_item_Activity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -68,6 +72,9 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_todolist_main_menu);
         loadingLogo();
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        Log.d("123", "lang at on create menu " + lang);
+        setAppLang(lang);
         listTask = new ArrayList<Task>(0);
         toDoList = new ToDoList(this);
         listViewTask = (ListView)findViewById(R.id.lisk_view_task);
@@ -289,5 +296,12 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
                 bgView.setBackgroundResource(R.drawable.bg_todolist3);
                 break;
         }
+    }
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
     }
 }
