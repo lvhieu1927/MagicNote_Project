@@ -1,14 +1,11 @@
 package com.example.magicnote1.chart;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.magicnote1.R;
@@ -26,7 +23,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 
 public class PieChartActivity extends Activity {
@@ -34,15 +31,13 @@ public class PieChartActivity extends Activity {
     TextView textView1,textView2,textView3,textView4,textView5,tv_positive;
     MyDBHelperDiary dbHelperDiary;
     PieChart pieChart;
+    ImageView emptyViewLine;
     LineChart lineChart;
-    private SharedPreferences sharedPreferences;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
-        String lang = sharedPreferences.getString("lang","en");
-        setAppLang(lang);
         setContentView(R.layout.chart_pie_layout);
         addControl();
         addEvent();
@@ -65,6 +60,7 @@ public class PieChartActivity extends Activity {
         textView5 = findViewById(R.id.textview5);
         tv_positive = findViewById(R.id.tv_positive);
         lineChart = findViewById(R.id.linechart);
+        emptyViewLine = findViewById(R.id.empty_LineChart);
     }
 
     private void  setToLineChart(){
@@ -93,6 +89,9 @@ public class PieChartActivity extends Activity {
             }
         }
         ArrayList<Entry> arrayList = new ArrayList<>();
+
+        checkEmpty(emptyViewLine,yAxisData.size());
+
 
         for (int i=0; i < diaryNotes.size(); i++)
         {
@@ -154,11 +153,11 @@ public class PieChartActivity extends Activity {
 
         pieChart.animateXY(5000, 5000);
     }
-    public void setAppLang(String local){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.setLocale(new Locale(local.toLowerCase()));
-        res.updateConfiguration(conf,dm);
+
+    public void checkEmpty(ImageView imageView, int count){
+        if(count > 0){
+            imageView.setVisibility(View.GONE);
+        }
+        else imageView.setVisibility(View.VISIBLE);
     }
 }

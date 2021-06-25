@@ -15,13 +15,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -81,8 +78,6 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
-        String lang = sharedPreferences.getString("lang","en");
         setContentView(R.layout.activity_add__diary_3);
         addControl();
         addEvent();
@@ -134,12 +129,13 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             insertDiary_Activity();
             if (check() == 2) {
                 setResult(Activity.RESULT_OK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
-            else
+            else {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-
+            }
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,6 +194,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentTodo = new Intent();
                 setResult(Activity.RESULT_CANCELED,intentTodo);
+                intentTodo.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
@@ -332,6 +329,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                         dbHelperDiary.deleteActivity(diary_ID_Receiver);
                         dbHelperDiary.deleteDiaryNote(diary_ID_Receiver);
                         Intent intent = new Intent(context,MoodDiaryMainMenu.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:
@@ -364,7 +362,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         ArrayList<String> arrayList = intent.getStringArrayListExtra("activity");
         activity = arrayList;
 
-        
+
         switch(string){
             case "happy":
                 img_Mood.setImageResource(R.drawable.ic_happy_white);
@@ -573,11 +571,5 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         long timeInMilliseconds = datex.getTime();
         return timeInMilliseconds;
     }
-    public void setAppLang(String local){
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.setLocale(new Locale(local.toLowerCase()));
-        res.updateConfiguration(conf,dm);
-    }
+
 }

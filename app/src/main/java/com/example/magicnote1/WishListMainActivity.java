@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class WishListMainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FloatingActionButton addButton;
     ImageView img_no_item;
+    private ImageButton bt_Home;
     TextView tv_no_item;
     private EditText searchInput;
     WishListDatabaseHelper myDB;
@@ -78,6 +80,15 @@ public class WishListMainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(WishListMainActivity.this));
         searchInput = findViewById(R.id.search_input);
         addTextListener();
+        bt_Home = findViewById(R.id.bt_home);
+        bt_Home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent12 = new Intent(WishListMainActivity.this,activity_home_screen.class);
+                intent12.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent12);
+            }
+        });
     }
 
     @Override
