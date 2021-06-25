@@ -144,12 +144,10 @@ public class todolist_item_Activity extends Activity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
             case R.id.button_speak:
-                EditText des = (EditText)findViewById(R.id.task_description);
                 Intent intentStt = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intentStt.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,"en-US");
                 try {
                     startActivityForResult(intentStt,1);
-                    des.setText("");
                 }
                 catch (ActivityNotFoundException a){
                     Toast.makeText(getApplicationContext(),"Oops",Toast.LENGTH_SHORT).show();
