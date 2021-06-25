@@ -123,7 +123,7 @@
     <string name="setting">Setting</string>
     <string name="language">Language</string>
     <string name="bt_back">Back</string>
-    <string name="vietnam">Vietnam</string>
+    <string name="vietnam">Vietnamese</string>
     <string name="english">English</string>
-
+    <string name="headline">Headline</string>
 </resources>

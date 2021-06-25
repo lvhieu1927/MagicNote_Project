@@ -157,7 +157,7 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
                 holder.tv_Header.setTextColor(mContext.getResources().getColor(R.color.mauchu));
                 break;
         }
-        holder.tv_Header.setText("Headline: " + diaryNote.getHeadline());
+        holder.tv_Header.setText(mContext.getString(R.string.headline)+": " + diaryNote.getHeadline());
         holder.tv_Date.setText(this.getDate(diaryNote.getDate(), "dd/MM/yyyy"));
 
         //set button cho gọi tới màn hình sửa
