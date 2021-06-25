@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magic note</string>
     <string name="title_activity_main2">MainActivity</string>
@@ -23,6 +24,7 @@
 <!--    <string name="eng_PieChart">PieChart of all of your mood</string>-->
     <string name="PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>
 
+    <string name="yourMood">Cảm xúc</string>
 <!--    <string name="eng_LineChart">LineChart of all of your mood in 30 mood days</string>-->
     <string name="LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>
 
@@ -44,7 +46,7 @@
 <!--    <string name="eng_AddDiary1_Hello2">How are you today?</string>-->
 <!--    <string name="eng_AddDiary1_Hello3">Lets me save your emotion</string>-->
 
-    <string name="AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>
+    <string name="AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào\nHôm nay bạn thế nào\nHãy để tôi lưu lại cảm xúc đó nhé</string>
 <!--    <string name="AddDiary1_Hello1">Good evening!<br/>Let's start with your mood<br/>How are you today?<br/>Let's me save your emotion</string> -->
 
 <!--    <string name="eng_AddDiary1_ChooseMood">Choose your emotion on today to start our journey!</string>-->
@@ -59,7 +61,7 @@
 
     //Add_Diary3
 <!--    <string name="eng_AddDiary3_question">What do you want to remember?</string>-->
-    <string name="AddDiary3_question">Bạn muốn lưu giữ điều gì?</string>
+    <string name="AddDiary3_question">Hôm nay,\nBạn muốn lưu giữ điều gì?</string>
     //End
 <!--    <string name="str_eng_activity">Activity</string>-->
     <string name="str_activity">Hoạt động</string>
@@ -99,14 +101,21 @@
     <string name="AboutApp">App này tạo bởi</string>
 //Wishlist
     <string name="NoItem">Không có gì ở đây. Cùng thêm nào !</string>
+
+    <string name="social">Xã hội</string>
+    <string name="entertainment">Giải trí</string>
+    <string name="sleep">Giấc ngủ</string>
+    <string name="food">Đồ ăn</string>
+    <string name="calm">Thư giãn</string>
+    <string name="exercise">Thể dục</string>
+    <string name="chores">Việc vặt</string>
+
     <string name="ItemName">Tên</string>
     <string name="ItemPrice">Giá</string>
     <string name="AddItem">Thêm</string>
     <string name="UpdateItem">Cập nhật</string>
     <string name="DeleteItem">Xoá</string>
-
     <string name="addheadline">Tiêu đề</string>
     <string name="search">Tìm kiếm</string>
-
 
 </resources>

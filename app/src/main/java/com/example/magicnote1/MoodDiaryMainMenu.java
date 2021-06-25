@@ -20,14 +20,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.magicnote1.adapter.DiaryNoteAdapter;
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 import com.example.magicnote1.model.DiaryNote;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class MoodDiaryMainMenu extends AppCompatActivity {
@@ -207,7 +206,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         });
     }
     public void changeTheme(int loadThemeId){
-        LinearLayout bgView = (LinearLayout)findViewById(R.id.linearAll);
+        RelativeLayout bgView = (RelativeLayout)findViewById(R.id.linearAll);
         switch (loadThemeId){
 
             case 0:
