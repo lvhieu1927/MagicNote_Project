@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:minHeight="40dp"
             android:minWidth="40dp"
-            android:src="@drawable/ic_image_black_24dp"
+            android:src="@drawable/ic_image_blacks_24dp"
             android:scaleType="centerInside"
             android:background="@drawable/bt_round_button"
             android:layout_marginBottom="20dp"
@@ -79,14 +79,6 @@
             android:padding="5dp"
             android:layout_gravity="bottom|right"
             android:onClick="clickButton"/>
-<!--        <ImageView-->
-<!--            android:id="@+id/logo"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:src="@drawable/img_loading"-->
-<!--            android:background="@color/white"-->
-<!--            android:scaleType="centerInside"-->
-<!--            android:layout_gravity="center_horizontal|center_vertical"/>-->
         <pl.droidsonroids.gif.GifImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
