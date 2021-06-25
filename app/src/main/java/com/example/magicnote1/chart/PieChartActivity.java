@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.magicnote1.R;
@@ -29,6 +31,7 @@ public class PieChartActivity extends Activity {
     TextView textView1,textView2,textView3,textView4,textView5,tv_positive;
     MyDBHelperDiary dbHelperDiary;
     PieChart pieChart;
+    ImageView emptyViewLine;
     LineChart lineChart;
 
     @Override
@@ -57,6 +60,7 @@ public class PieChartActivity extends Activity {
         textView5 = findViewById(R.id.textview5);
         tv_positive = findViewById(R.id.tv_positive);
         lineChart = findViewById(R.id.linechart);
+        emptyViewLine = findViewById(R.id.empty_LineChart);
     }
 
     private void  setToLineChart(){
@@ -85,6 +89,9 @@ public class PieChartActivity extends Activity {
             }
         }
         ArrayList<Entry> arrayList = new ArrayList<>();
+
+        checkEmpty(emptyViewLine,yAxisData.size());
+
 
         for (int i=0; i < diaryNotes.size(); i++)
         {
@@ -145,5 +152,12 @@ public class PieChartActivity extends Activity {
         pieChart.setCenterTextColor(R.color.mauchu);
 
         pieChart.animateXY(5000, 5000);
+    }
+
+    public void checkEmpty(ImageView imageView, int count){
+        if(count > 0){
+            imageView.setVisibility(View.GONE);
+        }
+        else imageView.setVisibility(View.VISIBLE);
     }
 }

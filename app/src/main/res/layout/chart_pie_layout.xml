@@ -40,13 +40,19 @@
                 android:textStyle="italic"
                 android:text="@string/eng_PieChart"
                 />
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                >
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/piechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp" />
+
+            </FrameLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,11 +63,21 @@
                 android:text="@string/eng_LineChart"
                 />
 
-            <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/linechart"
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                >
+                <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/linechart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                <ImageView
+                    android:id="@+id/empty_LineChart"
                     android:layout_width="match_parent"
-                    android:layout_height="270dp" />
-
+                    android:layout_height="match_parent"
+                    android:src="@drawable/img_diary_data_notfound"
+                    />
+            </FrameLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -129,12 +129,13 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             insertDiary_Activity();
             if (check() == 2) {
                 setResult(Activity.RESULT_OK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
-            else
+            else {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-
+            }
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -193,6 +194,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentTodo = new Intent();
                 setResult(Activity.RESULT_CANCELED,intentTodo);
+                intentTodo.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });
@@ -327,6 +329,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                         dbHelperDiary.deleteActivity(diary_ID_Receiver);
                         dbHelperDiary.deleteDiaryNote(diary_ID_Receiver);
                         Intent intent = new Intent(context,MoodDiaryMainMenu.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
                         break;
                     case DialogInterface.BUTTON_NEGATIVE:

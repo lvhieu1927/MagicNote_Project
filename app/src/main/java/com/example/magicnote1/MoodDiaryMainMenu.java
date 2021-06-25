@@ -46,6 +46,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         addControl();
         addEvent();
+        checkEmpty();
     }
 
     @Override
@@ -195,7 +196,8 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 break;
         }
     }
-    public void checkEmpty(List list){
+
+    public void checkEmpty(){
         emptyView = (ImageView) findViewById(R.id.empty_view);
         if(mDiaryNoteAdapter.getItemCount()>0){
             emptyView.setVisibility(View.GONE);

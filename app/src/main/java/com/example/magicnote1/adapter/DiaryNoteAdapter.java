@@ -177,13 +177,17 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
             }
         });
 
-        holder.img_Photo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogPhoto dialogPhoto = new DialogPhoto(mContext,diaryNote.getBitmap());
-                dialogPhoto.show();
-                Log.d("Magicc","runnnnnnnnnnnnnnnnnnnnnnnnnnnn!!!!!!!!!!!");            }
-        });
+        if (diaryNote.getBitmap() != null)
+                holder.img_Photo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                        DialogPhoto dialogPhoto = new DialogPhoto(mContext, diaryNote.getBitmap());
+                        dialogPhoto.show();
+                        Log.d("Magicc", "runnnnnnnnnnnnnnnnnnnnnnnnnnnn!!!!!!!!!!!");
+
+                }
+            });
     }
 
     @Override
