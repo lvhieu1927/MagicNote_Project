@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="No item here. Let's add more new items"
+        android:text="@string/NoItem"
         android:textSize="13sp"
         android:textStyle="bold|italic"
         android:fontFamily="@font/poppins_medium"

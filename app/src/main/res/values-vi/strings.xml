@@ -97,5 +97,6 @@
     <string name="BackList">Trở lại danh sách</string>
 <!--    <string name="eng_BackList">Back to List</string>-->
     <string name="AboutApp">App này tạo bởi</string>
-
+//Wishlist
+    <string name="NoItem">Không có gì ở đây. Cùng thêm nào !</string>
 </resources>
