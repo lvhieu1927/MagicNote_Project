@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magic note</string>
     <string name="title_activity_main2">MainActivity</string>
@@ -20,91 +21,96 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="PieChart">PieChart of all of your mood</string>
-<!--    <string name="vi_PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>-->
-
+    <!--    <string name="vi_PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>-->
+    <string name="yourMood">Your Mood</string>
     <string name="LineChart">LineChart of all of your mood in 30 mood days</string>
-<!--    <string name="vi_LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>-->
+    <!--    <string name="vi_LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>-->
 
     <string name="MoodCount">All Mood count for you</string>
-<!--    <string name="vi_MoodCount">Số lượng tất cả cảm xúc của bạn</string>-->
+    <!--    <string name="vi_MoodCount">Số lượng tất cả cảm xúc của bạn</string>-->
     //End
 
     //Calendar
     <string name="calendar_Choose_Date">Choose the day you want to show your diary</string>
-<!--    <string name="vi_calendar_Choose_Date">Chọn ngày bạn muốn hiển thị nhật ký</string>-->
+    <!--    <string name="vi_calendar_Choose_Date">Chọn ngày bạn muốn hiển thị nhật ký</string>-->
 
     <string name="calendar_Choose_Mood">Choose the mood you want to show</string>
-<!--    <string name="vi_calendar_Choose_Mood">Chọn cảm xúc bạn muốn lọc</string>-->
+    <!--    <string name="vi_calendar_Choose_Mood">Chọn cảm xúc bạn muốn lọc</string>-->
     //End
 
     //Add_Diary1
 
-    <string name="AddDiary1_Hello1">Good evening!<br/>Lets start with your mood<br/>How are you today?<br/>Lets me save your emotion</string>
+    <string name="AddDiary1_Hello1">Good evening!\nLets start with your mood\nHow are you today?\nLets me save your emotion</string>
 
-<!--    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>-->
+    <!--    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>-->
 
     <string name="AddDiary1_ChooseMood">Choose your emotion on today to start our journey!</string>
-<!--    <string name="vi_AddDiary1_ChooseMood">Chọn cảm xúc của bạn hôm nay và cùng bắt đầu chuyến hành trình!</string>-->
+    <!--    <string name="vi_AddDiary1_ChooseMood">Chọn cảm xúc của bạn hôm nay và cùng bắt đầu chuyến hành trình!</string>-->
     //End
 
     //Add_Diary2
     <string name="AddDiary2_WhatActivity">What activities you doing today?</string>
-<!--    <string name="vi_AddDiary2_WhatActivity">Bạn đã làm những hoạt động nào hôm nay?</string>-->
+    <!--    <string name="vi_AddDiary2_WhatActivity">Bạn đã làm những hoạt động nào hôm nay?</string>-->
 
     //End
 
     //Add_Diary3
-    <string name="AddDiary3_question">What do you want to remember?</string>
-<!--    <string name="vi_AddDiary3_question">Bạn muốn lưu giữ điều gì?</string>-->
+    <string name="AddDiary3_question">Today,\nWhat do you want to remember?</string>
+    <!--    <string name="vi_AddDiary3_question">Bạn muốn lưu giữ điều gì?</string>-->
     //End
     <string name="str_activity">Activity</string>
-<!--    <string name="str_vi_activity">Hoạt động</string>-->
+    <!--    <string name="str_vi_activity">Hoạt động</string>-->
 
     <string name="bt_next">next</string>
-<!--    <string name="bt_vi_next">Tiếp theo</string>-->
+    <!--    <string name="bt_vi_next">Tiếp theo</string>-->
 
     <string name="bt_save">save</string>
-<!--    <string name="bt_vi_save">Lưu</string>-->
+    <!--    <string name="bt_vi_save">Lưu</string>-->
 
     <string name="bt_update">Update</string>
-<!--    <string name="bt_vi_update">Cập nhật</string>-->
+    <!--    <string name="bt_vi_update">Cập nhật</string>-->
 
     <string name="bt_delete">Delete</string>
-<!--    <string name="bt_vi_delete">Xóa</string>-->
+    <!--    <string name="bt_vi_delete">Xóa</string>-->
     //Todolist
-<!--    <string name="vi_DueTime">Hẹn giờ</string>-->
+    <!--    <string name="vi_DueTime">Hẹn giờ</string>-->
     <string name="DueTime">Due time:</string>
-<!--    <string name="vi_Important">Quan trọng</string>-->
+    <!--    <string name="vi_Important">Quan trọng</string>-->
     <string name="Important">Important</string>
-<!--    <string name="vi_Repeat">Lặp lại</string>-->
+    <!--    <string name="vi_Repeat">Lặp lại</string>-->
     <string name="Repeat">Repeat</string>
-<!--    <string name="vi_Description">Mô tả</string>-->
+    <!--    <string name="vi_Description">Mô tả</string>-->
     <string name="Description">Description:</string>
-<!--    <string name="vi_Completed">Hoàn thành</string>-->
+    <!--    <string name="vi_Completed">Hoàn thành</string>-->
     <string name="Completed">Completed</string>
-<!--    <string name="vi_TapSpeak">Nhấn để nói</string>-->
+    <!--    <string name="vi_TapSpeak">Nhấn để nói</string>-->
     <string name="TapSpeak">Tap to Speak</string>
-<!--    <string name="vi_AddTask">Thêm việc</string>-->
+    <!--    <string name="vi_AddTask">Thêm việc</string>-->
     <string name="AddTask">Add Task</string>
-<!--    <string name="vi_DeleteTask">  Xoá việc  </string>-->
+    <!--    <string name="vi_DeleteTask">  Xoá việc  </string>-->
     <string name="DeleteTask">Delete Task</string>
-<!--    <string name="vi_UpdateTask">Câp nhật việc</string>-->
+    <!--    <string name="vi_UpdateTask">Câp nhật việc</string>-->
     <string name="UpdateTask">Update Task</string>
-<!--    <string name="vi_BackList">Trở lại danh sách</string>-->
+    <!--    <string name="vi_BackList">Trở lại danh sách</string>-->
     <string name="BackList">Back to List</string>
     <string name="AboutApp">App create by</string>
-//Wishlist
+    //Wishlist
     <string name="NoItem">No item here. Let\'s add more new items</string>
+
+    <string name="social">Social</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="sleep">Sleep</string>
+    <string name="food">Food</string>
+    <string name="calm">Calm</string>
+    <string name="exercise">Exercise</string>
+    <string name="chores">Chores</string>
+
     <string name="ItemName">Item Name</string>
     <string name="ItemPrice">Item Price</string>
     <string name="AddItem">ADD</string>
     <string name="UpdateItem">Update</string>
     <string name="DeleteItem">Delete</string>
-    <string name="social">Social</string>
-    <string name="entertainment">Entertainment</string>
-    <string name="sleep">Sleep</string>
     <string name="addheadline">Add Headline . . .</string>
     <string name="search">Search</string>
-
 
 </resources>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magic note</string>
     <string name="title_activity_main2">MainActivity</string>
@@ -20,95 +21,101 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
 
-<!--    <string name="eng_PieChart">PieChart of all of your mood</string>-->
+    <!--    <string name="eng_PieChart">PieChart of all of your mood</string>-->
     <string name="PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>
 
-<!--    <string name="eng_LineChart">LineChart of all of your mood in 30 mood days</string>-->
+    <string name="yourMood">Cảm xúc</string>
+    <!--    <string name="eng_LineChart">LineChart of all of your mood in 30 mood days</string>-->
     <string name="LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>
 
-<!--    <string name="eng_MoodCount">All Mood count for you</string>-->
+    <!--    <string name="eng_MoodCount">All Mood count for you</string>-->
     <string name="MoodCount">Số lượng tất cả cảm xúc của bạn</string>
     //End
 
     //Calendar
-<!--    <string name="eng_calendar_Choose_Date">Choose the day you want to show your diary</string>-->
+    <!--    <string name="eng_calendar_Choose_Date">Choose the day you want to show your diary</string>-->
     <string name="calendar_Choose_Date">Chọn ngày bạn muốn hiển thị nhật ký</string>
 
-<!--    <string name="eng_calendar_Choose_Mood">Choose the mood you want to show</string>-->
+    <!--    <string name="eng_calendar_Choose_Mood">Choose the mood you want to show</string>-->
     <string name="calendar_Choose_Mood">Chọn cảm xúc bạn muốn lọc</string>
     //End
 
     //Add_Diary1
 
-<!--    <string name="eng_AddDiary1_Hello1">Lets start with your mood</string>-->
-<!--    <string name="eng_AddDiary1_Hello2">How are you today?</string>-->
-<!--    <string name="eng_AddDiary1_Hello3">Lets me save your emotion</string>-->
+    <!--    <string name="eng_AddDiary1_Hello1">Lets start with your mood</string>-->
+    <!--    <string name="eng_AddDiary1_Hello2">How are you today?</string>-->
+    <!--    <string name="eng_AddDiary1_Hello3">Lets me save your emotion</string>-->
 
-    <string name="AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>
-<!--    <string name="AddDiary1_Hello1">Good evening!<br/>Let's start with your mood<br/>How are you today?<br/>Let's me save your emotion</string> -->
+    <string name="AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào\nHôm nay bạn thế nào\nHãy để tôi lưu lại cảm xúc đó nhé</string>
+    <!--    <string name="AddDiary1_Hello1">Good evening!<br/>Let's start with your mood<br/>How are you today?<br/>Let's me save your emotion</string> -->
 
-<!--    <string name="eng_AddDiary1_ChooseMood">Choose your emotion on today to start our journey!</string>-->
+    <!--    <string name="eng_AddDiary1_ChooseMood">Choose your emotion on today to start our journey!</string>-->
     <string name="AddDiary1_ChooseMood">Chọn cảm xúc của bạn hôm nay và cùng bắt đầu chuyến hành trình!</string>
     //End
 
     //Add_Diary2
-<!--    <string name="eng_AddDiary2_WhatActivity">What activities you doing today?</string>-->
+    <!--    <string name="eng_AddDiary2_WhatActivity">What activities you doing today?</string>-->
     <string name="AddDiary2_WhatActivity">Bạn đã làm những hoạt động nào hôm nay?</string>
 
     //End
 
     //Add_Diary3
-<!--    <string name="eng_AddDiary3_question">What do you want to remember?</string>-->
-    <string name="AddDiary3_question">Bạn muốn lưu giữ điều gì?</string>
+    <!--    <string name="eng_AddDiary3_question">What do you want to remember?</string>-->
+    <string name="AddDiary3_question">Hôm nay,\nBạn muốn lưu giữ điều gì?</string>
     //End
-<!--    <string name="str_eng_activity">Activity</string>-->
+    <!--    <string name="str_eng_activity">Activity</string>-->
     <string name="str_activity">Hoạt động</string>
 
-<!--    <string name="bt_eng_next">next</string>-->
+    <!--    <string name="bt_eng_next">next</string>-->
     <string name="bt_next">Tiếp theo</string>
 
-<!--    <string name="bt_eng_save">save</string>-->
+    <!--    <string name="bt_eng_save">save</string>-->
     <string name="bt_save">Lưu</string>
 
-<!--    <string name="bt_eng_update">Update</string>-->
+    <!--    <string name="bt_eng_update">Update</string>-->
     <string name="bt_update">Cập nhật</string>
 
-<!--    <string name="bt_eng_delete">Delete</string>-->
+    <!--    <string name="bt_eng_delete">Delete</string>-->
     <string name="bt_delete">Xóa</string>
     //Todolist
     <string name="DueTime">Hẹn giờ</string>
-<!--    <string name="eng_DueTime">Due time:</string>-->
+    <!--    <string name="eng_DueTime">Due time:</string>-->
     <string name="Important">Quan trọng</string>
-<!--    <string name="eng_Important">Important</string>-->
+    <!--    <string name="eng_Important">Important</string>-->
     <string name="Repeat">Lặp lại</string>
-<!--    <string name="eng_Repeat">Repeat</string>-->
+    <!--    <string name="eng_Repeat">Repeat</string>-->
     <string name="Description">Mô tả</string>
-<!--    <string name="eng_Description">Description:</string>-->
+    <!--    <string name="eng_Description">Description:</string>-->
     <string name="Completed">Hoàn thành</string>
-<!--    <string name="eng_Completed">Completed</string>-->
+    <!--    <string name="eng_Completed">Completed</string>-->
     <string name="TapSpeak">Nhấn để nói</string>
-<!--    <string name="eng_TapSpeak">Tap to Speak</string>-->
+    <!--    <string name="eng_TapSpeak">Tap to Speak</string>-->
     <string name="AddTask">Thêm việc</string>
-<!--    <string name="eng_AddTask">Add Task</string>-->
+    <!--    <string name="eng_AddTask">Add Task</string>-->
     <string name="DeleteTask">  Xoá việc  </string>
-<!--    <string name="eng_DeleteTask">Delete Task</string>-->
+    <!--    <string name="eng_DeleteTask">Delete Task</string>-->
     <string name="UpdateTask">Câp nhật việc</string>
-<!--    <string name="eng_UpdateTask">Update Task</string>-->
+    <!--    <string name="eng_UpdateTask">Update Task</string>-->
     <string name="BackList">Trở lại danh sách</string>
-<!--    <string name="eng_BackList">Back to List</string>-->
+    <!--    <string name="eng_BackList">Back to List</string>-->
     <string name="AboutApp">App này tạo bởi</string>
-//Wishlist
+    //Wishlist
     <string name="NoItem">Không có gì ở đây. Cùng thêm nào !</string>
+
+    <string name="social">Xã hội</string>
+    <string name="entertainment">Giải trí</string>
+    <string name="sleep">Giấc ngủ</string>
+    <string name="food">Đồ ăn</string>
+    <string name="calm">Thư giãn</string>
+    <string name="exercise">Thể dục</string>
+    <string name="chores">Việc vặt</string>
+
     <string name="ItemName">Tên</string>
     <string name="ItemPrice">Giá</string>
     <string name="AddItem">Thêm</string>
     <string name="UpdateItem">Cập nhật</string>
     <string name="DeleteItem">Xoá</string>
-    <string name="social">Xã hội</string>
-    <string name="entertainment">Giải trí</string>
-    <string name="sleep">Giấc ngủ</string>
     <string name="addheadline">Tiêu đề</string>
     <string name="search">Tìm kiếm</string>
-
 
 </resources>
