@@ -63,6 +63,7 @@ public class Add_Diary_2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nextData();
+                finish();
             }
         });
         if (check() == 1) {

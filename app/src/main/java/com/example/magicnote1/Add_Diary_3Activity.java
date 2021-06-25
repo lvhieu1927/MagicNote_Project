@@ -132,7 +132,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 finish();
             }
             else
-                startActivity(intent);
+                finish();
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,6 +256,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intent);
+                finish();
             }
         });
     }

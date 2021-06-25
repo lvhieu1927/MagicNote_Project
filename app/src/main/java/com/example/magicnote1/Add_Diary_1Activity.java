@@ -88,6 +88,7 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         bundle.putString("mood",buttonString);
         intent.putExtras(bundle);
         startActivity(intent);
+        finish();
         overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
     }
 
