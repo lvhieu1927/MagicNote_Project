@@ -13,6 +13,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -33,6 +34,7 @@ public class Add_Diary_2Activity extends AppCompatActivity {
     private ArrayList<Buttonnew> arrButton;
     private ArrayList<String>    arrActivity;
     private Button bt_Save, bt_Next;
+    private ImageButton bt_Exit;
     private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,7 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         img_Mood = findViewById(R.id.img_mood);
         bt_Next = findViewById(R.id.bt_next);
         arrButton = new ArrayList<Buttonnew>();
+        bt_Exit = findViewById(R.id.bt_Exit);
     }
 
     private void addEvent() {
@@ -80,9 +83,21 @@ public class Add_Diary_2Activity extends AppCompatActivity {
                 nextData();
             }
         });
+
         if (check() == 1) {
             bt_Next.setText("Save");
             img_Mood.setImageBitmap(null);
+            bt_Exit.setImageBitmap(null);
+        }
+        else {
+            Intent intent = new Intent(this, MoodDiaryMainMenu.class);
+            bt_Exit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            });
         }
     }
 

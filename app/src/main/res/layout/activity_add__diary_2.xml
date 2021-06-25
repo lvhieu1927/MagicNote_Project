@@ -5,18 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp"
     android:background="@drawable/bg_gradient"
     android:id="@+id/add_diary_2"
     >
-    <ImageView
-        android:id="@+id/img_mood"
-        android:src="@drawable/ic_bad"
-        android:padding="5dp"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        />
+        >
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:id="@+id/img_mood"
+            android:src="@drawable/ic_bad"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            />
+        <ImageButton
+            android:id="@+id/bt_Exit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bg_gradient_tag"
+            android:src="@drawable/ic_clear"
+            />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/tv_activity"
         android:layout_margin="@dimen/margin_basex2"
@@ -47,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:text="social"
+                android:text="@string/social"
                 android:textSize="@dimen/text_medium"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -71,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Entertainment"
+                android:text="@string/entertainment"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_medium"
                 android:layout_below="@+id/scr_Social"
@@ -95,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Sleep"
+                android:text="@string/sleep"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_medium"
                 android:layout_below="@+id/scr_Entertainment"
@@ -120,7 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Food"
+                android:text="@string/food"
                 android:textSize="@dimen/text_medium"
                 android:textColor="@color/white"
                 android:layout_below="@+id/scr_Sleep"
@@ -144,7 +162,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Calm"
+                android:text="@string/calm"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_medium"
                 android:layout_below="@+id/scr_Food"
@@ -168,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="Exercise"
+                android:text="@string/exercise"
                 android:textSize="@dimen/text_medium"
                 android:textColor="@color/white"
                 android:layout_below="@+id/scr_calm"
@@ -197,7 +215,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="10dp"
-                android:text="Chores"
+                android:text="@string/chores"
                 android:textColor="@color/white"
                 android:textSize="@dimen/text_medium" />
 
@@ -231,7 +249,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:layout_marginBottom="20dp"
-            android:text="Next"
+            android:text="@string/bt_next"
             android:textSize="@dimen/text_small"
             android:background="@drawable/background_1"
             />

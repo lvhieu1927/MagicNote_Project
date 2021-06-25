@@ -61,7 +61,7 @@
                         android:id="@+id/bt_ChangeMood"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your mood"
+                        android:text="@string/yourMood"
                         android:textSize="14dp"
                         android:fontFamily="@font/font_1_dancingscript_regular"
                         android:textColor="@color/mauchu"
@@ -111,6 +111,7 @@
                         </RelativeLayout>
 
                     <TextView
+                        android:id="@+id/remember"
                         android:layout_marginTop="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -178,7 +179,7 @@
                     android:id="@+id/bt_Change_Activity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Activity "
+                    android:text="@string/str_activity"
                     android:textSize="20dp"
                     android:fontFamily="@font/font_1_dancingscript_regular"
                     android:layout_centerVertical="true"
@@ -263,7 +264,7 @@
         android:layout_centerHorizontal="true"
         android:layout_height="180dp"
         android:textColor="@color/white"
-        android:text="Save"
+        android:text="@string/bt_save"
         android:textSize="24dp"
         android:textAlignment="center"
         />

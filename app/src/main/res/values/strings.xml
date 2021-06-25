@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Magic note</string>
     <string name="title_activity_main2">MainActivity</string>
@@ -21,7 +22,7 @@
 
     <string name="PieChart">PieChart of all of your mood</string>
 <!--    <string name="vi_PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>-->
-
+    <string name="yourMood">Your Mood</string>
     <string name="LineChart">LineChart of all of your mood in 30 mood days</string>
 <!--    <string name="vi_LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>-->
 
@@ -39,7 +40,7 @@
 
     //Add_Diary1
 
-    <string name="AddDiary1_Hello1">Good evening!<br/>Lets start with your mood<br/>How are you today?<br/>Lets me save your emotion</string>
+    <string name="AddDiary1_Hello1">Good evening!\nLets start with your mood\nHow are you today?\nLets me save your emotion</string>
 
 <!--    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>-->
 
@@ -54,7 +55,7 @@
     //End
 
     //Add_Diary3
-    <string name="AddDiary3_question">What do you want to remember?</string>
+    <string name="AddDiary3_question">Today,\nWhat do you want to remember?</string>
 <!--    <string name="vi_AddDiary3_question">Bạn muốn lưu giữ điều gì?</string>-->
     //End
     <string name="str_activity">Activity</string>
@@ -95,4 +96,11 @@
     <string name="AboutApp">App create by</string>
 //Wishlist
     <string name="NoItem">No item here. Let\'s add more new items</string>
+    <string name="social">Social</string>
+    <string name="entertainment">Entertainment</string>
+    <string name="sleep">Sleep</string>
+    <string name="food">Food</string>
+    <string name="calm">Calm</string>
+    <string name="exercise">Exercise</string>
+    <string name="chores">Chores</string>
 </resources>
