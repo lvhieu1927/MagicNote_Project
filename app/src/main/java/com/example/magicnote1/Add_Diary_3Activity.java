@@ -15,10 +15,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -78,10 +81,20 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
         setContentView(R.layout.activity_add__diary_3);
         addControl();
         addEvent();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
     }
 
     //hàm khai báo các định danh cho biến
@@ -571,5 +584,11 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         long timeInMilliseconds = datex.getTime();
         return timeInMilliseconds;
     }
-
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
+    }
 }

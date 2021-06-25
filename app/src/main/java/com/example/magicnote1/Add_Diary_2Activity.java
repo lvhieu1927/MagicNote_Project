@@ -39,9 +39,17 @@ public class Add_Diary_2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
         setContentView(R.layout.activity_add__diary_2);
         addControl();
         addEvent();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
     }
 
     private void addControl() {

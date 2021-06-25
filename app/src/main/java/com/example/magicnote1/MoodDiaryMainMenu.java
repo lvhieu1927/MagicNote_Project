@@ -9,9 +9,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -25,6 +28,7 @@ import com.example.magicnote1.model.DiaryNote;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MoodDiaryMainMenu extends AppCompatActivity {
 
@@ -42,11 +46,21 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_mood_diary_main_menu);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
+        setContentView(R.layout.activity_mood_diary_main_menu);
         addControl();
         addEvent();
         checkEmpty();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
     }
 
     @Override
@@ -218,5 +232,12 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
             emptyView.setVisibility(View.GONE);
         }
         else emptyView.setVisibility(View.VISIBLE);
+    }
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
     }
 }
