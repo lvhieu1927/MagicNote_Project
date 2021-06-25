@@ -70,7 +70,7 @@
 
     <string name="bt_save">save</string>
     <!--    <string name="bt_vi_save">Lưu</string>-->
-
+    <string name="bt_back">Back</string>
     <string name="bt_update">Update</string>
     <!--    <string name="bt_vi_update">Cập nhật</string>-->
 
@@ -116,5 +116,9 @@
     <string name="DeleteItem">Delete</string>
     <string name="addheadline">Add Headline . . .</string>
     <string name="search">Search</string>
+    <string name="Setting">Setting</string>
+    <string name="Language">Language</string>
+    <string name="LangText_vi">Vietnam</string>
+    <string name="LangText_en">English</string>
 
 </resources>

@@ -15,43 +15,44 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true">
-
-        <activity android:name=".Calendar"></activity>
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".setting_Activity"></activity>
+        <activity android:name=".Calendar" />
         <activity
             android:name=".MoodDiaryMainMenu"
             android:parentActivityName=".activity_home_screen" />
-
-
-
-
         <activity android:name=".Add_Diary_3Activity" />
         <activity android:name=".Add_Diary_2Activity" />
         <activity android:name=".Add_Diary_1Activity" />
-        <activity android:name=".todolist_MainMenu_Activity" android:screenOrientation="portrait">
+        <activity
+            android:name=".todolist_MainMenu_Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                 <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </activity>
-        <activity android:name=".model.todolist_item_Activity" android:screenOrientation="portrait">
+        <activity
+            android:name=".model.todolist_item_Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
                 <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </activity>
-        <activity android:name=".splash.SplashScreen"></activity>
+        <activity android:name=".splash.SplashScreen" />
         <activity android:name=".WishListMainActivity" />
         <activity android:name=".AddActivityWishList" />
         <activity android:name=".UpdateActivityWishList" />
         <activity android:name=".splash.SplashScreenWishlist" />
         <activity android:name=".activity_home_screen" />
         <activity android:name=".chart.PieChartActivity" />
-        <activity android:name=".aboutApp_Activity"/>
+        <activity android:name=".aboutApp_Activity" />
+
         <receiver android:name=".model.reminderReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

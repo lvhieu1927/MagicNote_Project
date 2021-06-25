@@ -70,21 +70,8 @@ public class activity_home_screen extends AppCompatActivity {
         cardView5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String loadLang = sharedPreferences.getString("lang","en");
-                String lang;
-                if(loadLang.equals("en")){
-                    loadLang = "vi";
-                    lang = "Việt Nam";
-                } else {
-                    loadLang = "en";
-                    lang = "English";
-                }
-                setAppLang(loadLang);
-                Toast.makeText(getApplicationContext(), "Đã chuyển ngôn ngữ thành " + lang, Toast.LENGTH_SHORT).show();
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("lang",loadLang);
-                editor.apply();
-                Log.d("123", "Clicked " + loadLang);
+                Intent intent = new Intent(activity_home_screen.this, setting_Activity.class);
+                startActivity(intent);
             }
         });
         cardView6.setOnClickListener(new View.OnClickListener() {

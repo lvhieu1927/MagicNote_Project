@@ -288,41 +288,6 @@
                     android:textSize="22dp"
                     android:onClick="clickButton"
                     android:background="@drawable/bt_round_button_action" />
-<!--                <ImageButton-->
-<!--                    android:id="@+id/button_add_task"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:scaleType="centerInside"-->
-<!--                    android:src="@drawable/img_add"-->
-<!--                    android:onClick="clickButton"-->
-<!--                    android:background="@drawable/bt_round_button"-->
-<!--                    android:layout_marginRight="50dp"/>-->
-<!--                <ImageButton-->
-<!--                    android:id="@+id/button_update_task"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:scaleType="centerInside"-->
-<!--                    android:src="@drawable/img_update"-->
-<!--                    android:background="@drawable/bt_round_button"-->
-<!--                    android:onClick="clickButton"-->
-<!--                    android:layout_marginRight="10dp"/>-->
-<!--                <ImageButton-->
-<!--                    android:id="@+id/button_delete_task"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:scaleType="centerInside"-->
-<!--                    android:src="@drawable/img_delete"-->
-<!--                    android:background="@drawable/bt_round_button"-->
-<!--                    android:onClick="clickButton"-->
-<!--                    android:layout_marginRight="10dp"/>-->
-<!--                <ImageButton-->
-<!--                    android:id="@+id/button_back"-->
-<!--                    android:layout_height="100dp"-->
-<!--                    android:layout_width="100dp"-->
-<!--                    android:scaleType="centerInside"-->
-<!--                    android:src="@drawable/img_back"-->
-<!--                    android:onClick="clickButton"-->
-<!--                    android:background="@drawable/bt_round_button" />-->
             </LinearLayout>
         </FrameLayout>
     </TableRow>
