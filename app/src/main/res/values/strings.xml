@@ -40,4 +40,51 @@
     <string name="eng_MoodCount">All Mood count for you</string>
     <string name="vi_MoodCount">Số lượng tất cả cảm xúc của bạn</string>
 //End
+
+//Calendar
+    <string name="eng_calendar_Choose_Date">Choose the day you want to show your diary</string>
+    <string name="vi_calendar_Choose_Date">Chọn ngày bạn muốn hiển thị nhật ký</string>
+
+    <string name="eng_calendar_Choose_Mood">Choose the mood you want to show</string>
+    <string name="vi_calendar_Choose_Mood">Chọn cảm xúc bạn muốn lọc</string>
+//End
+
+//Add_Diary1
+
+    <string name="eng_AddDiary1_Hello1">Lets start with your mood</string>
+    <string name="eng_AddDiary1_Hello2">How are you today?</string>
+    <string name="eng_AddDiary1_Hello3">Lets me save your emotion</string>
+
+    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào</string>
+    <string name="vi_AddDiary1_Hello2">Hôm nay bạn thế nào</string>
+    <string name="vi_AddDiary1_Hello3">Hãy để tôi lưu lại cảm xúc đó nhé</string>
+
+    <string name="eng_AddDiary1_ChooseMood">Choose your emotion on today to start our journey!</string>
+    <string name="vi_AddDiary1_ChooseMood">Chọn cảm xúc của bạn hôm nay và cùng bắt đầu chuyến hành trình!</string>
+    //End
+
+//Add_Diary2
+    <string name="eng_AddDiary2_WhatActivity">What activities you doing today?</string>
+    <string name="vi_AddDiary2_WhatActivity">Bạn đã làm những hoạt động nào hôm nay?</string>
+
+//End
+
+//Add_Diary3
+    <string name="eng_AddDiary3_question">What do you want to remember?</string>
+    <string name="vi_AddDiary3_question">Bạn muốn lưu giữ điều gì?</string>
+//End
+    <string name="str_eng_activity">Activity</string>
+    <string name="str_vi_activity">Hoạt động</string>
+
+    <string name="bt_eng_next">next</string>
+    <string name="bt_vi_next">Tiếp theo</string>
+
+    <string name="bt_eng_save">save</string>
+    <string name="bt_vi_save">Lưu</string>
+
+    <string name="bt_eng_update">Update</string>
+    <string name="bt_vi_update">Cập nhật</string>
+
+    <string name="bt_eng_delete">Delete</string>
+    <string name="bt_vi_delete">Xóa</string>
 </resources>

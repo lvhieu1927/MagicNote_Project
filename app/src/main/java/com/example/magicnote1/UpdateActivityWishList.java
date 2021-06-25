@@ -48,6 +48,7 @@ public class UpdateActivityWishList extends AppCompatActivity {
                 name = itemName_input.getText().toString().trim();
                 price = itemPrice_input.getText().toString().trim();
                 myDB.updateData(id, name, price);
+                finish();
             }
         });
 

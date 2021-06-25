@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 
@@ -19,6 +20,7 @@ public class Calendar extends AppCompatActivity {
 
     private ArrayList<DateData> listDate;
     private MCalendarView calendarView;
+    private ImageButton button1, button2, button3, button4, button5;
     private MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
 
     @Override
@@ -48,8 +50,72 @@ public class Calendar extends AppCompatActivity {
                 finish();
             }
         });
-
+        setButtonMoodSearch();
     }
+
+    private void setButtonMoodSearch()
+    {
+        button1 = findViewById(R.id.add_diary_button_1);
+        button2 = findViewById(R.id.add_diary_button_2);
+        button3 = findViewById(R.id.add_diary_button_3);
+        button4 = findViewById(R.id.add_diary_button_4);
+        button5 = findViewById(R.id.add_diary_button_5);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("mood","happy");
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
+            }
+        });
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("mood","good");
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
+            }
+        });
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("mood","neutral");
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
+            }
+        });
+        button4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("mood","awful");
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
+            }
+        });
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                Bundle bundle = new Bundle();
+                bundle.putString("mood","bad");
+                intent.putExtras(bundle);
+                setResult(Activity.RESULT_CANCELED,intent);
+                finish();
+            }
+        });}
 
     private void addControl() {
         calendarView = findViewById(R.id.calendar);

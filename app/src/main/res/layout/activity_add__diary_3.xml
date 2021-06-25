@@ -111,13 +111,13 @@
                         </RelativeLayout>
 
                     <TextView
-                        android:layout_marginTop="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/layouttime"
-                        android:textAlignment="center"
+                        android:layout_marginTop="30dp"
                         android:fontFamily="@font/font_1_dancingscript_regular"
-                        android:text="Today,\n what you want to remember?"
+                        android:text="Today,\n what do you want to remember?"
+                        android:textAlignment="center"
                         android:textSize="18dp"
                         android:textStyle="italic" />
 

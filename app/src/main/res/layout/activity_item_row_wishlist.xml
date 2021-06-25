@@ -30,7 +30,7 @@
                 android:layout_centerVertical="true"
                 android:textSize="24sp"
 
-                android:textColor="@color/teal_700"
+                android:textColor="@color/pinkhome"
                 android:layout_marginLeft="8dp"
                 android:fontFamily="@font/comic_text"
                 android:layout_alignParentLeft="true" />

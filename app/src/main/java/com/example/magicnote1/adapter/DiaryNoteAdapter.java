@@ -178,7 +178,7 @@ public class DiaryNoteAdapter extends RecyclerView.Adapter<DiaryNoteAdapter.View
         });
 
         if (diaryNote.getBitmap() != null)
-                holder.img_Photo.setOnClickListener(new View.OnClickListener() {
+            holder.img_Photo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
