@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="@string/Setting"
+        android:text="@string/setting"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/wildword_roman"
         android:textColor="#000"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="@string/Language"
+            android:text="@string/language"
             android:layout_gravity="left"
             android:fontFamily="@font/helveticaneue"
             android:textColor="#000"
@@ -42,12 +42,12 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Vietnam"
+                android:text="@string/vietnam"
                 android:id="@+id/vi_radion"/>
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="English"
+                android:text="@string/english"
                 android:id="@+id/en_radion"/>
         </RadioGroup>
         <TextView

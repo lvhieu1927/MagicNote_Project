@@ -120,5 +120,10 @@
     <string name="goodafternoon">Good Afternoon!</string>
     <string name="goodevening">Good evening!</string>
     <string name="goodnight">Good Night!</string>
+    <string name="setting">Setting</string>
+    <string name="language">Language</string>
+    <string name="bt_back">Back</string>
+    <string name="vietnam">Vietnam</string>
+    <string name="english">English</string>
 
 </resources>

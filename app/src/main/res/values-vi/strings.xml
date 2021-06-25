@@ -127,5 +127,9 @@
     <string name="goodafternoon">"Chào buổi chiều! "</string>
     <string name="goodevening">"Chào buổi tối! "</string>
     <string name="goodnight">"Chào buổi đêm! "</string>
-
+    <string name="setting">Cài đặt</string>
+    <string name="language">Ngôn ngữ</string>
+    <string name="bt_back">Trở về</string>
+    <string name="vietnam">Việt Nam</string>
+    <string name="english">Tiếng Anh</string>
 </resources>
