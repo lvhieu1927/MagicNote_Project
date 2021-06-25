@@ -15,10 +15,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +33,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -65,6 +70,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private ImageView imageView,img_Mood;
     private TextInputEditText text_HeadLine;
     private EditText edt_Note;
+    private TextView tv_remember;
     private int lastSelectedHour = -1;
     private int lastSelectedMinute = -1;
     int selectedYear = 2000;
@@ -74,10 +80,15 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private ArrayList<String> activity;
     int diary_ID_Receiver = 0;
     private ToDoList toDoList;
+    private String language;
     private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
+        language = lang;
         setContentView(R.layout.activity_add__diary_3);
         addControl();
         addEvent();
@@ -99,12 +110,13 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         bt_clearPhoto = findViewById(R.id.bt_clearPhoto);
         layout_Activity = findViewById(R.id.layout_activity);
         bt_Exit = findViewById(R.id.bt_Exit);
-
+        tv_remember = findViewById(R.id.remember);
     }
 
 
     //hàm dùng bắt sự kiện
     private void addEvent() {
+
 
         switch (check())
         {
@@ -122,6 +134,22 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 break;
         }
 
+        if (language.equals("en"))
+        {
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "fonts/font_1_dancingscript_regular.otf");
+            tv_remember.setTypeface(face);
+            bt_changeMood.setTypeface(face);
+            bt_Change_Activity.setTypeface(face);
+        }
+        else
+        {
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "fonts/helveticaneue.ttf");
+            tv_remember.setTypeface(face);
+            bt_changeMood.setTypeface(face);
+            bt_Change_Activity.setTypeface(face);
+        }
         Intent intent = new Intent(this,MoodDiaryMainMenu.class);
 
         bt_save.setOnClickListener(v -> {
@@ -572,4 +600,11 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         return timeInMilliseconds;
     }
 
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
+    }
 }

@@ -7,38 +7,38 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
 
-import com.example.magicnote1.model.Buttonnew;
-
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
 
 public class Add_Diary_1Activity extends AppCompatActivity {
 
     TextView hello_text,textView2;
-    ImageButton button1, button2, button3, button4, button5;
+    ImageButton button1, button2, button3, button4, button5,bt_Exit;
     private TextClock textClock;
+    private String language;
     private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("lang","en");
         setAppLang(lang);
+
+        language = lang;
         setContentView(R.layout.activity_add__diary_1);
         addControl();
         addEvents();
+
+
     }
 
     @Override
@@ -57,6 +57,7 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         button3 = findViewById(R.id.add_diary_button_3);
         button4 = findViewById(R.id.add_diary_button_4);
         button5 = findViewById(R.id.add_diary_button_5);
+        bt_Exit = findViewById(R.id.bt_Exit);
         this.textClock = (TextClock) this.findViewById(R.id.myTextClock);
     }
 
@@ -65,6 +66,20 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         //set textClock định dạng
         this.textClock.setFormat24Hour(null);
         //
+        if (language.equals("en"))
+        {
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "fonts/font_1_dancingscript_regular.otf");
+            hello_text.setTypeface(face);
+            textView2.setTypeface(face);
+        }
+        else
+        {
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "fonts/helveticaneue.ttf");
+            hello_text.setTypeface(face);
+            textView2.setTypeface(face);
+        }
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +108,14 @@ public class Add_Diary_1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onClickButton("bad");
+            }
+        });
+        Intent intent = new Intent(this,MoodDiaryMainMenu.class);
+        bt_Exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             }
         });
     }
@@ -142,6 +165,7 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         Configuration conf = res.getConfiguration();
         if (local.equals("vi"))
         {
+
         }
         conf.setLocale(new Locale(local.toLowerCase()));
         res.updateConfiguration(conf,dm);

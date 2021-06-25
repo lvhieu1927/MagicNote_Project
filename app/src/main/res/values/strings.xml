@@ -100,7 +100,4 @@
     <string name="AddItem">ADD</string>
     <string name="UpdateItem">Update</string>
     <string name="DeleteItem">Delete</string>
-//Language
-    <string name="Language_en">English</string>
-    <string name="Language_vi">Vietnamese</string>
 </resources>
