@@ -3,14 +3,20 @@ package com.example.magicnote1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import sun.bob.mcalendarview.MCalendarView;
 import sun.bob.mcalendarview.listeners.OnDateClickListener;
@@ -22,10 +28,13 @@ public class Calendar extends AppCompatActivity {
     private MCalendarView calendarView;
     private ImageButton button1, button2, button3, button4, button5;
     private MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
-
+    private SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        setAppLang(lang);
         setContentView(R.layout.activity_calendar);
         addControl();
         addEvent();
@@ -116,6 +125,13 @@ public class Calendar extends AppCompatActivity {
                 finish();
             }
         });}
+    public void setAppLang(String local){
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
+    }
 
     private void addControl() {
         calendarView = findViewById(R.id.calendar);
