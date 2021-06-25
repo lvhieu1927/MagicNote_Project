@@ -132,7 +132,9 @@ public class Add_Diary_3Activity extends AppCompatActivity {
                 finish();
             }
             else
-                finish();
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+
         });
         bt_Photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -255,8 +257,8 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         bt_Exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                finish();
             }
         });
     }
