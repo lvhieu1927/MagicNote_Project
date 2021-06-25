@@ -104,4 +104,7 @@
     <string name="AddItem">Thêm</string>
     <string name="UpdateItem">Cập nhật</string>
     <string name="DeleteItem">Xoá</string>
+//Language
+    <string name="Language_en">Tiếng Anh</string>
+    <string name="Language_vi">Tiếng Việt</string>
 </resources>
