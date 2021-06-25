@@ -20,7 +20,7 @@
     <TextView
         android:id="@+id/tv_activity"
         android:layout_margin="@dimen/margin_basex2"
-        android:text="What activity you doing today?"
+        android:text="@string/AddDiary2_WhatActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"

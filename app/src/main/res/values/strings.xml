@@ -39,13 +39,9 @@
 
     //Add_Diary1
 
-    <string name="AddDiary1_Hello1">Lets start with your mood</string>
-    <string name="AddDiary1_Hello2">How are you today?</string>
-    <string name="AddDiary1_Hello3">Lets me save your emotion</string>
+    <string name="AddDiary1_Hello1">Good evening!<br/>Lets start with your mood<br/>How are you today?<br/>Lets me save your emotion</string>
 
-<!--    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào</string>-->
-<!--    <string name="vi_AddDiary1_Hello2">Hôm nay bạn thế nào</string>-->
-<!--    <string name="vi_AddDiary1_Hello3">Hãy để tôi lưu lại cảm xúc đó nhé</string>-->
+<!--    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>-->
 
     <string name="AddDiary1_ChooseMood">Choose your emotion on today to start our journey!</string>
 <!--    <string name="vi_AddDiary1_ChooseMood">Chọn cảm xúc của bạn hôm nay và cùng bắt đầu chuyến hành trình!</string>-->

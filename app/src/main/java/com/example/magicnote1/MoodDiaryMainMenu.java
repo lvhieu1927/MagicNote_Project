@@ -72,7 +72,7 @@ public class MoodDiaryMainMenu extends AppCompatActivity {
                 mDiaryNoteAdapter = new DiaryNoteAdapter(filteredList,MoodDiaryMainMenu.this);
                 mRecyclerView.setAdapter(mDiaryNoteAdapter);
             }
-            if (resultCode == Activity.RESULT_CANCELED)
+            if (resultCode == 11)
             {
                 String date = data.getStringExtra("mood");
                 ArrayList<DiaryNote> filteredList = new ArrayList<>();

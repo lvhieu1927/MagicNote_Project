@@ -68,7 +68,7 @@ public class Calendar extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putString("mood","happy");
                 intent.putExtras(bundle);
-                setResult(Activity.RESULT_CANCELED,intent);
+                setResult(11,intent);
                 finish();
             }
         });
