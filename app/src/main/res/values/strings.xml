@@ -97,4 +97,6 @@
 <!--    <string name="vi_BackList">Trở lại danh sách</string>-->
     <string name="BackList">Back to List</string>
     <string name="AboutApp">App create by</string>
+//Wishlist
+    <string name="NoItem">No item here. Let\'s add more new items</string>
 </resources>
