@@ -48,7 +48,7 @@
     <!--    <string name="eng_AddDiary1_Hello2">How are you today?</string>-->
     <!--    <string name="eng_AddDiary1_Hello3">Lets me save your emotion</string>-->
 
-    <string name="AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào\nHôm nay bạn thế nào\nHãy để tôi lưu lại cảm xúc đó nhé</string>
+    <string name="AddDiary1_Hello1">Chào bạn của tôi!\nCùng bắt đầu với cảm xúc của bạn nào\nHôm nay bạn thế nào\nHãy để tôi lưu lại cảm xúc đó nhé</string>
 
 <!--    <string name="AddDiary1_Hello1">Good evening!<br/>Let's start with your mood<br/>How are you today?<br/>Let's me save your emotion</string> -->
 
@@ -77,7 +77,7 @@
 
     <!--    <string name="bt_eng_save">save</string>-->
     <string name="bt_save">Lưu</string>
-    <string name="bt_back">Trở về</string>
+
     <!--    <string name="bt_eng_update">Update</string>-->
     <string name="bt_update">Cập nhật</string>
 
@@ -123,8 +123,9 @@
     <string name="DeleteItem">Xoá</string>
     <string name="addheadline">Tiêu đề</string>
     <string name="search">Tìm kiếm</string>
-    <string name="Setting">Cài đặt</string>
-    <string name="Language">Ngôn ngữ</string>
-    <string name="LangText_vi">Việt Nam</string>
-    <string name="LangText_en">Tiếng Anh</string>
+    <string name="goodmorning">"Chào buổi sáng! "</string>
+    <string name="goodafternoon">"Chào buổi chiều! "</string>
+    <string name="goodevening">"Chào buổi tối! "</string>
+    <string name="goodnight">"Chào buổi đêm! "</string>
+
 </resources>

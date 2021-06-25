@@ -31,15 +31,6 @@
                 android:fontFamily="@font/font_1_dancingscript_regular"
                 />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small"
-                android:padding="20dp"
-                android:textAlignment="center"
-                android:textStyle="italic"
-                android:text="@string/PieChart"
-                />
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
@@ -56,11 +47,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_small"
+                android:textSize="12dp"
                 android:padding="20dp"
-                android:textStyle="italic"
                 android:textAlignment="center"
-                android:text="@string/LineChart"
+                android:textStyle="italic"
+                android:text="@string/PieChart"
                 />
 
             <FrameLayout
@@ -81,168 +72,178 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="@dimen/text_medium"
+                android:textSize="12dp"
+                android:paddingTop="20dp"
                 android:textStyle="italic"
-                android:padding="20dp"
-                android:text="@string/MoodCount"
+                android:textAlignment="center"
+                android:text="@string/LineChart"
                 />
+
             <RelativeLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
-
                 <LinearLayout
-                    android:id="@+id/linear1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/bg_chart_border_count"
-                    android:padding="10dp"
+                    android:orientation="vertical"
                     android:layout_margin="20dp"
+                    android:background="@drawable/bg_chart_border_count"
                     >
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/linear1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:layout_centerHorizontal="true"
+                        android:padding="10dp"
                         >
-                        <ImageView
-                            android:id="@+id/img1"
-                            android:layout_centerHorizontal="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_happy2"
-                            />
-                        <TextView
-                            android:id="@+id/textview1"
-                            android:layout_centerHorizontal="true"
-                            android:layout_below="@id/img1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="11"
-                            android:textColor="@color/mauchu"
-                            android:textSize="@dimen/text_large"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp"
-                            />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        >
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_good2"
-                            android:id="@+id/img2"
-                            android:layout_centerHorizontal="true"
-                            />
-                        <TextView
-                            android:id="@+id/textview2"
-                            android:layout_below="@id/img2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="11"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="@color/mauchu"
-                            android:textSize="@dimen/text_large"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp"
-                            />
-                    </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        >
-                        <ImageView
-                            android:id="@+id/img3"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_neutral2"
-                            android:layout_centerHorizontal="true"
+                            android:layout_weight="1"
+                            >
+                            <ImageView
+                                android:id="@+id/img1"
+                                android:layout_centerHorizontal="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_happy2"
+                                />
+                            <TextView
+                                android:id="@+id/textview1"
+                                android:layout_centerHorizontal="true"
+                                android:layout_below="@id/img1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11"
+                                android:textColor="@color/mauchu"
+                                android:textSize="@dimen/text_large"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_good2"
+                                android:id="@+id/img2"
+                                android:layout_centerHorizontal="true"
+                                />
+                            <TextView
+                                android:id="@+id/textview2"
+                                android:layout_below="@id/img2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/mauchu"
+                                android:textSize="@dimen/text_large"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                />
+                        </RelativeLayout>
 
-                            />
-                        <TextView
-                            android:id="@+id/textview3"
-                            android:layout_below="@id/img3"
+                        <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="11"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="@color/mauchu"
-                            android:textSize="@dimen/text_large"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp"
-                            />
-                    </RelativeLayout>
+                            android:layout_weight="1"
+                            >
+                            <ImageView
+                                android:id="@+id/img3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_neutral2"
+                                android:layout_centerHorizontal="true"
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        >
-                        <ImageView
-                            android:id="@+id/img4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_sad2"
-                            android:layout_centerHorizontal="true"
-                            />
-                        <TextView
-                            android:id="@+id/textview4"
-                            android:layout_below="@id/img4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="11"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="@color/mauchu"
-                            android:textSize="@dimen/text_large"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp"
-                            />
-                    </RelativeLayout>
+                                />
+                            <TextView
+                                android:id="@+id/textview3"
+                                android:layout_below="@id/img3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/mauchu"
+                                android:textSize="@dimen/text_large"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                />
+                        </RelativeLayout>
 
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+                            <ImageView
+                                android:id="@+id/img4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_sad2"
+                                android:layout_centerHorizontal="true"
+                                />
+                            <TextView
+                                android:id="@+id/textview4"
+                                android:layout_below="@id/img4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11"
+                                android:layout_centerHorizontal="true"
+                                android:textColor="@color/mauchu"
+                                android:textSize="@dimen/text_large"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+                            <ImageView
+                                android:id="@+id/img5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_bad2"
+                                android:layout_centerHorizontal="true"
+                                />
+                            <TextView
+                                android:layout_below="@id/img5"
+                                android:id="@+id/textview5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11"
+                                android:textColor="@color/mauchu"
+                                android:textSize="@dimen/text_large"
+                                android:paddingRight="5dp"
+                                android:paddingLeft="5dp"
+                                android:layout_centerHorizontal="true"
+                                />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        >
-                        <ImageView
-                            android:id="@+id/img5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ic_bad2"
-                            android:layout_centerHorizontal="true"
-                            />
-                        <TextView
-                            android:layout_below="@id/img5"
-                            android:id="@+id/textview5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="11"
-                            android:textColor="@color/mauchu"
-                            android:textSize="@dimen/text_large"
-                            android:paddingRight="5dp"
-                            android:paddingLeft="5dp"
-                            android:layout_centerHorizontal="true"
-                            />
-                    </RelativeLayout>
+                        android:textAlignment="center"
+                        android:textSize="@dimen/text_medium"
+                        android:textStyle="italic"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/MoodCount"
+                        android:layout_alignParentBottom="true"
+                        />
                 </LinearLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/linear1"
-                    android:padding="20dp"
-                    >
-
                 </RelativeLayout>
-            </RelativeLayout>
-        </LinearLayout>
+
+            </LinearLayout>
     </ScrollView>
 </LinearLayout>

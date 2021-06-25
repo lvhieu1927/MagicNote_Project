@@ -25,7 +25,7 @@
     <!--    <string name="vi_PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>-->
 
     <string name="yourMood">Your Mood</string>
-    <string name="LineChart">LineChart of all of your mood in 30 mood days</string>
+    <string name="LineChart">LineChart of all of your mood in 30 mood days lastest</string>
     <!--    <string name="vi_LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>-->
 
     <string name="MoodCount">All Mood count for you</string>
@@ -42,7 +42,7 @@
 
     //Add_Diary1
 
-    <string name="AddDiary1_Hello1">Good evening!\nLets start with your mood\nHow are you today?\nLets me save your emotion</string>
+    <string name="AddDiary1_Hello1">Hello my friend! \nLets start with your mood\nHow are you today?\nLets me save your emotion</string>
 
     <!--    <string name="vi_AddDiary1_Hello1">Cùng bắt đầu với cảm xúc của bạn nào<br/>Hôm nay bạn thế nào<br/>Hãy để tôi lưu lại cảm xúc đó nhé</string>-->
 
@@ -70,7 +70,7 @@
 
     <string name="bt_save">save</string>
     <!--    <string name="bt_vi_save">Lưu</string>-->
-    <string name="bt_back">Back</string>
+
     <string name="bt_update">Update</string>
     <!--    <string name="bt_vi_update">Cập nhật</string>-->
 
@@ -116,9 +116,9 @@
     <string name="DeleteItem">Delete</string>
     <string name="addheadline">Add Headline . . .</string>
     <string name="search">Search</string>
-    <string name="Setting">Setting</string>
-    <string name="Language">Language</string>
-    <string name="LangText_vi">Vietnam</string>
-    <string name="LangText_en">English</string>
+    <string name="goodmorning">Good Morning!</string>
+    <string name="goodafternoon">Good Afternoon!</string>
+    <string name="goodevening">Good evening!</string>
+    <string name="goodnight">Good Night!</string>
 
 </resources>

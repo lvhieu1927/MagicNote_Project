@@ -12,37 +12,77 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="12dp"
+        android:layout_margin="20dp"
         android:text="Magic Note"
         android:fontFamily="@font/main_font"
         android:textColor="#fff"
         android:textSize="30sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_view"
+        android:layout_centerHorizontal="true"
+        android:text="About Us"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_large"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <Space
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="150dp"
             android:layout_weight="4"/>
         <ImageView
             android:id="@+id/empty_view"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_weight="3"
             android:src="@drawable/app_image"
+            android:background="@drawable/bg_chart_border_count"
             android:scaleType="centerInside"
             android:padding="10dp"
             android:layout_gravity="center_horizontal|center_vertical"/>
         <TextView
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
             android:fontFamily="@font/helveticaneue"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="@dimen/text_medium"
             android:text="@string/AboutApp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textColor="@color/mauchu"
+            android:textSize="@dimen/text_medium"
+            android:text="Lưu Văn Hiếu\nNguyễn Cường Huy\nLưu Quốc Huy"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textColor="@color/pinkhome"
+            android:textSize="@dimen/text_medium"
+            android:text="Công việc - Cảm xúc - Ước mơ"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:padding="10dp"
+            android:textColor="@color/pinkhome"
+            android:textSize="@dimen/text_medium"
+            android:text="Work - Mood - Wish"
+            />
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
