@@ -95,4 +95,9 @@
     <string name="AboutApp">App create by</string>
 //Wishlist
     <string name="NoItem">No item here. Let\'s add more new items</string>
+    <string name="ItemName">Item Name</string>
+    <string name="ItemPrice">Item Price</string>
+    <string name="AddItem">ADD</string>
+    <string name="UpdateItem">Update</string>
+    <string name="DeleteItem">Delete</string>
 </resources>

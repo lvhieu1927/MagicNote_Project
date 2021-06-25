@@ -99,4 +99,9 @@
     <string name="AboutApp">App này tạo bởi</string>
 //Wishlist
     <string name="NoItem">Không có gì ở đây. Cùng thêm nào !</string>
+    <string name="ItemName">Tên</string>
+    <string name="ItemPrice">Giá</string>
+    <string name="AddItem">Thêm</string>
+    <string name="UpdateItem">Cập nhật</string>
+    <string name="DeleteItem">Xoá</string>
 </resources>
