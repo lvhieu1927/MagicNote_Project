@@ -61,11 +61,11 @@ public class Add_Diary_3Activity extends AppCompatActivity {
     private static final int PERMISSION_CODE = 1000;
     private static final int REQUEST_ACTIVITY = 121;
     private static final int REQUEST_IMAGE_CAPTURE = 2;
-    private ImageButton bt_Photo;
+    private ImageButton bt_Photo,bt_save;
     private ImageButton bt_Time,bt_clearPhoto,bt_Exit;
     private Button bt_Change_Activity;
     private LinearLayout layout_Activity;
-    private Button bt_Date,bt_save,bt_changeMood;
+    private Button bt_Date,bt_changeMood;
     private Bitmap bitmap = null;
     private ImageView imageView,img_Mood;
     private TextInputEditText text_HeadLine;
@@ -145,7 +145,7 @@ public class Add_Diary_3Activity extends AppCompatActivity {
         else
         {
             Typeface face = Typeface.createFromAsset(getAssets(),
-                    "fonts/helveticaneue.ttf");
+                    "fonts/SVN-Bellico.otf");
             tv_remember.setTypeface(face);
             bt_changeMood.setTypeface(face);
             bt_Change_Activity.setTypeface(face);

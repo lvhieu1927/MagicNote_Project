@@ -32,7 +32,6 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("lang","en");
         setAppLang(lang);
-
         language = lang;
         setContentView(R.layout.activity_add__diary_1);
         addControl();
@@ -76,7 +75,7 @@ public class Add_Diary_1Activity extends AppCompatActivity {
         else
         {
             Typeface face = Typeface.createFromAsset(getAssets(),
-                    "fonts/helveticaneue.ttf");
+                    "fonts/SVN-Bellico.otf");
             hello_text.setTypeface(face);
             textView2.setTypeface(face);
         }

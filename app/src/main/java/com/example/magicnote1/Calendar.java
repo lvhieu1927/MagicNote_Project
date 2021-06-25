@@ -8,10 +8,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.magicnote1.dataconnect.MyDBHelperDiary;
 
@@ -26,15 +28,18 @@ public class Calendar extends AppCompatActivity {
 
     private ArrayList<DateData> listDate;
     private MCalendarView calendarView;
+    private TextView tv_1,tv2;
     private ImageButton button1, button2, button3, button4, button5;
     private MyDBHelperDiary myDBHelperDiary = new MyDBHelperDiary(this,null,null,1);
     private SharedPreferences sharedPreferences;
+    String language;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
         String lang = sharedPreferences.getString("lang","en");
         setAppLang(lang);
+        language = lang;
         setContentView(R.layout.activity_calendar);
         addControl();
         addEvent();
@@ -60,10 +65,27 @@ public class Calendar extends AppCompatActivity {
             }
         });
         setButtonMoodSearch();
+
+        if (language.equals("en"))
+        {
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "fonts/font_1_dancingscript_regular.otf");
+            tv_1.setTypeface(face,Typeface.NORMAL);
+            tv2.setTypeface(face,Typeface.NORMAL);
+        }
+        else
+        {
+            Typeface face = Typeface.createFromAsset(getAssets(),
+                    "fonts/SVN-Bellico.otf");
+            tv_1.setTypeface(face,Typeface.NORMAL);
+            tv2.setTypeface(face,Typeface.NORMAL);
+        }
     }
 
     private void setButtonMoodSearch()
     {
+        tv_1 = findViewById(R.id.tv_positive);
+        tv2 = findViewById(R.id.tv_negative);
         button1 = findViewById(R.id.add_diary_button_1);
         button2 = findViewById(R.id.add_diary_button_2);
         button3 = findViewById(R.id.add_diary_button_3);
@@ -125,6 +147,8 @@ public class Calendar extends AppCompatActivity {
                 finish();
             }
         });}
+
+
     public void setAppLang(String local){
         Resources res = getResources();
         DisplayMetrics dm = res.getDisplayMetrics();

@@ -110,5 +110,7 @@
     <string name="AddItem">ADD</string>
     <string name="UpdateItem">Update</string>
     <string name="DeleteItem">Delete</string>
+    <string name="addheadline">Add Headline . . .</string>
+    <string name="search">Search</string>
 
 </resources>

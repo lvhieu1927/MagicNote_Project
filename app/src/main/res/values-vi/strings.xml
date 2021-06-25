@@ -115,5 +115,7 @@
     <string name="AddItem">Thêm</string>
     <string name="UpdateItem">Cập nhật</string>
     <string name="DeleteItem">Xoá</string>
+    <string name="addheadline">Tiêu đề</string>
+    <string name="search">Tìm kiếm</string>
 
 </resources>

@@ -39,7 +39,7 @@
                 android:drawablePadding="8dp"
                 android:drawableLeft="@drawable/ic_search"
                 android:textColor="@color/white"
-                android:hint="Search"
+                android:hint="@string/search"
                 android:textColorHint="@color/white"
                 android:background="@drawable/search_input_type"
                 android:layout_height="wrap_content"

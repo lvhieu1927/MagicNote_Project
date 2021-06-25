@@ -35,7 +35,7 @@
             android:textColorHint="@color/pinkhome"
             android:drawableLeft="@drawable/ic_search_gray_24dp"
             android:textColor="@color/content_text_color"
-            android:hint="search"
+            android:hint="@string/search"
             android:background="@drawable/search_input_style"
             android:id="@+id/search_input"
             android:layout_height="wrap_content"
