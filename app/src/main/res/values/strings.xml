@@ -12,7 +12,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-//Mood
+    //Mood
     <string name="eng_happy">happy</string>
     <string name="eng_neutral">neutral</string>
     <string name="eng_good">good</string>
@@ -26,7 +26,7 @@
     <string name="vi_bad">tệ</string>
 
 
-//PieChartLayout
+    //PieChartLayout
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
@@ -39,5 +39,28 @@
 
     <string name="eng_MoodCount">All Mood count for you</string>
     <string name="vi_MoodCount">Số lượng tất cả cảm xúc của bạn</string>
-//End
+    //End
+    <string name="vi_AboutApp">Ứng dụng được tạo bởi...</string>
+
+    //Todolist
+    <string name="vi_DueTime">Hẹn giờ</string>
+    <string name="eng_DueTime">Due time:</string>
+    <string name="vi_Important">Quan trọng</string>
+    <string name="eng_Important">Important</string>
+    <string name="vi_Repeat">Lặp lại</string>
+    <string name="eng_Repeat">Repeat</string>
+    <string name="vi_Description">Mô tả</string>
+    <string name="eng_Description">Description:</string>
+    <string name="vi_Completed">Hoàn thành</string>
+    <string name="eng_Completed">Completed</string>
+    <string name="vi_TapSpeak">Nhấn để nói</string>
+    <string name="eng_TapSpeak">Tap to Speak</string>
+    <string name="vi_AddTask">Thêm việc</string>
+    <string name="eng_AddTask">Add Task</string>
+    <string name="vi_DeleteTask">  Xoá việc  </string>
+    <string name="eng_DeleteTask">Delete Task</string>
+    <string name="vi_UpdateTask">Câp nhật việc</string>
+    <string name="eng_UpdateTask">Update Task</string>
+    <string name="vi_BackList">Trở lại danh sách</string>
+    <string name="eng_BackList">Back to List</string>
 </resources>

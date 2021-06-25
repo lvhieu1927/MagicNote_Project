@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -29,6 +30,7 @@ import com.example.magicnote1.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 //Activity thao tác với task
@@ -402,18 +404,24 @@ public class todolist_item_Activity extends Activity {
     }
     public void changeTheme(int loadThemeId){
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_item);
+        Locale locale = new Locale("vi_VN");
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
         switch (loadThemeId){
             case 0:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
                 break;
             case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist2);
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
                 break;
             case 2:
-                bgView.setBackgroundResource(R.drawable.bg_todolist3);
+                bgView.setBackgroundResource(R.drawable.bg_todolist2);
                 break;
             case 3:
-                bgView.setBackgroundResource(R.drawable.bg_todolist4);
+                bgView.setBackgroundResource(R.drawable.bg_todolist3);
                 break;
         }
     }

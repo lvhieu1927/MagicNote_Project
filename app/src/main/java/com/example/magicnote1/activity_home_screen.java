@@ -1,7 +1,9 @@
 package com.example.magicnote1;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,8 @@ import androidx.cardview.widget.CardView;
 
 import com.example.magicnote1.chart.PieChartActivity;
 import com.example.magicnote1.splash.SplashScreenWishlist;
+
+import java.util.Locale;
 
 public class activity_home_screen extends AppCompatActivity {
 
@@ -55,6 +59,23 @@ public class activity_home_screen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(activity_home_screen.this, PieChartActivity.class);
+                startActivity(intent);
+            }
+        });
+        cardView5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        Locale locale = new Locale("vi_VN");
+                        Locale.setDefault(locale);
+                        Configuration config = new Configuration();
+                        config.locale = locale;
+                Log.d("123", "Clicked");
+            }
+        });
+        cardView6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity_home_screen.this, aboutApp_Activity.class);
                 startActivity(intent);
             }
         });

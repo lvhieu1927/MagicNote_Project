@@ -34,13 +34,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:buttonTint="#3B5284"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Important"
                     android:fontFamily="@font/wildword_roman"
+                    android:text="@string/vi_Important"
                     android:textColor="@color/black"
-                    android:textSize="24dp"/>
+                    android:textSize="24dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,7 +52,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Due date:"
+                    android:text="@string/vi_DueTime"
                     android:fontFamily="@font/wildword_roman"
                     android:layout_gravity="center_vertical"
                     android:textSize="22dp"
@@ -102,7 +103,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Repeat"
+                    android:text="@string/vi_Repeat"
                     android:fontFamily="@font/wildword_roman"
                     android:layout_gravity="center_vertical"
                     android:textColor="@color/black"
@@ -153,14 +154,14 @@
                             android:id="@+id/sat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="S"
+                            android:text="Sa"
                             android:layout_gravity="center_vertical"
                             android:buttonTint="@color/black"/>
                         <CheckBox
                             android:id="@+id/sun"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="S"
+                            android:text="Su"
                             android:layout_gravity="center_vertical"
                             android:buttonTint="@color/black"/>
                 </LinearLayout>
@@ -173,7 +174,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Description:"
+                    android:text="@string/vi_Description"
                     android:fontFamily="@font/wildword_roman"
                     android:textSize="22dp"
                     android:textColor="@color/black"
@@ -205,7 +206,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Completed"
+                    android:text="@string/vi_Completed"
                     android:fontFamily="@font/wildword_roman"
                     android:textSize="22dp"
                     android:textColor="@color/black"/>
@@ -223,7 +224,7 @@
                 android:id="@+id/button_speak"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Tap to speak"
+                android:text="@string/vi_TapSpeak"
                 android:fontFamily="@font/wildword_roman"
                 android:textSize="22dp"
                 android:onClick="clickButton"
@@ -243,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:paddingRight="74dp"
                     android:paddingLeft="74dp"
-                    android:text="Add task"
+                    android:text="@string/vi_AddTask"
                     android:fontFamily="@font/wildword_roman"
                     android:textSize="22dp"
                     android:onClick="clickButton"
@@ -256,7 +257,7 @@
                     android:layout_width="wrap_content"
                     android:paddingRight="60dp"
                     android:paddingLeft="60dp"
-                    android:text="Update task"
+                    android:text="@string/vi_UpdateTask"
                     android:fontFamily="@font/wildword_roman"
                     android:textSize="22dp"
                     android:onClick="clickButton"
@@ -269,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:paddingRight="60dp"
                     android:paddingLeft="60dp"
-                    android:text="Delete task"
+                    android:text="@string/vi_DeleteTask"
                     android:fontFamily="@font/wildword_roman"
                     android:textSize="22dp"
                     android:onClick="clickButton"
@@ -282,7 +283,7 @@
                     android:layout_width="wrap_content"
                     android:paddingRight="56dp"
                     android:paddingLeft="56dp"
-                    android:text="Back to List"
+                    android:text="@string/vi_BackList"
                     android:fontFamily="@font/wildword_roman"
                     android:textSize="22dp"
                     android:onClick="clickButton"
