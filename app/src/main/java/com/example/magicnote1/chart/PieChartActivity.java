@@ -63,8 +63,26 @@ public class PieChartActivity extends Activity {
 
         ArrayList<Integer> yAxisData = new ArrayList<>();
         ArrayList<DiaryNote> diaryNotes = dbHelperDiary.getTop20DiaryNote();
-        for (int i=0; i <diaryNotes.size(); i++){
-            yAxisData.add(diaryNotes.get(i).getMoodID());
+        for (int i=diaryNotes.size()-1; 0 <= i; i--){
+            switch (diaryNotes.get(i).getMoodID())
+            {
+                case 1:
+                    yAxisData.add(5);
+                    break;
+                case 2:
+                    yAxisData.add(4);
+                    break;
+                case 3:
+                    yAxisData.add(3);
+                    break;
+                case 4:
+                    yAxisData.add(2);
+                    break;
+                case 5:
+                    yAxisData.add(1);
+                    break;
+
+            }
         }
         ArrayList<Entry> arrayList = new ArrayList<>();
 
@@ -72,7 +90,7 @@ public class PieChartActivity extends Activity {
         {
             arrayList.add(new Entry(i,yAxisData.get(i)));
         }
-        LineDataSet lineDataSet = new LineDataSet(arrayList,"country");
+        LineDataSet lineDataSet = new LineDataSet(arrayList,"your Mood");
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setFillAlpha(110);
         LineData lineData;

@@ -12,8 +12,18 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
+//PieChartLayout
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="eng_PieChart">PieChart of all of your mood</string>
+    <string name="vi_PieChart">Biểu đồ tròn hiển thị tất cả các cảm xúc của bạn</string>
+
+    <string name="eng_LineChart">LineChart of all of your mood in 30 mood days</string>
+    <string name="vi_LineChart">Biểu đồ đường hiển thị cảm xúc của bạn trong 30 cảm xúc gần nhất</string>
+
+    <string name="eng_MoodCount">All Mood count for you</string>
+    <string name="vi_MoodCount">Số lượng tất cả cảm xúc của bạn</string>
+//End
 </resources>
