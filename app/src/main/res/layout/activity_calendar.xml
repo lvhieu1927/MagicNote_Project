@@ -22,6 +22,7 @@
         android:text="@string/calendar_Choose_Date"
         android:textSize="@dimen/text_medium"
         android:fontFamily="@font/font_1_dancingscript_regular"
+        android:layout_marginBottom="20dp"
         />
 
     <sun.bob.mcalendarview.MCalendarView

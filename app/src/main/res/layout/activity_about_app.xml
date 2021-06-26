@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_img23"
-    tools:context=".activity_home_screen">
+    >
 
     <TextView
         android:id="@+id/title_view"
@@ -50,11 +50,14 @@
         <TextView
             android:layout_margin="10dp"
             android:layout_width="match_parent"
+            android:background="#ffe5e4"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal|center_vertical"
             android:fontFamily="@font/helveticaneue"
             android:textStyle="bold"
             android:textSize="@dimen/text_medium"
+            android:textColor="@color/pinkhome"
+
             android:text="@string/AboutApp"/>
         <TextView
             android:layout_width="match_parent"
@@ -65,26 +68,39 @@
             android:textSize="@dimen/text_medium"
             android:text="Lưu Văn Hiếu\nNguyễn Cường Huy\nLưu Quốc Huy"
             />
-        <TextView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textColor="@color/pinkhome"
-            android:textSize="@dimen/text_medium"
-            android:text="Công việc - Cảm xúc - Ước mơ"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:padding="10dp"
-            android:textStyle="bold"
-            android:textColor="@color/pinkhome"
-            android:textSize="@dimen/text_medium"
-            android:text="Work - Mood - Wish"
-            />
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/tv1"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:padding="10dp"
+                android:background="@drawable/bg_about"
+                android:textStyle="bold"
+                android:textColor="@color/pinkhome"
+                android:textSize="@dimen/text_medium"
+                android:layout_centerHorizontal="true"
+                android:text="Công việc, cảm xúc và Ước mơ"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv1"
+                android:textAlignment="center"
+                android:background="@drawable/bg_about"
+                android:padding="10dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold"
+                android:textColor="@color/pinkhome"
+                android:textSize="@dimen/text_medium"
+                android:text="Work - Mood - Wish"
+                />
+        </RelativeLayout>
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
