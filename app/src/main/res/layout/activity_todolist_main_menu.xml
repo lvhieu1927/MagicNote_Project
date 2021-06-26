@@ -16,12 +16,38 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                android:text="List Task of Day"
+                android:textColor="#000"
+                android:fontFamily="@font/wildword_roman"
+                android:textSize="25sp"/>
+            <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:text="Try Your Best!!!"
+            android:textColor="#000"
+            android:fontFamily="@font/wildword_roman"
+            android:textSize="15sp"/>
             <ListView
                 android:id="@+id/lisk_view_task"
                 android:layout_height="0dp"
                 android:layout_width="match_parent"
                 android:layout_weight="9"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="12dp"
                 android:divider="#0000"
                 android:dividerHeight="10dp"
                 android:layout_marginTop="10dp"/>
