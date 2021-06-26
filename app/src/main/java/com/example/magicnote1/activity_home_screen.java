@@ -131,15 +131,16 @@ public class activity_home_screen extends Activity {
         notificationReceiverPending = PendingIntent.getBroadcast(
                 activity_home_screen.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + time,
-                    notificationReceiverPending);
-        } else {
-            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + time,
-                    notificationReceiverPending);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+//                    System.currentTimeMillis() + time,
+//                    notificationReceiverPending);
+//        } else {
+//            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
+//                    System.currentTimeMillis() + time,
+//                    notificationReceiverPending);
+//        }
+        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY, notificationReceiverPending);
     }
     public void checkLoadSetting(boolean a, boolean b, long t1, long t2){
         if(a){
