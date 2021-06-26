@@ -5,7 +5,6 @@
     <uses-sdk
         android:minSdkVersion="21"
         android:targetSdkVersion="30" />
-
     <supports-screens android:largestWidthLimitDp="480" />
 
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -18,14 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".setting_Activity"></activity>
-        <activity android:name=".Calendar" />
+        <activity android:name=".setting_Activity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".Calendar" android:screenOrientation="portrait"/>
         <activity
             android:name=".MoodDiaryMainMenu"
-            android:parentActivityName=".activity_home_screen" />
-        <activity android:name=".Add_Diary_3Activity" />
-        <activity android:name=".Add_Diary_2Activity" />
-        <activity android:name=".Add_Diary_1Activity" />
+            android:parentActivityName=".activity_home_screen"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Add_Diary_3Activity" android:screenOrientation="portrait"/>
+        <activity android:name=".Add_Diary_2Activity" android:screenOrientation="portrait"/>
+        <activity android:name=".Add_Diary_1Activity" android:screenOrientation="portrait"/>
         <activity
             android:name=".todolist_MainMenu_Activity"
             android:screenOrientation="portrait">
@@ -44,14 +44,14 @@
                 <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </activity>
-        <activity android:name=".splash.SplashScreen" />
-        <activity android:name=".WishListMainActivity" />
-        <activity android:name=".AddActivityWishList" />
-        <activity android:name=".UpdateActivityWishList" />
-        <activity android:name=".splash.SplashScreenWishlist" />
-        <activity android:name=".activity_home_screen" />
-        <activity android:name=".chart.PieChartActivity" />
-        <activity android:name=".aboutApp_Activity" />
+        <activity android:name=".splash.SplashScreen" android:screenOrientation="portrait"/>
+        <activity android:name=".WishListMainActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".AddActivityWishList" android:screenOrientation="portrait"/>
+        <activity android:name=".UpdateActivityWishList" android:screenOrientation="portrait"/>
+        <activity android:name=".splash.SplashScreenWishlist" android:screenOrientation="portrait"/>
+        <activity android:name=".activity_home_screen" android:screenOrientation="portrait"/>
+        <activity android:name=".chart.PieChartActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".aboutApp_Activity" android:screenOrientation="portrait"/>
 
         <receiver android:name=".model.reminderReceiver">
             <intent-filter>
@@ -61,14 +61,14 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".intro.SplashScreen">
+        <activity android:name=".intro.SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".intro.IntroductionActivity" />
+        <activity android:name=".intro.IntroductionActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

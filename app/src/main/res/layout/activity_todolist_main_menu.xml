@@ -27,7 +27,11 @@
                 android:text="@string/TodolistListView"
                 android:textColor="#000"
                 android:fontFamily="@font/wildword_roman"
-                android:textSize="23sp"/>
+                android:textSize="23sp"
+                android:shadowColor="#FFF"
+                android:shadowDx="1.5"
+                android:shadowDy="1.3"
+                android:shadowRadius="1.6"/>
             <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
