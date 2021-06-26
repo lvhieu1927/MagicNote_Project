@@ -135,14 +135,14 @@ public class activity_home_screen extends Activity {
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + 10000,
+                    System.currentTimeMillis() + time,
                     notificationReceiverPending);
         } else {
             mAlarm.setExact(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + 10000,
+                    System.currentTimeMillis() + time,
                     notificationReceiverPending);
         }
-        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, AlarmManager.INTERVAL_DAY, notificationReceiverPending);
+        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY, notificationReceiverPending);
         Log.d("123", "Đã set");
     }
     public void checkLoadSetting(boolean a, boolean b, long t1, long t2){
