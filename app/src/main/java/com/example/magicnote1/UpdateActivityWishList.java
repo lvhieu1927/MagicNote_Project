@@ -86,7 +86,7 @@ public class UpdateActivityWishList extends AppCompatActivity {
             itemPrice_input.setText(price);
             Log.d("stev", name+" "+price);
         }else{
-            Toast.makeText(this, "No item.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.WishlistNoitem), Toast.LENGTH_SHORT).show();
         }
     }
 

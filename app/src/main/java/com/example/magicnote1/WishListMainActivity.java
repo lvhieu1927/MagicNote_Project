@@ -135,20 +135,20 @@ public class WishListMainActivity extends AppCompatActivity {
         MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
             @Override
             public boolean onMenuItemActionExpand(MenuItem item) {
-                Toast.makeText(WishListMainActivity.this,"Search is expanded",Toast.LENGTH_SHORT).show();
+                Toast.makeText(WishListMainActivity.this,getString(R.string.ToastWishlistSearch),Toast.LENGTH_SHORT).show();
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                Toast.makeText(WishListMainActivity.this,"Search is collapsed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(WishListMainActivity.this,getString(R.string.ToastWishlistSearchCollapse),Toast.LENGTH_SHORT).show();
                 return true;
             }
         };
 
         menu.findItem(R.id.item_searchItem).setOnActionExpandListener(onActionExpandListener);
         SearchView searchView = (SearchView) menu.findItem(R.id.item_searchItem).getActionView();
-        searchView.setQueryHint("Search item here...");
+        searchView.setQueryHint(getString(R.string.WishlistSearchHint));
         searchView.setBackground(this.getResources().getDrawable(R.drawable.bg_gradient));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

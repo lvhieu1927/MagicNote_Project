@@ -144,4 +144,8 @@
     <string name="ToastToDolistCheckRepeat">Chưa chọn thời điểm nhắc nhở</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
+    <string name="ToastWishlistSearch">Thanh tìm kiếm đã được mở rộng</string>
+    <string name="ToastWishlistSearchCollapse">Search is collapsed</string>
+    <string name="WishlistSearchHint">Tìm kiếm sản phẩm ở đây</string>
+    <string name="WishlistNoitem">Không có sản phẩm nào ở đây</string>
 </resources>
