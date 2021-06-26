@@ -12,7 +12,7 @@ import android.util.Log;
 
 public class AssetDatabaseOpenHelper {
 
-    private static final String DB_NAME = "emotiondiary.db";
+    private static final String DB_NAME = "emotiondiary1.db";
 
     private Context context;
 
