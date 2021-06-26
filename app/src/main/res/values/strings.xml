@@ -141,4 +141,6 @@
     <string name="ToastWishlistSearchCollapse">Thanh tìm kiếm đã được thu gọn</string>
     <string name="WishlistSearchHint">Search item here</string>
     <string name="WishlistNoitem">No item</string>
+    <string name="ToastSetting1">Language changed to</string>
+    <string name="ToastSetting2">. Please press Back or restart the app</string>
 </resources>

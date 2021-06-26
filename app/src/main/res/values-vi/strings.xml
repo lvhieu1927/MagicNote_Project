@@ -148,4 +148,6 @@
     <string name="ToastWishlistSearchCollapse">Search is collapsed</string>
     <string name="WishlistSearchHint">Tìm kiếm sản phẩm ở đây</string>
     <string name="WishlistNoitem">Không có sản phẩm nào ở đây</string>
+    <string name="ToastSetting1">Đã chuyển ngôn ngữ thành</string>
+    <string name="ToastSetting2">. Vui lòng nhấn Trở lại hoặc khởi động lại ứng dụng</string>
 </resources>

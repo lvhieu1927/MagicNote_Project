@@ -52,14 +52,14 @@ public class setting_Activity extends AppCompatActivity {
                         Log.d("123", lang);
                         editor.putString("lang",loadLang);
                         editor.apply();
-                        Toast.makeText(getApplicationContext(), "Đã chuyển ngôn ngữ thành " + lang + ". Vui lòng nhấn back hoặc khởi động lại ứng dụng", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.ToastSetting1)+" " + lang + getString(R.string.ToastSetting2), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.en_radion:
                         loadLang = "en";
                         lang = "English";
                         editor.putString("lang",loadLang);
                         editor.apply();
-                        Toast.makeText(getApplicationContext(), "Đã chuyển ngôn ngữ thành " + lang + ". Vui lòng nhấn back hoặc khởi động lại ứng dụng", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.ToastSetting1)+" " + lang +getString(R.string.ToastSetting2), Toast.LENGTH_LONG).show();
                         break;
                 }
             }
