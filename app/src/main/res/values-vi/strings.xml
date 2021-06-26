@@ -133,4 +133,15 @@
     <string name="vietnam">Tiếng Việt</string>
     <string name="english">Tiếng Anh</string>
     <string name="headline">Tiêu đề</string>
+    <string name="ToastTodolistNoteToDiary">Nhập ghi chú đế nhật ký thành công</string>
+    <string name="ToastTodolistSetReminder">Công việc này sẽ được nhắc nhở sau</string>
+    <string name="TodolistAlertDialog1">Bạn có chắc muốn xoá ?</string>
+    <string name="TodolistAlertDialog2">Khi đã xoá sẽ không thể phục hồi</string>
+    <string name="TodolistAlertDialog3">Bạn cần có nội dung để có thể thêm công việc</string>
+    <string name="ToastTodolistDeletedBlank">Đã xoá task trống</string>
+    <string name="ToastTodolistAddSucess">Thêm thành công</string>
+    <string name="ToastTodolistCheckUpdate">Bạn cần có nội dung task</string>
+    <string name="ToastToDolistCheckRepeat">Chưa chọn thời điểm nhắc nhở</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
 </resources>

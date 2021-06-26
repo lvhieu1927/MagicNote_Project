@@ -126,4 +126,15 @@
     <string name="vietnam">Vietnamese</string>
     <string name="english">English</string>
     <string name="headline">Headline</string>
+    <string name="ToastTodolistNoteToDiary">Insert today note to diary successfully!</string>
+    <string name="ToastTodolistSetReminder">This task going to be reminded after</string>
+    <string name="TodolistAlertDialog1">Are you sure to delete this ?</string>
+    <string name="TodolistAlertDialog2">This can\'t be recovered after deleted</string>
+    <string name="TodolistAlertDialog3">Task should be has content to be added</string>
+    <string name="ToastTodolistDeletedBlank">Blank task was deleted</string>
+    <string name="ToastTodolistAddSucess">Create successful</string>
+    <string name="ToastTodolistCheckUpdate">Task should be has content</string>
+    <string name="ToastToDolistCheckRepeat">You must choose time to reminder</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

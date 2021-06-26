@@ -62,7 +62,7 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
         if (requestCode == 113)
             if (resultCode == Activity.RESULT_OK)
             {
-                Toast.makeText(getApplicationContext(),"Insert today note to diary successfully!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.ToastTodolistNoteToDiary),Toast.LENGTH_SHORT).show();
             }
     }
 
@@ -257,7 +257,7 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
         if(second < 10){
             timeSs = "0"+second;
         }
-        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeHhMm  + ":"+ timeSs,
+        Toast.makeText(getApplicationContext(), getString(R.string.ToastTodolistSetReminder)+" " + timeHhMm  + ":"+ timeSs,
                 Toast.LENGTH_LONG).show();
     }
     public void cancelScheduleAlarm(int id){

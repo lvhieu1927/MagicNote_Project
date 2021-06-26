@@ -124,15 +124,15 @@ public class todolist_item_Activity extends Activity {
                 break;
             case R.id.button_delete_task:
                 AlertDialog alertDialog = new AlertDialog.Builder(this)
-                        .setTitle("Bạn có chắc muốn xoá ?")
-                        .setMessage("Khi đã xoá sẽ không thể phục hồi")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setTitle(getString(R.string.TodolistAlertDialog1))
+                        .setMessage(getString(R.string.TodolistAlertDialog2))
+                        .setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 deleteTask();
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                             }
@@ -198,12 +198,12 @@ public class todolist_item_Activity extends Activity {
         textId.setText(String.valueOf(taskNew.getIdTask()));
         //Kiểm tra có nội dung hay không, nếu không có thì xoá
         if(task.getTaskDetails().length() == 0){
-            Toast.makeText(getApplicationContext(),"Bạn cần nhập vào nội dung để có thể thêm",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.TodolistAlertDialog3),Toast.LENGTH_SHORT).show();
             deleteTask();
-            Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.ToastTodolistDeletedBlank),Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Thêm thành công", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.ToastTodolistAddSucess), Toast.LENGTH_SHORT).show();
             if (dueDate.getText().toString().length() > 0) {
                 if (!checkCompleted.isChecked()) {
                     if(task.getRepeat().equals("0000000")){
@@ -248,12 +248,12 @@ public class todolist_item_Activity extends Activity {
             textId.setText(String.valueOf(task.getIdTask()));
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
-                Toast.makeText(getApplicationContext(),"Bạn cần có nội dung task",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.ToastTodolistCheckUpdate),Toast.LENGTH_SHORT).show();
                 deleteTask();
                 Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
             }
             else {
-                    Toast.makeText(getApplicationContext(), "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastTodolistDeletedBlank), Toast.LENGTH_SHORT).show();
                     if (dueDate.getText().toString().length() > 0) {
                         if (!checkCompleted.isChecked()) {
                             if(task.getRepeat().equals("0000000")){
@@ -332,7 +332,7 @@ public class todolist_item_Activity extends Activity {
         if(second < 10){
             timeSs = "0"+second;
         }
-        Toast.makeText(getApplicationContext(), "Công việc này sẽ được nhắc nhở sau " + timeHhMm  + ":"+ timeSs,
+        Toast.makeText(getApplicationContext(), getString(R.string.ToastTodolistSetReminder) +" "+ timeHhMm  + ":"+ timeSs,
                 Toast.LENGTH_LONG).show();
     }
     public void scheduleAlarm(long time, int id, int alarmid){
@@ -435,7 +435,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     mon.setChecked(false);
                 }
             }
@@ -444,7 +444,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     tue.setChecked(false);
                 }
             }
@@ -453,7 +453,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     wed.setChecked(false);
                 }
             }
@@ -462,7 +462,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     thu.setChecked(false);
                 }
             }
@@ -471,7 +471,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     fri.setChecked(false);
                 }
             }
@@ -480,7 +480,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     sat.setChecked(false);
                 }
             }
@@ -489,7 +489,7 @@ public class todolist_item_Activity extends Activity {
             @Override
             public void onClick(View v) {
                 if (showDate.getText().toString().length() <= 0) {
-                    Toast.makeText(getApplicationContext(), "Chưa chọn thời điểm nhắc nhở", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastToDolistCheckRepeat), Toast.LENGTH_SHORT).show();
                     sun.setChecked(false);
                 }
             }
