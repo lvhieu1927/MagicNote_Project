@@ -31,7 +31,10 @@ public class setting_Activity extends Activity {
         String lang = sharedPreferences.getString("lang","en");
         setAppLang(lang);
         setContentView(R.layout.activity_setting);
+        boolean todolistOpt1 = sharedPreferences.getBoolean("todolistOpt1",false);
+        boolean todolistOpt2 = sharedPreferences.getBoolean("todolistOpt2",false);
         settingLangguage();
+        settingTodolist(todolistOpt1,todolistOpt2);
         bt_Save = (Button)findViewById(R.id.button_update_setting);
         bt_Save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,10 +71,15 @@ public class setting_Activity extends Activity {
             }
         });
     }
-    public void settingTodolist(){
-        String todolistOpt1,todolistOpt2;
+    public void settingTodolist(boolean todolistOpt1,  boolean todolistOpt2){
         CheckBox opt1 = (CheckBox)findViewById(R.id.todolist_opt1);
         CheckBox op2 = (CheckBox)findViewById(R.id.todolist_opt2);
+        if(todolistOpt1){
+            opt1.setChecked(true);
+        } else opt1.setChecked(false);
+        if(todolistOpt2){
+            op2.setChecked(true);
+        } else op2.setChecked(false);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         opt1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -90,10 +98,12 @@ public class setting_Activity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(buttonView.isChecked()){
-
+                    editor.putBoolean("todolistOpt2",true);
+                    editor.apply();
                 }
                 else {
-
+                    editor.putBoolean("todolistOpt2",false);
+                    editor.apply();
                 }
             }
         });

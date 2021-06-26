@@ -248,12 +248,12 @@ public class todolist_item_Activity extends Activity {
             textId.setText(String.valueOf(task.getIdTask()));
             //Kiểm tra có nội dung hay không, nếu không có thì xoá
             if(task.getTaskDetails().length() == 0){
-                Toast.makeText(getApplicationContext(),getString(R.string.ToastTodolistCheckUpdate),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.ToastTodolistCheckBlank),Toast.LENGTH_SHORT).show();
                 deleteTask();
-                Toast.makeText(getApplicationContext(),"Đã xoá task trống",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),getString(R.string.ToastTodolistCheckBlank),Toast.LENGTH_SHORT).show();
             }
             else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.ToastTodolistDeletedBlank), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.ToastTodolistUpdateSucess), Toast.LENGTH_SHORT).show();
                     if (dueDate.getText().toString().length() > 0) {
                         if (!checkCompleted.isChecked()) {
                             if(task.getRepeat().equals("0000000")){

@@ -140,7 +140,8 @@
     <string name="TodolistAlertDialog3">Bạn cần có nội dung để có thể thêm công việc</string>
     <string name="ToastTodolistDeletedBlank">Đã xoá task trống</string>
     <string name="ToastTodolistAddSucess">Thêm thành công</string>
-    <string name="ToastTodolistCheckUpdate">Bạn cần có nội dung task</string>
+    <string name="ToastTodolistUpdateSucess">Cập nhật thành công</string>
+    <string name="ToastTodolistCheckBlank">Bạn cần có nội dung task</string>
     <string name="ToastToDolistCheckRepeat">Chưa chọn thời điểm nhắc nhở</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
@@ -152,4 +153,9 @@
     <string name="ToastSetting2">. Vui lòng nhấn Trở lại hoặc khởi động lại ứng dụng</string>
     <string name="TodolistListView">Danh sách công việc trong ngày</string>
     <string name="try_your_best">Cố gắng nào!!!</string>
+    <string name="settingEmotion">hôm nay bạn thế nào? Hãy lưu giữ cảm xúc của mình vào Magic Note nhé!</string>
+    <string name="settingTodolist">Chào buổi sáng! Hãy cùng bắt đầu ngày mới với công việc của bạn nhé!</string>
+    <string name="remiderTodolist">Nhắc nhở công việc</string>
+    <string name="remiderTodolist1">Bạn có công việc cần làm bây giờ. Kiểm tra ngay!</string>
+    <string name="todolistContent">Nội dung:</string>
 </resources>

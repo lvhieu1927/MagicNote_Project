@@ -40,9 +40,9 @@ public class reminderReceiver extends BroadcastReceiver {
             Notification notification = new NotificationCompat.Builder(context,CHANNEL_ID)
                     .setContentIntent(contentIntent)
                     .setSmallIcon(android.R.drawable.ic_popup_reminder)
-                    .setContentTitle("Nhắc nhở công việc")  
-                    .setContentText("Bạn có công việc cần làm bây giờ. Check ngay !")
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText("Nội dung: " + intent.getStringExtra("content alarm")))
+                    .setContentTitle(context.getString(R.string.remiderTodolist))
+                    .setContentText(context.getString(R.string.remiderTodolist1))
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.todolistContent) + " " + intent.getStringExtra("content alarm")))
                     .setAutoCancel(true)
                     .setVibrate(new long[]{0, 200, 200, 300})
                     .build();

@@ -133,7 +133,8 @@
     <string name="TodolistAlertDialog3">Task should be has content to be added</string>
     <string name="ToastTodolistDeletedBlank">Blank task was deleted</string>
     <string name="ToastTodolistAddSucess">Create successful</string>
-    <string name="ToastTodolistCheckUpdate">Task should be has content</string>
+    <string name="ToastTodolistUpdateSucess">Cập nhật thành công</string>
+    <string name="ToastTodolistCheckBlank">Task should be has content</string>
     <string name="ToastToDolistCheckRepeat">You must choose time to reminder</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -145,4 +146,9 @@
     <string name="ToastSetting2">. Please press Back or restart the app</string>
     <string name="TodolistListView">List Task of Day</string>
     <string name="try_your_best">Try your best!!!</string>
+    <string name="settingEmotion">How are you today? Let\'s create some feelings to Magic Note!</string>
+    <string name="settingTodolist">Good morning! Let\'s start a new day with creating your task!</string>
+    <string name="remiderTodolist">Task\'s reminder</string>
+    <string name="remiderTodolist1">You having some tasks to do now. Check them!</string>
+    <string name="todolistContent">Content:</string>
 </resources>
