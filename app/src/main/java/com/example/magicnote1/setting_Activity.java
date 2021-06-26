@@ -43,23 +43,23 @@ public class setting_Activity extends AppCompatActivity {
         langGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                String lang,loadLang;
+                String language,loadLang;
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 switch (checkedId){
                     case R.id.vi_radion:
                         loadLang = "vi";
-                        lang = "Việt Nam";
-                        Log.d("123", lang);
+                        language = getString(R.string.vietnam);
+                        Log.d("123", language);
                         editor.putString("lang",loadLang);
                         editor.apply();
-                        Toast.makeText(getApplicationContext(), getString(R.string.ToastSetting1)+" " + lang + getString(R.string.ToastSetting2), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.ToastSetting1)+" " + language + getString(R.string.ToastSetting2), Toast.LENGTH_LONG).show();
                         break;
                     case R.id.en_radion:
                         loadLang = "en";
-                        lang = "English";
+                        language = getString(R.string.english);
                         editor.putString("lang",loadLang);
                         editor.apply();
-                        Toast.makeText(getApplicationContext(), getString(R.string.ToastSetting1)+" " + lang +getString(R.string.ToastSetting2), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.ToastSetting1)+" " + language +getString(R.string.ToastSetting2), Toast.LENGTH_LONG).show();
                         break;
                 }
             }
