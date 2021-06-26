@@ -117,6 +117,9 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
                 TextView itemView = (TextView)rowItem.findViewById(R.id.item_view);
                 itemView.setText(listTask.get(position).result());
                 itemView.setPaintFlags(0);
+                if(listTask.get(position).getPriority()){
+                    rowItem.setBackgroundResource(R.drawable.round_item_important);
+                }
                 if(listTask.get(position).getCompleted())
                 {
                     checkDone.setChecked(true);
@@ -145,6 +148,9 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
                             Log.d("id noti main"," "+listTask.get(position).getIdTask());
                             listTask.get(position).setCompleted(false);
                             rowItem.setBackgroundResource(R.drawable.round_item);
+                            if(listTask.get(position).getPriority()){
+                                rowItem.setBackgroundResource(R.drawable.round_item_important);
+                            }
                             itemView.setPaintFlags(0);
                             if(listTask.get(position).getDate().length()>0) {
                                 long wTime = Long.valueOf(listTask.get(position).getDate()) - toMillis(calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), calendar.get(Calendar.SECOND));
