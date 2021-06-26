@@ -2,6 +2,7 @@ package com.example.magicnote1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -19,7 +20,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-public class setting_Activity extends AppCompatActivity {
+public class setting_Activity extends Activity {
     private SharedPreferences sharedPreferences;
     private Button bt_Save;
     @Override
