@@ -11,6 +11,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -64,6 +65,13 @@ public class setting_Activity extends AppCompatActivity {
                 }
             }
         });
+    }
+    public void settingTodolist(){
+        CheckBox opt1 = (CheckBox)findViewById(R.id.todolist_opt1);
+        CheckBox op2 = (CheckBox)findViewById(R.id.todolist_opt2);
+    }
+    public void settingEmotionDiary(){
+
     }
     public void setAppLang(String local){
         Resources res = getResources();

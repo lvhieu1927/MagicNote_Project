@@ -61,10 +61,12 @@
             android:textSize="17sp"
             android:textStyle="bold" />
         <CheckBox
+            android:id="@+id/todolist_opt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thông báo chuẩn bị task vào mỗi 6h sáng (Đang phát triển)"/>
         <CheckBox
+            android:id="@+id/todolist_opt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thông báo kiểm tra task vào mỗi 6h tối (Đang phát triển)"/>
