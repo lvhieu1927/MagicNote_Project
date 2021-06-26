@@ -151,4 +151,7 @@
     <string name="remiderTodolist">Task\'s reminder</string>
     <string name="remiderTodolist1">You having some tasks to do now. Check them!</string>
     <string name="todolistContent">Content:</string>
+    <string name="general">General</string>
+    <string name="opt1Setting">Notification to prepare task every 6AM (In development)</string>
+    <string name="opt2">Announcement of writing feelings every 8PM (In development)</string>
 </resources>

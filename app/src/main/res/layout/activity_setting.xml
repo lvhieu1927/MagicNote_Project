@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Todolist"
+            android:text="@string/general"
             android:layout_gravity="left"
             android:fontFamily="@font/helveticaneue"
             android:textColor="#000"
@@ -64,12 +64,12 @@
             android:id="@+id/todolist_opt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thông báo chuẩn bị task vào mỗi 6h sáng (Đang phát triển)"/>
+            android:text="@string/opt1Setting"/>
         <CheckBox
             android:id="@+id/todolist_opt2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Thông báo viết cảm xúc vào mỗi 8h tối (Đang phát triển)"/>
+            android:text="@string/opt2"/>
         <Button
             android:id="@+id/button_update_setting"
             android:layout_height="wrap_content"

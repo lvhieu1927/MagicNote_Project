@@ -158,4 +158,7 @@
     <string name="remiderTodolist">Nhắc nhở công việc</string>
     <string name="remiderTodolist1">Bạn có công việc cần làm bây giờ. Kiểm tra ngay!</string>
     <string name="todolistContent">Nội dung:</string>
+    <string name="general">Chung</string>
+    <string name="opt1Setting">Thông báo chuẩn bị task vào mỗi 6h sáng (Đang phát triển)</string>
+    <string name="opt2">Thông báo viết cảm xúc vào mỗi 8h tối (Đang phát triển)</string>
 </resources>
