@@ -15,7 +15,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    //////Signed APK
+//    lintOptions {
+//        abortOnError false
+//        checkReleaseBuilds false
+//    }
+    //////
     buildTypes {
         release {
             minifyEnabled false
