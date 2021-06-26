@@ -289,6 +289,8 @@ public class todolist_item_Activity extends Activity {
             int id = Integer.valueOf(textId.getText().toString());
             Task task = toDoList.getTask(id);
             toDoList.deleteTask(task);
+            cancelReminder(id);
+            cancelScheduleAlarm(id);
         }
 //        Toast.makeText(getApplicationContext(),"Đã xoá",Toast.LENGTH_SHORT).show();
         finish();
