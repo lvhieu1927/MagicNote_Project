@@ -7,8 +7,12 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Vibrator;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
@@ -19,12 +23,18 @@ import com.example.magicnote1.todolist_MainMenu_Activity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class diaryEmotionReciver extends BroadcastReceiver {
+    private SharedPreferences sharedPreferences;
     @Override
     public void onReceive(Context context, Intent intent) {
         String CHANNEL_ID = "MESSAGE";
         String CHANNEL_NAME = "MESSAGE";
+        sharedPreferences = context.getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("lang","en");
+        Log.d("123", "lang at on create menu " + lang);
+        setAppLang(lang,context);
         Intent notiIntent = new Intent(context, todolist_MainMenu_Activity.class);
         Log.d("123",intent.getStringExtra("content_setting"));
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notiIntent,
@@ -37,10 +47,10 @@ public class diaryEmotionReciver extends BroadcastReceiver {
         }
         Notification notification = new NotificationCompat.Builder(context,CHANNEL_ID)
                 .setContentIntent(contentIntent)
-                .setSmallIcon(R.drawable.app_image)
-                .setContentTitle("Nhắc nhở Magic Note")
-                .setContentText("Bạn có một vài nhắc nhở")
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("Nội dung: " + intent.getStringExtra("content_setting")))
+                .setSmallIcon(android.R.drawable.ic_popup_reminder)
+                .setContentTitle(context.getString(R.string.remiderTodolist))
+                .setContentText(context.getString(R.string.remiderTodolist1))
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.todolistContent) + intent.getStringExtra("content_setting")))
                 .setAutoCancel(true)
                 .setVibrate(new long[]{0, 200, 200, 300})
                 .build();
@@ -53,5 +63,12 @@ public class diaryEmotionReciver extends BroadcastReceiver {
         SimpleDateFormat ft =new SimpleDateFormat ("mmssSS");
         String s=ft.format(dd);
         return Integer.parseInt(s);
+    }
+    public void setAppLang(String local,Context context){
+        Resources res = context.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(local.toLowerCase()));
+        res.updateConfiguration(conf,dm);
     }
 }
