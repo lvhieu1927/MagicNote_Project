@@ -49,7 +49,9 @@ public class activity_home_screen extends Activity {
     protected void onResume() {
         super.onResume();
         boolean todolistOpt1 = sharedPreferences.getBoolean("todolistOpt1",false);
+        Log.d("123", " " + todolistOpt1);
         boolean todolistOpt2 = sharedPreferences.getBoolean("todolistOpt2",false);
+        Log.d("123", " " + todolistOpt2);
         checkLoadSetting(todolistOpt1,todolistOpt2,getTimeOpt1(),getTimeOpt2());
     }
 
@@ -131,16 +133,17 @@ public class activity_home_screen extends Activity {
         notificationReceiverPending = PendingIntent.getBroadcast(
                 activity_home_screen.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-//                    System.currentTimeMillis() + time,
-//                    notificationReceiverPending);
-//        } else {
-//            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
-//                    System.currentTimeMillis() + time,
-//                    notificationReceiverPending);
-//        }
-        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY, notificationReceiverPending);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 10000,
+                    notificationReceiverPending);
+        } else {
+            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
+                    System.currentTimeMillis() + 10000,
+                    notificationReceiverPending);
+        }
+        mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, AlarmManager.INTERVAL_DAY, notificationReceiverPending);
+        Log.d("123", "Đã set");
     }
     public void checkLoadSetting(boolean a, boolean b, long t1, long t2){
         if(a){
