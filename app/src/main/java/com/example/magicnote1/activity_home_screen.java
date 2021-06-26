@@ -124,7 +124,7 @@ public class activity_home_screen extends Activity {
         notificationReceiver = new Intent(activity_home_screen.this,
                 diaryEmotionReciver.class);
         if(id == -888) {
-            notificationReceiver.putExtra("content_setting", getString(R.string.action_settings));
+            notificationReceiver.putExtra("content_setting", getString(R.string.settingTodolist));
         } else if(id == -999){
             notificationReceiver.putExtra("content_setting", getString(R.string.settingEmotion));
         }
