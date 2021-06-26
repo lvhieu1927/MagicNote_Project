@@ -39,8 +39,10 @@ public class activity_home_screen extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_screen);
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String language = sharedPreferences.getString("lang","en");
+        setAppLang(language);
+        setContentView(R.layout.activity_home_screen);
         addControl();
         addEvent();
     }
@@ -133,15 +135,15 @@ public class activity_home_screen extends Activity {
         notificationReceiverPending = PendingIntent.getBroadcast(
                 activity_home_screen.this, id, notificationReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         mAlarm = (AlarmManager) getSystemService(ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + time,
-                    notificationReceiverPending);
-        } else {
-            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
-                    System.currentTimeMillis() + time,
-                    notificationReceiverPending);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            mAlarm.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
+//                    System.currentTimeMillis() + time,
+//                    notificationReceiverPending);
+//        } else {
+//            mAlarm.setExact(AlarmManager.RTC_WAKEUP,
+//                    System.currentTimeMillis() + time,
+//                    notificationReceiverPending);
+//        }
         mAlarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + time, AlarmManager.INTERVAL_DAY, notificationReceiverPending);
         Log.d("123", "Đã set");
     }

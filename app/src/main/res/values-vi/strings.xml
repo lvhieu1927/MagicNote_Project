@@ -146,14 +146,14 @@
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="ToastWishlistSearch">Thanh tìm kiếm đã được mở rộng</string>
-    <string name="ToastWishlistSearchCollapse">Search is collapsed</string>
+    <string name="ToastWishlistSearchCollapse">Thanh tìm kiếm đã được thu gọn</string>
     <string name="WishlistSearchHint">Tìm kiếm sản phẩm ở đây</string>
     <string name="WishlistNoitem">Không có sản phẩm nào ở đây</string>
     <string name="ToastSetting1">Đã chuyển ngôn ngữ thành</string>
     <string name="ToastSetting2">. Vui lòng nhấn Trở lại hoặc khởi động lại ứng dụng</string>
     <string name="TodolistListView">Danh sách công việc trong ngày</string>
     <string name="try_your_best">Cố gắng nào!!!</string>
-    <string name="settingEmotion">hôm nay bạn thế nào? Hãy lưu giữ cảm xúc của mình vào Magic Note nhé!</string>
+    <string name="settingEmotion">Hôm nay bạn thế nào? Hãy lưu giữ cảm xúc của mình vào Magic Note nhé!</string>
     <string name="settingTodolist">Chào buổi sáng! Hãy cùng bắt đầu ngày mới với công việc của bạn nhé!</string>
     <string name="remiderTodolist">Nhắc nhở công việc</string>
     <string name="remiderTodolist1">Bạn có công việc cần làm bây giờ. Kiểm tra ngay!</string>
