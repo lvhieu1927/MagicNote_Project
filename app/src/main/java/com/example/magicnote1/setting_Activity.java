@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -67,8 +68,35 @@ public class setting_Activity extends AppCompatActivity {
         });
     }
     public void settingTodolist(){
+        String todolistOpt1,todolistOpt2;
         CheckBox opt1 = (CheckBox)findViewById(R.id.todolist_opt1);
         CheckBox op2 = (CheckBox)findViewById(R.id.todolist_opt2);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        opt1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()){
+
+                    editor.putBoolean("todolistOpt1",true);
+                    editor.apply();
+                }
+                else {
+                    editor.putBoolean("todolistOpt1",false);
+                    editor.apply();
+                }
+            }
+        });
+        op2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()){
+
+                }
+                else {
+
+                }
+            }
+        });
     }
     public void settingEmotionDiary(){
 
