@@ -69,6 +69,9 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
+        String language = sharedPreferences.getString("lang","en");
+        setAppLang(language);
         setContentView(R.layout.activity_todolist_main_menu);
         loadingLogo();
         sharedPreferences = getSharedPreferences("SHARED_PREFERENCES_NAME", Context.MODE_PRIVATE);
@@ -290,10 +293,10 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_main);
         switch (loadThemeId){
             case 0:
-                bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
                 break;
             case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
                 break;
             case 2:
                 bgView.setBackgroundResource(R.drawable.bg_todolist2);

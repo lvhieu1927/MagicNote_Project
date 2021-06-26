@@ -409,10 +409,10 @@ public class todolist_item_Activity extends Activity {
         LinearLayout bgView = (LinearLayout)findViewById(R.id.layout_item);
         switch (loadThemeId){
             case 0:
-                bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
+                bgView.setBackgroundResource(R.drawable.bg_todolist1);
                 break;
             case 1:
-                bgView.setBackgroundResource(R.drawable.bg_todolist1);
+                bgView.setBackgroundResource(R.drawable.wishlist_bg_image);
                 break;
             case 2:
                 bgView.setBackgroundResource(R.drawable.bg_todolist2);
