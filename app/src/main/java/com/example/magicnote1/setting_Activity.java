@@ -76,7 +76,6 @@ public class setting_Activity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(buttonView.isChecked()){
-
                     editor.putBoolean("todolistOpt1",true);
                     editor.apply();
                 }

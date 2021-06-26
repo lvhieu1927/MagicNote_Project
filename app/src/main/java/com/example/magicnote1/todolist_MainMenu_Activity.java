@@ -231,7 +231,7 @@ public class todolist_MainMenu_Activity extends AppCompatActivity {
         else emptyView.setVisibility(View.VISIBLE);
     }
     public void loadingLogo(){
-        GifImageView logo =(GifImageView) findViewById(R.id.logo);
+        ImageView logo =(ImageView) findViewById(R.id.logo);
 //        logo.startAnimation(AnimationUtils.loadAnimation(this,R.anim.splash_in_anim));
         handler = new Handler();
         handler.postDelayed(new Runnable() {

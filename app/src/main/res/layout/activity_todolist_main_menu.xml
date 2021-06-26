@@ -109,11 +109,11 @@
             android:padding="5dp"
             android:layout_gravity="bottom|right"
             android:onClick="clickButton"/>
-        <pl.droidsonroids.gif.GifImageView
+        <ImageView
             android:id="@+id/logo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/gif_todolist_splashscreen"
+            android:src="@drawable/img_todolist_splashscreen"
             android:background="@color/white"
             android:scaleType="centerInside"
             android:layout_gravity="center_horizontal|center_vertical"/>
