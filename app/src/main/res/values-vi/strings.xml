@@ -150,4 +150,5 @@
     <string name="WishlistNoitem">Không có sản phẩm nào ở đây</string>
     <string name="ToastSetting1">Đã chuyển ngôn ngữ thành</string>
     <string name="ToastSetting2">. Vui lòng nhấn Trở lại hoặc khởi động lại ứng dụng</string>
+    <string name="TodolistListView">Danh sách công việc trong ngày</string>
 </resources>
