@@ -139,7 +139,7 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="ToastWishlistSearch">Search is expanded</string>
-    <string name="ToastWishlistSearchCollapse">Thanh tìm kiếm đã được thu gọn</string>
+    <string name="ToastWishlistSearchCollapse">Search is collapsed</string>
     <string name="WishlistSearchHint">Search item here</string>
     <string name="WishlistNoitem">No item</string>
     <string name="ToastSetting1">Language changed to</string>

@@ -52,7 +52,7 @@ public class reminderReceiver extends BroadcastReceiver {
                     .setSmallIcon(android.R.drawable.ic_popup_reminder)
                     .setContentTitle(context.getString(R.string.remiderTodolist))
                     .setContentText(context.getString(R.string.remiderTodolist1))
-                    .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.todolistContent) + " " + intent.getStringExtra("content_setting")))
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.todolistContent) + " " + intent.getStringExtra("content alarm")))
                     .setAutoCancel(true)
                     .setVibrate(new long[]{0, 200, 200, 300})
                     .build();

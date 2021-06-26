@@ -60,6 +60,13 @@
                 <action android:name="android.intent.action.REBOOT" />
             </intent-filter>
         </receiver>
+        <receiver android:name=".model.diaryEmotionReciver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.REBOOT" />
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".intro.SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
