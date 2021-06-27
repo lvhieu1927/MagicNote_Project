@@ -13,6 +13,7 @@ import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.SoundEffectConstants;
@@ -55,6 +56,7 @@ public class reminderReceiver extends BroadcastReceiver {
                     .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.todolistContent) + " " + intent.getStringExtra("content alarm")))
                     .setAutoCancel(true)
                     .setVibrate(new long[]{0, 200, 200, 300})
+                    .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
                     .build();
             Vibrator v = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
             v.vibrate(1000);
